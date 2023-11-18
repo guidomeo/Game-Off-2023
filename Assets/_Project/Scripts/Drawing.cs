@@ -18,6 +18,8 @@ public class Drawing : MonoBehaviour
 
     private List<Line> lines = new ();
 
+    public Action<bool> OnDrawingCompleted; // valid
+
     private void Awake()
     {
         cam = Camera.main;
@@ -53,31 +55,39 @@ public class Drawing : MonoBehaviour
         
         if (Input.GetMouseButtonUp(0))
         {
-            drawing = false;
-            rb.isKinematic = false;
-
-            if (!currentLine.valid)
-            {
-                Destroy(currentLine.gameObject);
-                lines.RemoveAt(lines.Count-1);
-            }
-
-            if (lines.Count == 0)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            float totalLenght = 0f;
-
-            foreach (Line line in lines)
-            {
-                totalLenght += line.Lenght;
-                line.gameObject.layer = 0;
-            }
-            gameObject.layer = 0;
-
-            rb.mass = totalLenght;
+            bool valid = EndDraw();
+            OnDrawingCompleted?.Invoke(valid);
         }
+    }
+
+    bool EndDraw()
+    {
+        drawing = false;
+        rb.isKinematic = false;
+
+        if (!currentLine.valid)
+        {
+            Destroy(currentLine.gameObject);
+            lines.RemoveAt(lines.Count-1);
+        }
+
+        if (lines.Count == 0)
+        {
+            Destroy(gameObject);
+            return false;
+        }
+
+        float totalLenght = 0f;
+
+        foreach (Line line in lines)
+        {
+            totalLenght += line.Lenght;
+            line.gameObject.layer = 0;
+        }
+        gameObject.layer = 0;
+
+        rb.mass = totalLenght;
+
+        return true;
     }
 }
