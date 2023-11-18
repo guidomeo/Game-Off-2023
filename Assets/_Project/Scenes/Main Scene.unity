@@ -837,10 +837,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveAcc: 300
-  friction: 200
+  friction: 250
   maxXSpeed: 20
   maxYUpSpeed: 30
-  distanceToCheck: 0.5
+  distanceToCheck: 0.1
   gravity: 50
   maxAngle: 45
   wallMask:

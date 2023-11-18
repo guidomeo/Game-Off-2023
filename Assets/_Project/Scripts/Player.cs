@@ -55,29 +55,29 @@ public class Player : MonoBehaviour
                 rightDir = targetRightDir;
             }
         }
+        
+        Vector2 movement = rightDir * (moveDir * moveAcc * Time.fixedDeltaTime);
+        
+        if (hit.collider != null)
+        {
+            if (Vector3.Dot(movement, targetRightDir) > 0)
+            {
+                movement = SubtractVelocity(movement, -targetRightDir * (friction * Time.fixedDeltaTime));
+            }
+            else
+            {
+                movement = SubtractVelocity(movement, targetRightDir * (friction * Time.fixedDeltaTime));
+            }
+        }
 
         
         Vector2 velocity = rb.velocity;
 
         velocity += gravityDir * (gravity * Time.fixedDeltaTime);
-        velocity += rightDir * (moveDir * moveAcc * Time.fixedDeltaTime);
+        velocity += movement;
         velocity.x = Mathf.Clamp(velocity.x, -maxXSpeed, maxXSpeed);
         velocity.y = Mathf.Min(velocity.y, maxYUpSpeed);
         rb.velocity = velocity;
-
-        
-        if (hit.collider != null)
-        {
-            if (Vector3.Dot(rb.velocity, targetRightDir) > 0)
-            {
-                rb.velocity = SubtractVelocity(rb.velocity, -targetRightDir * (friction * Time.fixedDeltaTime));
-            }
-            else
-            {
-                rb.velocity = SubtractVelocity(rb.velocity, targetRightDir * (friction * Time.fixedDeltaTime));
-            }
-        }
-        
         
     }
 
