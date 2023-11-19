@@ -6,13 +6,14 @@ using UnityEngine;
 public class PhysicCharacterController : MonoBehaviour
 {
     [Header("Movement settings")]
-    public float acceleration;
-    public float brakingForce;
-    public float maxSpeed;
-    public float gravity;
+    public float acceleration = 50f;
+    public float brakingForce = 100f;
+    public float maxSpeed = 10f;
+    public float gravity = 30f;
     [Header("Float settings")]
-    public float raycastDistance;
-    public float maxAngle;
+    public float raycastDistance = 0.5f;
+    [Range(0f, 90f)] public float maxAngle = 45f;
+    [Min(1f)] public float slopePower = 1f;
     public LayerMask wallMask;
     private int moveDir;
 
@@ -26,6 +27,8 @@ public class PhysicCharacterController : MonoBehaviour
     private bool onGround;
 
     public float MovementVelocity { get; private set; }
+
+    private float currentMaxSpeed;
 
     private void Start()
     {
@@ -51,6 +54,7 @@ public class PhysicCharacterController : MonoBehaviour
     void CalculateTerrain()
     {
         onGround = false;
+        currentMaxSpeed = maxSpeed;
         gravityDir = Vector2.down;
         rightDir = Vector2.right;
         
@@ -58,25 +62,33 @@ public class PhysicCharacterController : MonoBehaviour
         if (hit.collider == null) return;
         
         Vector2 dir = (hit.point - hit.centroid).normalized;
-        if (Vector2.Angle(Vector2.down, dir) > maxAngle)
+        rightDir = Vector2.Perpendicular(dir);
+        float angle = Vector2.Angle(Vector2.down, dir);
+        if (angle > maxAngle)
         {
-            if (dir.x > 0 && moveDir == 1) moveDir = 0;
-            if (dir.x < 0 && moveDir == -1) moveDir = 0;
+            if (Mathf.Sign(dir.x) == Mathf.Sign(moveDir))
+            {
+                float angleDiff = angle - maxAngle;
+                float maxAngleDiff = 90f - maxAngle;
+                float angleT = Mathf.Pow(1f - angleDiff / maxAngleDiff, slopePower);
+                currentMaxSpeed = angleT * maxSpeed;
+            }
+            //if (dir.x > 0 && moveDir == 1) moveDir = 0;
+            //if (dir.x < 0 && moveDir == -1) moveDir = 0;
             return;
         }
         
         onGround = true;
         gravityDir = dir;
-        rightDir = Vector2.Perpendicular(gravityDir);
     }
 
     void Move()
     {
         float currentVelocity = Vector3.Dot(rb.velocity, rightDir);
-        float targetVelocity = moveDir * maxSpeed;
+        float targetVelocity = moveDir * currentMaxSpeed;
         
         float accelerationValue = acceleration;
-        if (moveDir == 0f || currentVelocity > maxSpeed)
+        if (moveDir == 0f || currentVelocity > currentMaxSpeed)
         {
             accelerationValue = brakingForce;
         }
