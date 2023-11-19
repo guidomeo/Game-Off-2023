@@ -8,6 +8,7 @@ public class Drawing : MonoBehaviour
     [SerializeField] private float width = 0.1f;
     [SerializeField] private float minDistance = 0.5f;
     [SerializeField] private Line linePrefab;
+    public LayerMask wallMask;
     
     private Rigidbody2D rb;
 
@@ -43,50 +44,19 @@ public class Drawing : MonoBehaviour
         
         Vector2 pos = InputManager.MousePosition;
 
-        if (currentLine == null) NewLine(pos);
+        if (currentLine == null)
+        {
+            pos = NearestFreePos(pos, pos);
+            NewLine(pos);
+            if (!currentLine.valid)
+            {
+                EndDraw();
+            }
+        }
 
+        pos = NearestFreePos(pos, currentLine.p1);
         currentLine.p2 = pos;
         currentLine.UpdateLine();
-
-        /*if (!currentLine.valid)
-        {
-            bool found = false;
-            float minDistance = Mathf.Infinity;
-            Vector2 minOutPos = Vector2.zero;
-            int count = 8;
-            float rayCastDistance = 0.4f;
-            for (int i = 0; i < count; i++)
-            {
-                float angle = (float) i / count * Mathf.PI * 2f;
-                Vector2 dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-                int hitsCount = Physics2D.CircleCastNonAlloc(pos + dir * rayCastDistance, width / 2f, -dir, hits, rayCastDistance, currentLine.wallMask);
-                
-                if (hitsCount > 0)
-                {
-                    var hit = hits[hitsCount - 1];
-                    Vector2 outPos = hit.centroid + 0.03f * hit.normal;
-                    currentLine.p2 = outPos;
-                    currentLine.UpdateLine();
-                    if (currentLine.valid)
-                    {
-                        float distance = hit.distance;
-                        if (distance < minDistance)
-                        {
-                            minDistance = distance;
-                            found = true;
-                            minOutPos = outPos;
-                        }
-                    }
-                }
-            }
-
-            if (found)
-            {
-                pos = minOutPos;
-                currentLine.p2 = minOutPos;
-                currentLine.UpdateLine();
-            }
-        }*/
 
         if (currentLine.valid && currentLine.Lenght > minDistance)
         {
@@ -95,12 +65,17 @@ public class Drawing : MonoBehaviour
         
         if (Input.GetMouseButtonUp(0))
         {
-            bool valid = EndDraw();
-            OnDrawingCompleted?.Invoke(valid);
+            EndDraw();
         }
     }
 
-    bool EndDraw()
+    void EndDraw()
+    {
+        bool valid = _EndDraw();
+        OnDrawingCompleted?.Invoke(valid);
+    }
+
+    bool _EndDraw()
     {
         drawing = false;
         rb.isKinematic = false;
@@ -129,5 +104,38 @@ public class Drawing : MonoBehaviour
         rb.mass = totalLenght;
 
         return true;
+    }
+
+    Vector2 NearestFreePos(Vector2 pos, Vector2 lastPos)
+    {
+        if (!Physics2D.OverlapCircle(pos, width / 2f, wallMask)) return pos;
+        
+        bool found = false;
+        float minDistance = Mathf.Infinity;
+        Vector2 minOutPos = Vector2.zero;
+        int count = 8;
+        float rayCastDistance = 0.4f;
+        for (int i = 0; i < count; i++)
+        {
+            float angle = (float) i / count * Mathf.PI * 2f;
+            Vector2 dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+            int hitsCount = Physics2D.CircleCastNonAlloc(pos + dir * rayCastDistance, width / 2f, -dir, hits, rayCastDistance, wallMask);
+            
+            if (hitsCount > 0)
+            {
+                var hit = hits[hitsCount - 1];
+                Vector2 outPos = hit.centroid + 0.03f * hit.normal;
+                if (Physics2D.OverlapCircle(outPos, width / 2f, wallMask)) continue;
+                float distance = Vector2.Distance(outPos, lastPos);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    found = true;
+                    minOutPos = outPos;
+                }
+            }
+        }
+
+        return found ? minOutPos : pos;
     }
 }

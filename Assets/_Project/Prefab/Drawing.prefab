@@ -48,6 +48,9 @@ MonoBehaviour:
   width: 0.1
   minDistance: 0.15
   linePrefab: {fileID: 643526036906283559, guid: 5cd0361e989294ca2a1617a8876628f0, type: 3}
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 321
 --- !u!50 &8698416697873686532
 Rigidbody2D:
   serializedVersion: 4
