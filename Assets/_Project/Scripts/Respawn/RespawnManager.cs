@@ -7,7 +7,7 @@ public class RespawnManager : MonoBehaviour
 {
     [SerializeField] private Player player;
 
-    private static SortedList<float, Vector3> respawnPoints = new();
+    private static SortedList<float, Vector3> respawnPoints;
     
     private static Player s_player;
 
@@ -17,6 +17,8 @@ public class RespawnManager : MonoBehaviour
     private void Awake()
     {
         s_player = player;
+        respawnPoints = new();
+        
         var playerPos = s_player.transform.position;
         SetRespawnPoint(playerPos);
         RegisterCheckpoint(playerPos);

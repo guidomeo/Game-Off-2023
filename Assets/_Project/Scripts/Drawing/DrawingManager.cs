@@ -27,6 +27,14 @@ public class DrawingManager : MonoBehaviour
             drawing = Instantiate(drawingPrefab);
             drawing.OnDrawingCompleted += OnDrawingCompleted;
         }
+        if (Input.GetMouseButtonDown(1))
+        {
+            foreach (var draw in drawings)
+            {
+                Destroy(draw.gameObject);
+            }
+            drawings.Clear();
+        }
     }
 
     void OnDrawingCompleted(bool valid)
