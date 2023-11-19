@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07a6ff4dd3f0649f7b79eebc0c84dcbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 0.15
+  width: 0.1
   minDistance: 0.15
   linePrefab: {fileID: 643526036906283559, guid: 5cd0361e989294ca2a1617a8876628f0, type: 3}
 --- !u!50 &8698416697873686532

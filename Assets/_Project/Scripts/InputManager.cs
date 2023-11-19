@@ -18,7 +18,10 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        Vector2 mousePos = Input.mousePosition;
+        mousePos.x = Mathf.Clamp(mousePos.x, 0f, Screen.width);
+        mousePos.y = Mathf.Clamp(mousePos.y, 0f, Screen.height);
+        Ray ray = cam.ScreenPointToRay(mousePos);
         if (!plane.Raycast(ray, out float enter)) return;
         MousePosition = ray.GetPoint(enter);
     }
