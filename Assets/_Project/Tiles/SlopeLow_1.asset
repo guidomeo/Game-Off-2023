@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Wall
+  m_Name: SlopeLow_1
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: ee00e86ed0d2048468e4cab215f1fea1, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: -1099758165, guid: 75f62ddc9591f401998ead8645fca37f, type: 3}
+  m_Color: {r: 0.62352943, g: 0.16078432, b: 0.16078432, a: 1}
   m_Transform:
     e00: 1
     e01: 0
