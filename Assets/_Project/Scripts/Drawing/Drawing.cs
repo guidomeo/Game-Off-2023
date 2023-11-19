@@ -7,6 +7,7 @@ public class Drawing : MonoBehaviour
 {
     [SerializeField] private float width = 0.1f;
     [SerializeField] private float minDistance = 0.5f;
+    [SerializeField] private float maxLength = 25f;
     [SerializeField] private Line linePrefab;
     public LayerMask wallMask;
     
@@ -21,6 +22,8 @@ public class Drawing : MonoBehaviour
     public Action<bool> OnDrawingCompleted; // valid
 
     private RaycastHit2D[] hits = new RaycastHit2D[20];
+
+    private float currentLength;
 
     private void Awake()
     {
@@ -48,9 +51,11 @@ public class Drawing : MonoBehaviour
         {
             pos = NearestFreePos(pos, pos);
             NewLine(pos);
+            currentLength = 0f;
             if (!currentLine.valid)
             {
                 EndDraw();
+                return;
             }
         }
 
@@ -58,14 +63,27 @@ public class Drawing : MonoBehaviour
         currentLine.p2 = pos;
         currentLine.UpdateLine();
 
-        if (currentLine.valid && currentLine.Lenght > minDistance)
+        if (currentLine.valid)
         {
-            NewLine(pos);
+            float overLenght = currentLength + currentLine.Lenght - maxLength;
+            if (overLenght > 0f)
+            {
+                currentLine.p2 += overLenght * (currentLine.p1 - currentLine.p2).normalized;
+                currentLine.UpdateLine();
+                EndDraw();
+                return;
+            }
+            if (currentLine.Lenght > minDistance)
+            {
+                currentLength += currentLine.Lenght;
+                NewLine(pos);
+            }
         }
-        
+
         if (Input.GetMouseButtonUp(0))
         {
             EndDraw();
+            return;
         }
     }
 
@@ -80,13 +98,13 @@ public class Drawing : MonoBehaviour
         drawing = false;
         rb.isKinematic = false;
 
-        if (!currentLine.valid)
+        if (!currentLine.valid) // Destroy last line if it is not valid
         {
             Destroy(currentLine.gameObject);
             lines.RemoveAt(lines.Count-1);
         }
 
-        if (lines.Count == 0)
+        if (lines.Count == 0) // Destroy drawing if is made of no lines
         {
             Destroy(gameObject);
             return false;

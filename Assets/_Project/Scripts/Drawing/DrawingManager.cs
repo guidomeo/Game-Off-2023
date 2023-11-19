@@ -14,8 +14,11 @@ public class DrawingManager : MonoBehaviour
 
     private List<Drawing> drawings = new();
 
+    public static DrawingManager instance;
+
     private void Awake()
     {
+        instance = this;
         isDrawing = false;
     }
 
@@ -29,11 +32,7 @@ public class DrawingManager : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1))
         {
-            foreach (var draw in drawings)
-            {
-                Destroy(draw.gameObject);
-            }
-            drawings.Clear();
+            DestroyAllDrawings();
         }
     }
 
@@ -50,5 +49,14 @@ public class DrawingManager : MonoBehaviour
             }
         }
         drawing.OnDrawingCompleted -= OnDrawingCompleted;
+    }
+
+    public void DestroyAllDrawings()
+    {
+        foreach (var draw in drawings)
+        {
+            Destroy(draw.gameObject);
+        }
+        drawings.Clear();
     }
 }

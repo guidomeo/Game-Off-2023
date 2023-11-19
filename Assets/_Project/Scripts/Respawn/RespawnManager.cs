@@ -56,6 +56,7 @@ public class RespawnManager : MonoBehaviour
     
     static void RespawnAt(Vector3 position)
     {
+        DrawingManager.instance.DestroyAllDrawings();
         s_player.rb.velocity = Vector2.zero;
         s_player.rb.position = position;
     }
