@@ -14,19 +14,26 @@ public class Player : MonoBehaviour
     [SerializeField] private float gravity = 30f;
     [SerializeField] private float maxAngle = 30f;
     [SerializeField] private LayerMask wallMask;
+    [SerializeField] private Transform graphic;
+    [SerializeField] private float speedToChangeSpeedX;
 
     private float moveDir = 0f;
 
     private Rigidbody2D rb;
+    private Animator animator;
     
     Vector2 gravityDir;
     private Vector2 rayDir;
     private RaycastHit2D hit;
     private Vector2 rightDir;
+    private static readonly int Speed = Animator.StringToHash("Speed");
+
+    private float speedX;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -78,7 +85,12 @@ public class Player : MonoBehaviour
         velocity.x = Mathf.Clamp(velocity.x, -maxXSpeed, maxXSpeed);
         velocity.y = Mathf.Min(velocity.y, maxYUpSpeed);
         rb.velocity = velocity;
+
+        float t = 1f - Mathf.Pow(0.5f, speedToChangeSpeedX * Time.deltaTime);
+        speedX = Mathf.Lerp(speedX, rb.velocity.x, t);
         
+        animator.SetFloat(Speed, Mathf.Abs(speedX) / maxXSpeed);
+        graphic.localScale = new Vector3(Mathf.Sign(speedX), 1f, 1f);
     }
 
     Vector2 SubtractVelocity(Vector2 a, Vector2 b)
