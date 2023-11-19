@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
 
     private float moveDir = 0f;
 
-    private Camera cam;
     private Rigidbody2D rb;
     private Animator animator;
     private PhysicCharacterController cc;
@@ -29,7 +28,6 @@ public class Player : MonoBehaviour
     private float flip = 1;
     private void Awake()
     {
-        cam = Camera.main;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
         cc = GetComponent<PhysicCharacterController>();
@@ -43,7 +41,7 @@ public class Player : MonoBehaviour
         
         if (DrawingManager.isDrawing)
         {
-            Vector2 pos = cam.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 pos = InputManager.MousePosition;
             Vector2 dir = pos - (Vector2)pencilParent.position;
             if (dir.x < -0.5f) flip = -1;
             if (dir.x > 0.5f) flip = 1;

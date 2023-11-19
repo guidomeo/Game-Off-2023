@@ -9,7 +9,6 @@ public class Drawing : MonoBehaviour
     [SerializeField] private float minDistance = 0.5f;
     [SerializeField] private Line linePrefab;
     
-    private Camera cam;
     private Rigidbody2D rb;
 
     private bool drawing = true;
@@ -20,9 +19,10 @@ public class Drawing : MonoBehaviour
 
     public Action<bool> OnDrawingCompleted; // valid
 
+    private RaycastHit2D[] hits = new RaycastHit2D[20];
+
     private void Awake()
     {
-        cam = Camera.main;
         rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
     }
@@ -41,12 +41,52 @@ public class Drawing : MonoBehaviour
     {
         if (!drawing) return;
         
-        Vector2 pos = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 pos = InputManager.MousePosition;
 
         if (currentLine == null) NewLine(pos);
 
         currentLine.p2 = pos;
         currentLine.UpdateLine();
+
+        /*if (!currentLine.valid)
+        {
+            bool found = false;
+            float minDistance = Mathf.Infinity;
+            Vector2 minOutPos = Vector2.zero;
+            int count = 8;
+            float rayCastDistance = 0.4f;
+            for (int i = 0; i < count; i++)
+            {
+                float angle = (float) i / count * Mathf.PI * 2f;
+                Vector2 dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+                int hitsCount = Physics2D.CircleCastNonAlloc(pos + dir * rayCastDistance, width / 2f, -dir, hits, rayCastDistance, currentLine.wallMask);
+                
+                if (hitsCount > 0)
+                {
+                    var hit = hits[hitsCount - 1];
+                    Vector2 outPos = hit.centroid + 0.03f * hit.normal;
+                    currentLine.p2 = outPos;
+                    currentLine.UpdateLine();
+                    if (currentLine.valid)
+                    {
+                        float distance = hit.distance;
+                        if (distance < minDistance)
+                        {
+                            minDistance = distance;
+                            found = true;
+                            minOutPos = outPos;
+                        }
+                    }
+                }
+            }
+
+            if (found)
+            {
+                pos = minOutPos;
+                currentLine.p2 = minOutPos;
+                currentLine.UpdateLine();
+            }
+        }*/
 
         if (currentLine.valid && currentLine.Lenght > minDistance)
         {

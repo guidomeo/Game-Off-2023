@@ -7,7 +7,7 @@ public class Line : MonoBehaviour
 {
     [SerializeField] LineRenderer lineRend;
     [SerializeField] CapsuleCollider2D coll;
-    [SerializeField] private LayerMask wallMask;
+    public LayerMask wallMask;
 
     [NonSerialized] public Vector2 p1;
     [NonSerialized] public Vector2 p2;
@@ -25,7 +25,7 @@ public class Line : MonoBehaviour
 
     public void UpdateLine()
     {
-        Vector2 size = new Vector2(width, Lenght);
+        Vector2 size = new Vector2(width, Lenght + width);
         float angle = Vector2.SignedAngle(Vector2.down, p2 - p1);
         Vector2 position = (p1 + p2) / 2f;
 

@@ -50,7 +50,7 @@ MonoBehaviour:
   coll: {fileID: 643526036906283556}
   wallMask:
     serializedVersion: 2
-    m_Bits: 65
+    m_Bits: 321
 --- !u!120 &643526036906283578
 LineRenderer:
   m_ObjectHideFlags: 0

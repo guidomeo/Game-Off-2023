@@ -13,7 +13,7 @@ TagManager:
   - UI
   - Player
   - Line
-  - 
+  - Wall
   - 
   - 
   - 
@@ -38,9 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2159119893
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Player
     uniqueID: 2483427271
+    locked: 0
+  - name: Effects
+    uniqueID: 2120029413
     locked: 0
