@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
 
     private float moveDir = 0f;
 
-    private Rigidbody2D rb;
+    [NonSerialized] public Rigidbody2D rb;
     private Animator animator;
     private PhysicCharacterController cc;
     
