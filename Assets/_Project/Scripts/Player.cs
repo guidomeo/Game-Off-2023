@@ -56,8 +56,8 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if (cc.MovementVelocity < -0.1f) flip = -1;
-            if (cc.MovementVelocity > 0.1f) flip = 1;
+            if (cc.MovementVelocity < -1f) flip = -1;
+            if (cc.MovementVelocity > 1f) flip = 1;
         }
         
         animator.SetFloat(Speed, Mathf.Abs(cc.MovementVelocity) / cc.maxSpeed);
