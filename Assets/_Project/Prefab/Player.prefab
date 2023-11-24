@@ -5558,9 +5558,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   raycastDistance: 0.5
-  maxMoveMaxSpeedAngle: 30
-  maxGoDownAngle: 70
-  maxFrictionAngle: 45
+  angleMaxSpeed: 30
+  angleZeroSpeed: 65
+  angleFriction: 30
 --- !u!50 &6329015033417304130
 Rigidbody2D:
   serializedVersion: 4

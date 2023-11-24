@@ -15,7 +15,7 @@ public class PhysicCharacterController : MonoBehaviour
     public LayerMask wallMask;
     public float raycastDistance = 0.5f;
     [Header("Angles")]
-    [Range(0f, 90f)] public float maxGoDownAngle = 70f;
+    //[Range(0f, 90f)] public float maxGoDownAngle = 70f;
     [Range(0f, 90f)] public float angleMaxSpeed = 30f;
     [Range(0f, 90f)] public float angleZeroSpeed = 80f;
     [Range(0f, 90f)] public float angleFriction = 45f;
@@ -86,7 +86,6 @@ public class PhysicCharacterController : MonoBehaviour
         }*/
         
         MovementVelocity = Vector3.Dot(rb.velocity, rightDir);
-        Debug.Log(angle);
 
         if (Mathf.Abs(angle) > angleMaxSpeed)
         {
