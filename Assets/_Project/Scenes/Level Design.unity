@@ -470,10 +470,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drawing Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 2991237755293567376, guid: dada16de1dc6448b78a3b538596c6df5, type: 3}
-      propertyPath: maxNumberOfDrawings
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2991237755293567377, guid: dada16de1dc6448b78a3b538596c6df5, type: 3}
       propertyPath: m_RootOrder
       value: 5

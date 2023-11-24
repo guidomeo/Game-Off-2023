@@ -37,8 +37,17 @@ public class Line : MonoBehaviour
         coll.enabled = valid;
         
         lineRend.SetPositions(new Vector3[] {transform.InverseTransformPoint(p1), transform.InverseTransformPoint(p2)});
-        Color color = valid ? Color.black : Color.red;
+        Color color = valid ? new Color(0.2f, 0.2f, 0.2f) : Color.red;
         lineRend.startColor = color;
         lineRend.endColor = color;
+        
+        if (!valid) DrawingManager.instance.ShowCannotBuild();
+    }
+
+    public void End()
+    {
+        lineRend.startColor = Color.black;
+        lineRend.endColor = Color.black;
+        //Destroy(lineRend);
     }
 }

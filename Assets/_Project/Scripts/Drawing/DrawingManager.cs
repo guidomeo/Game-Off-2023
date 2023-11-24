@@ -9,6 +9,7 @@ public class DrawingManager : MonoBehaviour
     
     [SerializeField] private int maxNumberOfDrawings = 3;
     [SerializeField] private Drawing drawingPrefab;
+    [SerializeField] private GameObject cannotBuildEffect;
 
     private Drawing drawing;
 
@@ -20,6 +21,7 @@ public class DrawingManager : MonoBehaviour
     {
         instance = this;
         isDrawing = false;
+        cannotBuildEffect.SetActive(false);
     }
 
     private void Update()
@@ -59,4 +61,36 @@ public class DrawingManager : MonoBehaviour
         }
         drawings.Clear();
     }
+
+    private Coroutine hideCannotBuildCoroutine;
+
+    public void ShowCannotBuild(float time = 0f)
+    {
+        if (hideCannotBuildCoroutine != null) StopCoroutine(hideCannotBuildCoroutine);
+        
+        cannotBuildEffect.transform.position = InputManager.MousePosition;
+        cannotBuildEffect.SetActive(true);
+        
+        if (time > 0f)
+        {
+            hideCannotBuildCoroutine = StartCoroutine(CO_HideCannotBuild(time));
+        }
+    }
+
+    public void HideCannotBuild()
+    {
+        if (hideCannotBuildCoroutine != null) StopCoroutine(hideCannotBuildCoroutine);
+        cannotBuildEffect.SetActive(false);
+    }
+    
+    
+
+    IEnumerator CO_HideCannotBuild(float time)
+    {
+        yield return new WaitForSeconds(time);
+        cannotBuildEffect.SetActive(false);
+        hideCannotBuildCoroutine = null;
+    }
+    
+    
 }

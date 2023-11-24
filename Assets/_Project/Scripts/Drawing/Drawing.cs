@@ -25,10 +25,14 @@ public class Drawing : MonoBehaviour
 
     private float currentLength;
 
+    private LineRenderer lineRend;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
+        lineRend = GetComponent<LineRenderer>();
+        lineRend.widthMultiplier = width;
     }
 
     void NewLine(Vector3 pos)
@@ -54,6 +58,7 @@ public class Drawing : MonoBehaviour
             currentLength = 0f;
             if (!currentLine.valid)
             {
+                DrawingManager.instance.ShowCannotBuild(0.5f);
                 EndDraw();
                 return;
             }
@@ -62,6 +67,11 @@ public class Drawing : MonoBehaviour
         pos = NearestFreePos(pos, currentLine.p1);
         currentLine.p2 = pos;
         currentLine.UpdateLine();
+
+        if (currentLine.valid)
+            DrawingManager.instance.HideCannotBuild();
+        else
+            DrawingManager.instance.ShowCannotBuild();
 
         if (currentLine.valid)
         {
@@ -82,6 +92,7 @@ public class Drawing : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
+            DrawingManager.instance.HideCannotBuild();
             EndDraw();
             return;
         }
@@ -112,11 +123,18 @@ public class Drawing : MonoBehaviour
 
         float totalLenght = 0f;
 
-        foreach (Line line in lines)
+        lineRend.positionCount = lines.Count + 1;
+
+        lineRend.SetPosition(0, lines[0].p1);
+        for (var i = 0; i < lines.Count; i++)
         {
+            var line = lines[i];
+            lineRend.SetPosition(i + 1, line.p2);
             totalLenght += line.Lenght;
             line.gameObject.layer = 0;
+            line.End();
         }
+
         gameObject.layer = 0;
 
         rb.mass = totalLenght;
