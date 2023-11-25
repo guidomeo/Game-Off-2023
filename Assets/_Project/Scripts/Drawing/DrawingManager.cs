@@ -26,7 +26,7 @@ public class DrawingManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (InputManager.mouseDown)
         {
             isDrawing = true;
             drawing = Instantiate(drawingPrefab);

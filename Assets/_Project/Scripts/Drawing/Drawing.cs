@@ -90,7 +90,7 @@ public class Drawing : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (InputManager.mouseUp)
         {
             DrawingManager.instance.HideCannotBuild();
             EndDraw();
