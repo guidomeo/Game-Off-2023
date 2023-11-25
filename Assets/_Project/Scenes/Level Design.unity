@@ -403,6 +403,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 237590317}
+  - component: {fileID: 237590320}
   - component: {fileID: 237590319}
   - component: {fileID: 237590316}
   - component: {fileID: 237590315}
@@ -527,6 +528,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 40
   player: {fileID: 1861742180}
+--- !u!114 &237590320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237590314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a120b4ced4f3b435482d8603b05e5072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aspectW: 16
+  aspectH: 9
 --- !u!1001 &317208864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -684,10 +699,6 @@ PrefabInstance:
     - target: {fileID: 6329015033417304133, guid: 98b02ff2628714164931fad4e62c9ba9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6329015033417304135, guid: 98b02ff2628714164931fad4e62c9ba9, type: 3}
-      propertyPath: maxAngle
-      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98b02ff2628714164931fad4e62c9ba9, type: 3}
