@@ -28,14 +28,14 @@ public class AudioManager : MonoBehaviour
         if (audioData.clips.Length == 0) return;
 
         if (!audioData.canPlay) return;
-        if (audioData.timeToPlayAgain > 0f)
+        if (audioData.TimeToPlayAgain > 0f)
         {
             audioData.canPlay = false;
             StartCoroutine(CO_WaitToCanPlay(audioData));
         }
 
 
-        if (audioData.delay == 0f)
+        if (audioData.Delay == 0f)
             PlaySound(audioData, loop);
         else
             StartCoroutine(CO_PlayDelayed(audioData, loop));
@@ -43,13 +43,13 @@ public class AudioManager : MonoBehaviour
     
     IEnumerator CO_WaitToCanPlay(AudioData audioData)
     {
-        yield return new WaitForSeconds(audioData.timeToPlayAgain);
+        yield return new WaitForSeconds(audioData.TimeToPlayAgain);
         audioData.canPlay = true;
     }
     
     IEnumerator CO_PlayDelayed(AudioData audioData, bool loop)
     {
-        yield return new WaitForSeconds(audioData.delay);
+        yield return new WaitForSeconds(audioData.Delay);
         PlaySound(audioData, loop);
     }
 

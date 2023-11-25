@@ -222,6 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6329015031831885124}
   - component: {fileID: 6329015031831885125}
+  - component: {fileID: 898527985236964584}
   m_Layer: 0
   m_Name: Graphic
   m_TagString: Untagged
@@ -269,6 +270,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &898527985236964584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6329015031831885123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77ab320e976ef4105ac7923b79a1a7db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioGroundStep: {fileID: 11400000, guid: 1b6d92691cb634ecfbe431359db73a9e, type: 2}
+  audioLineStep: {fileID: 11400000, guid: e27757cb60b7a45229489f0a09f4c22a, type: 2}
 --- !u!1 &6329015031917356314
 GameObject:
   m_ObjectHideFlags: 0
@@ -5558,7 +5573,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   raycastDistance: 0.5
-  angleMaxSpeed: 30
+  angleMaxSpeed: 46
   angleZeroSpeed: 65
   angleFriction: 30
 --- !u!50 &6329015033417304130

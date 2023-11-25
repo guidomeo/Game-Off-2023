@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
     [NonSerialized] public Rigidbody2D rb;
     private Animator animator;
-    private PhysicCharacterController cc;
+    [NonSerialized] public PhysicCharacterController cc;
     
     Vector2 gravityDir;
     private Vector2 rayDir;
@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int Cast = Animator.StringToHash("Cast");
 
+    public float NormalizedSpeed => Mathf.Abs(cc.MovementVelocity) / cc.maxSpeed;
+    
     private float flip = 1;
     private void Awake()
     {
@@ -60,7 +62,9 @@ public class Player : MonoBehaviour
             if (cc.MovementVelocity > 1f) flip = 1;
         }
         
-        animator.SetFloat(Speed, Mathf.Abs(cc.MovementVelocity) / cc.maxSpeed);
+        
+        
+        animator.SetFloat(Speed, NormalizedSpeed);
         graphic.localScale = new Vector3(flip, 1f, 1f);
         animator.SetBool(Cast, DrawingManager.isDrawing);
 

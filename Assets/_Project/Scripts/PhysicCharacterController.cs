@@ -32,7 +32,8 @@ public class PhysicCharacterController : MonoBehaviour
     private Vector2 rightDir = Vector2.right;
     private float angle;
 
-    private bool onGround;
+    [NonSerialized] public RaycastHit2D hit;
+    [NonSerialized] public bool onGround;
 
     public float MovementVelocity { get; private set; }
 
@@ -67,14 +68,20 @@ public class PhysicCharacterController : MonoBehaviour
         rightDir = Vector2.right;
         angle = 0f;
         
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, 0.5f, Vector2.down, raycastDistance, wallMask);
+        hit = Physics2D.CircleCast(transform.position, 0.5f, Vector2.down, raycastDistance, wallMask);
         if (hit.collider == null) return;
         
         Vector2 dir = (hit.point - hit.centroid).normalized;
         angle = Vector2.SignedAngle(Vector2.down, dir);
-        onGround = true;
-        gravityDir = dir;
-        rightDir = Vector2.Perpendicular(dir);
+        if (Mathf.Abs(angle) < angleMaxSpeed)
+        {
+            gravityDir = dir;
+            rightDir = Vector2.Perpendicular(dir);
+        }
+        if (Mathf.Abs(angle) < angleZeroSpeed)
+        {
+            onGround = true;
+        }
     }
 
     void Move()
@@ -86,12 +93,7 @@ public class PhysicCharacterController : MonoBehaviour
         }*/
         
         MovementVelocity = Vector3.Dot(rb.velocity, rightDir);
-
-        if (Mathf.Abs(angle) > angleMaxSpeed)
-        {
-            rightDir = Vector2.right;
-            gravityDir = Vector2.down;
-        }
+        
         rb.AddForce(gravity * gravityDir);
         
         if (moveDir == 0)

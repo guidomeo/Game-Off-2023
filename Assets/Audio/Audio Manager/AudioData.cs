@@ -16,12 +16,17 @@ public class AudioData : ScriptableObject
     }
 
     public AudioClip[] clips;
-    public AudioMixerGroup audioMixerGroup;
-    [Range(0f, 1f)] public float volume = 1f;
-    [Range(-3f, 3f)] public float pitch = 1f;
-    [Min(0f)] public float delay = 0f;
-    [Min(0f)] public float timeToPlayAgain = 0f;
-    public RandomSettings randomSettings;
+    [SerializeField] private AudioMixerGroup audioMixerGroup;
+    [Range(0f, 1f)] [SerializeField] private float volume = 1f;
+    [Range(-3f, 3f)] [SerializeField] private float pitch = 1f;
+    [Min(0f)] [SerializeField] private float delay = 0f;
+    [Min(0f)] [SerializeField] private float timeToPlayAgain = 0f;
+    [SerializeField] private RandomSettings randomSettings;
+
+    [NonSerialized] public float volumeMultiplier = 1f;
+
+    public float Delay => delay;
+    public float TimeToPlayAgain => timeToPlayAgain;
     
     public void Play(bool loop = false) => AudioManager.instance.Play(this, loop);
 
@@ -43,7 +48,7 @@ public class AudioData : ScriptableObject
         source.clip = clips[clipIndex];
         
         
-        source.volume = volume + Random.Range(-randomSettings.volumeDown, randomSettings.volumeUp);
+        source.volume = (volume + Random.Range(-randomSettings.volumeDown, randomSettings.volumeUp)) * volumeMultiplier;
         source.pitch = pitch + Random.Range(-randomSettings.pitchDown, randomSettings.pitchUp);
     }
 }
