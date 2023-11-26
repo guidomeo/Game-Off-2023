@@ -22,6 +22,7 @@ public class Checkpoint : MonoBehaviour
         Player player = rb.GetComponent<Player>();
         if (player == null) return;
         RespawnManager.SetRespawnPoint(transform.position);
+        Destroy(gameObject);
     }
     private void OnDrawGizmos()
     {

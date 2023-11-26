@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textDuration: 5
-  textEndPercentage: 0.4
-  endFadeDuration: 1
+  textEndPercentage: 0.6
+  endFadeDuration: 2
   slides:
   - posFrom: {x: 0, y: 0.5}
     posTo: {x: 1, y: -0.5}
@@ -164,6 +164,14 @@ MonoBehaviour:
     text:
     - Once that was a wizard called the "Wizard of drawings".
     - He liked to draw magic shapes with his pencil wand.
+  - posFrom: {x: 0, y: 0}
+    posTo: {x: 0, y: 0}
+    scaleFrom: 1
+    scaleTo: 1.2
+    sprite: {fileID: 21300000, guid: 3ca3602f5ba564413a9b03fc5ab91284, type: 3}
+    text:
+    - Per' gli altri maghi non capivano.
+    - E lo prendevano per il culos
   - posFrom: {x: 1, y: 0}
     posTo: {x: 0, y: 0}
     scaleFrom: 1.2
@@ -175,11 +183,11 @@ MonoBehaviour:
   - posFrom: {x: 0, y: 0}
     posTo: {x: 0, y: 0}
     scaleFrom: 1
-    scaleTo: 1.3
+    scaleTo: 1.2
     sprite: {fileID: 21300000, guid: 6f8ddab82fc974e469e12134eddba268, type: 3}
     text:
     - He open the book with furry, and instantly found what is was looking for.
-    - 'The mega pencil, '
+    - The mega pencil, a biger pencil!
   spriteRend: {fileID: 128788683}
   textComp: {fileID: 438370030}
 --- !u!4 &80263608
