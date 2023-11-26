@@ -16,10 +16,10 @@ public class SlideShowManager : MonoBehaviour
         public float scaleFrom;
         public float scaleTo;
         public Sprite sprite;
-        public string text;
+        public List<string> text;
     }
 
-    [SerializeField] private float slideDuration;
+    [SerializeField] private float textDuration;
     [SerializeField] [Range(0,1)] private float textEndPercentage;
     [SerializeField] private float endFadeDuration = 3f;
     [SerializeField] private Slide[] slides;
@@ -28,38 +28,50 @@ public class SlideShowManager : MonoBehaviour
 
     private float timer = 0f;
     private int slideIndex = 0;
+    private int textIndex = 0;
     private bool end = false;
     private void Update()
     {
         Slide slide = slides[slideIndex];
         
-        float t = timer / slideDuration;
+        float textT = timer / textDuration;
+        
+        textComp.text = CutString(slide.text[textIndex], Mathf.Clamp01(textT / textEndPercentage));
+
+        float slideT = (textDuration * textIndex + timer) / (textDuration * slide.text.Count);
         
         spriteRend.sprite = slide.sprite;
-        spriteRend.transform.position = Vector2.LerpUnclamped(slide.posFrom, slide.posTo, t);
-        spriteRend.transform.localScale = Vector3.one * Mathf.LerpUnclamped(slide.scaleFrom, slide.scaleTo, t);
-        
-        textComp.text = CutString(slide.text, Mathf.Clamp01(t / textEndPercentage));
+        spriteRend.transform.position = Vector2.LerpUnclamped(slide.posFrom, slide.posTo, slideT);
+        spriteRend.transform.localScale = Vector3.one * Mathf.LerpUnclamped(slide.scaleFrom, slide.scaleTo, slideT);
 
         timer += Time.deltaTime;
         
         if (end) return;
         
-        if (timer > slideDuration)
+        if (timer >= textDuration)
         {
-            if (slideIndex < slides.Length - 1)
+            timer -= textDuration;
+            if (textIndex < slide.text.Count - 1)
             {
-                slideIndex++;
-                timer -= slideDuration;
+                textIndex++;
             }
             else
             {
-                spriteRend.DOFade(0f, endFadeDuration);
-                textComp.DOFade(0f, endFadeDuration).OnComplete(() =>
+                if (slideIndex < slides.Length - 1)
                 {
-                    SceneManager.LoadScene(1);
-                });
-                end = true;
+                    textIndex = 0;
+                    slideIndex++;
+                }
+                else
+                {
+                    timer += textDuration;
+                    spriteRend.DOFade(0f, endFadeDuration);
+                    textComp.DOFade(0f, endFadeDuration).OnComplete(() =>
+                    {
+                        SceneManager.LoadScene(1);
+                    });
+                    end = true;
+                }
             }
         }
     }

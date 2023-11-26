@@ -152,22 +152,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a83c54b63f44dc0b46daf6d1ec835c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slideDuration: 5
-  textEndPercentage: 0.583
+  textDuration: 5
+  textEndPercentage: 0.4
   endFadeDuration: 1
   slides:
+  - posFrom: {x: 0, y: 0.5}
+    posTo: {x: 1, y: -0.5}
+    scaleFrom: 1.1
+    scaleTo: 1.1
+    sprite: {fileID: 21300000, guid: df3550c1703914f689bf792e6e62f7ca, type: 3}
+    text:
+    - Once that was a wizard called the "Wizard of drawings".
+    - He liked to draw magic shapes with his pencil wand.
   - posFrom: {x: 1, y: 0}
     posTo: {x: 0, y: 0}
     scaleFrom: 1.2
     scaleTo: 1
-    sprite: {fileID: 21300000, guid: 20b83238bbd4e4a4699e5cb434608c97, type: 3}
-    text: Il mago si dirige nella biblioteca
+    sprite: {fileID: 21300000, guid: 3a602110e34c14fdfa520b732f34312b, type: 3}
+    text:
+    - Taking by the sconforto he goes into the magic library.
+    - He was looking for an ancient tome.
   - posFrom: {x: 0, y: 0}
     posTo: {x: 0, y: 0}
     scaleFrom: 1
     scaleTo: 1.3
     sprite: {fileID: 21300000, guid: 6f8ddab82fc974e469e12134eddba268, type: 3}
-    text: Il mago decide di aprire il libro proibito
+    text:
+    - He open the book with furry, and instantly found what is was looking for.
+    - 'The mega pencil, '
   spriteRend: {fileID: 128788683}
   textComp: {fileID: 438370030}
 --- !u!4 &80263608
