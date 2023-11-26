@@ -10,14 +10,9 @@ public class CameraBounds : MonoBehaviour
     [SerializeField] private float aspectH = 9f;
     
     Camera cam;
-    private void Start()
-    {
-        if (!Application.isPlaying) return;
-        
-        ChangeAspect();
-        Destroy(this);
-    }
 
+    public static Rect rect;
+    
     private void Update()
     {
         ChangeAspect();
@@ -34,12 +29,14 @@ public class CameraBounds : MonoBehaviour
         var variance = aspect / cam.aspect;
         if (variance < 1f)
         {
-            cam.rect = new Rect ((1f - variance) / 2f, 0 , variance, 1f);
+            rect = new Rect ((1f - variance) / 2f, 0 , variance, 1f);
         }
         else
         {
             variance = 1f / variance;
-            cam.rect = new Rect (0, (1f - variance) / 2f , 1f, variance);
+            rect = new Rect (0, (1f - variance) / 2f , 1f, variance);
         }
+
+        cam.rect = rect;
     }
 }

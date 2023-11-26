@@ -9,6 +9,10 @@ public class Drawing : MonoBehaviour
     [SerializeField] private float minDistance = 0.5f;
     [SerializeField] private float maxLength = 25f;
     [SerializeField] private Line linePrefab;
+    [SerializeField] private LineGraphic lineGraphicPrefab;
+    [SerializeField] private Transform colliderParent;
+    [SerializeField] private Transform graphicParent;
+    
     public LayerMask wallMask;
     
     private Rigidbody2D rb;
@@ -16,8 +20,10 @@ public class Drawing : MonoBehaviour
     private bool drawing = true;
 
     private Line currentLine;
+    private LineGraphic currentLineGraphic;
 
     private List<Line> lines = new ();
+    private List<LineGraphic> lineGraphics = new ();
 
     public Action<bool> OnDrawingCompleted; // valid
 
@@ -37,12 +43,16 @@ public class Drawing : MonoBehaviour
 
     void NewLine(Vector3 pos)
     {
-        currentLine = Instantiate(linePrefab, transform);
+        currentLine = Instantiate(linePrefab, colliderParent);
+        currentLineGraphic = Instantiate(lineGraphicPrefab, graphicParent);
         currentLine.SetWidth(width);
+        currentLineGraphic.SetWidth(width);
         currentLine.p1 = pos;
         currentLine.p2 = pos;
         currentLine.UpdateLine();
+        currentLineGraphic.UpdateLine(currentLine);
         lines.Add(currentLine);
+        lineGraphics.Add(currentLineGraphic);
     }
 
     private void Update()
@@ -67,6 +77,7 @@ public class Drawing : MonoBehaviour
         pos = NearestFreePos(pos, currentLine.p1);
         currentLine.p2 = pos;
         currentLine.UpdateLine();
+        currentLineGraphic.UpdateLine(currentLine);
 
         if (currentLine.valid)
             DrawingManager.instance.HideCannotBuild();
@@ -80,6 +91,7 @@ public class Drawing : MonoBehaviour
             {
                 currentLine.p2 += overLenght * (currentLine.p1 - currentLine.p2).normalized;
                 currentLine.UpdateLine();
+                currentLineGraphic.UpdateLine(currentLine);
                 EndDraw();
                 return;
             }
@@ -112,7 +124,10 @@ public class Drawing : MonoBehaviour
         if (!currentLine.valid) // Destroy last line if it is not valid
         {
             Destroy(currentLine.gameObject);
-            lines.RemoveAt(lines.Count-1);
+            Destroy(currentLineGraphic.gameObject);
+            int index = lines.Count - 1;
+            lines.RemoveAt(index);
+            lineGraphics.RemoveAt(index);
         }
 
         if (lines.Count == 0) // Destroy drawing if is made of no lines
@@ -125,15 +140,25 @@ public class Drawing : MonoBehaviour
 
         lineRend.positionCount = lines.Count + 1;
 
+        Vector2 midPoint = Vector2.zero;
+        
         lineRend.SetPosition(0, lines[0].p1);
         for (var i = 0; i < lines.Count; i++)
         {
             var line = lines[i];
+            var lineGraphic = lineGraphics[i];
             lineRend.SetPosition(i + 1, line.p2);
             totalLenght += line.Lenght;
             line.gameObject.layer = 0;
-            line.End();
+            lineGraphic.End();
+            midPoint += line.MidPoint;
         }
+        midPoint /= lines.Count;
+
+        Vector2 linePos = colliderParent.transform.position;
+        transform.position = midPoint;
+        colliderParent.transform.position = linePos;
+        graphicParent.transform.position = linePos;
 
         gameObject.layer = 0;
 
