@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Drawing : MonoBehaviour
 {
+    [SerializeField] float rayCastDistance = 0.4f;
     [SerializeField] private float width = 0.1f;
     [SerializeField] private float minDistance = 0.5f;
     [SerializeField] private float maxLength = 25f;
@@ -32,6 +33,8 @@ public class Drawing : MonoBehaviour
     private float currentLength;
 
     private LineRenderer lineRend;
+
+    private Vector2 debugPos;
 
     private void Awake()
     {
@@ -64,6 +67,7 @@ public class Drawing : MonoBehaviour
         if (currentLine == null)
         {
             pos = NearestFreePos(pos, pos);
+            debugPos = pos;
             NewLine(pos);
             currentLength = 0f;
             if (!currentLine.valid)
@@ -175,7 +179,6 @@ public class Drawing : MonoBehaviour
         float minDistance = Mathf.Infinity;
         Vector2 minOutPos = Vector2.zero;
         int count = 8;
-        float rayCastDistance = 0.4f;
         for (int i = 0; i < count; i++)
         {
             float angle = (float) i / count * Mathf.PI * 2f;
@@ -184,8 +187,8 @@ public class Drawing : MonoBehaviour
             
             if (hitsCount > 0)
             {
-                var hit = hits[hitsCount - 1];
-                Vector2 outPos = hit.centroid + 0.03f * hit.normal;
+                var hit = hits[0];
+                Vector2 outPos = hit.centroid + 0.05f * hit.normal;
                 if (Physics2D.OverlapCircle(outPos, width / 2f, wallMask)) continue;
                 float distance = Vector2.Distance(outPos, lastPos);
                 if (distance < minDistance)
@@ -198,5 +201,10 @@ public class Drawing : MonoBehaviour
         }
 
         return found ? minOutPos : pos;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(debugPos, width / 2f);
     }
 }

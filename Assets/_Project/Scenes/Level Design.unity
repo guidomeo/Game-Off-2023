@@ -1908,6 +1908,14 @@ CompositeCollider2D:
         Y: -10000000
       - X: 70000000
         Y: -10000000
+    - - X: 220000000
+        Y: -80000000
+      - X: 210000000
+        Y: -80000000
+      - X: 210000000
+        Y: -100000000
+      - X: 220000000
+        Y: -100000000
   m_CompositePaths:
     m_Paths:
     - - {x: 316.99997, y: 34}
@@ -2068,6 +2076,10 @@ CompositeCollider2D:
       - {x: 6.9999704, y: 2}
       - {x: -9, y: 1.9999708}
       - {x: -8.99997, y: -1}
+    - - {x: 21.999971, y: -10}
+      - {x: 21.999971, y: -8}
+      - {x: 21, y: -8.00003}
+      - {x: 21.000029, y: -10}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!19719996 &1262046963
@@ -2144,6 +2156,26 @@ Tilemap:
   m_GameObject: {fileID: 1262046959}
   m_Enabled: 1
   m_Tiles:
+  - first: {x: 21, y: -10, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 21, y: -9, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: -9, y: -1, z: 0}
     second:
       serializedVersion: 2
@@ -15466,15 +15498,15 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 1332
+  - m_RefCount: 1334
     m_Data: {fileID: 11400000, guid: 5e8104a688a4c479ca336db43f8d2b28, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   m_TileSpriteArray:
-  - m_RefCount: 1332
+  - m_RefCount: 1334
     m_Data: {fileID: 21300000, guid: ee00e86ed0d2048468e4cab215f1fea1, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 1332
+  - m_RefCount: 1334
     m_Data:
       e00: 1
       e01: 0
@@ -15493,7 +15525,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 1332
+  - m_RefCount: 1334
     m_Data: {r: 0, g: 0, b: 0, a: 1}
   - m_RefCount: 0
     m_Data: {r: 0.6226415, g: 0.16153437, b: 0.16153437, a: 1}
