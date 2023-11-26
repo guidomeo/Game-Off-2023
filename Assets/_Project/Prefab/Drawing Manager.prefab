@@ -80,7 +80,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e708fa4240d514ba48ba43c1d4810062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRend: {fileID: 812495583169205586}
   coll: {fileID: 0}
   wallMask:
     serializedVersion: 2
@@ -124,7 +123,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2120029413
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Positions:
   - {x: 0, y: -0.15, z: 0}
@@ -229,7 +228,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e708fa4240d514ba48ba43c1d4810062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRend: {fileID: 1307144319141063367}
   coll: {fileID: 0}
   wallMask:
     serializedVersion: 2
@@ -273,7 +271,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2120029413
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Positions:
   - {x: 0, y: -0.15, z: 0}
@@ -363,6 +361,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7167677729532890360}
+  - {fileID: 6729876469222477149}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -381,6 +380,190 @@ MonoBehaviour:
   maxNumberOfDrawings: 1
   drawingPrefab: {fileID: 8698416697873686535, guid: ee2591f5bfc344e489001fc358804e2b, type: 3}
   cannotBuildEffect: {fileID: 1239786187721714571}
+  startDrawingSpeed: 10
+  fadeDuration: 0.1
+  pitchOffset: 0.1
+  drawingSpeedChangeSpeed: 12
+  drawingDirectionChangeSpeed: 12
+  drawingSpeedMin: 0
+  drawingSpeedMax: 70
+  pencilVolume:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.000541687
+      value: 0
+      inSlope: 12.615084
+      outSlope: 12.615084
+      tangentMode: 0
+      weightedMode: 2
+      inWeight: 0
+      outWeight: 0.030657727
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.003875669
+      outSlope: 0.003875669
+      tangentMode: 0
+      weightedMode: 1
+      inWeight: 0.63206524
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  pencilPitch:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.9
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.063549936
+      outSlope: 0.063549936
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.04611838
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  pencilDrawingSource: {fileID: 1976375149976831375}
+--- !u!1 &7651443031791692820
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6729876469222477149}
+  - component: {fileID: 1976375149976831375}
+  m_Layer: 0
+  m_Name: Pencil Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6729876469222477149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7651443031791692820}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2991237755293567377}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1976375149976831375
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7651443031791692820}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -7821444619655895012, guid: 4d0f4f0523e0941b19ffcdc2ae31bc95, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 609dcc715e658421c9c18ba7124a2baf, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8020947004559277665
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,7 +609,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e708fa4240d514ba48ba43c1d4810062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRend: {fileID: 4207848722335364093}
   coll: {fileID: 0}
   wallMask:
     serializedVersion: 2
@@ -470,7 +652,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2120029413
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: -0.15, z: 0}
@@ -575,7 +757,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e708fa4240d514ba48ba43c1d4810062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRend: {fileID: 1768800320043037535}
   coll: {fileID: 0}
   wallMask:
     serializedVersion: 2
@@ -619,7 +800,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2120029413
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: -0.15, z: 0}

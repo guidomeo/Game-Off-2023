@@ -24,3 +24,4 @@ MonoBehaviour:
     volumeDown: 0.2
     pitchUp: 0.2
     pitchDown: 0.2
+  variants: []
