@@ -5575,7 +5575,6 @@ MonoBehaviour:
   raycastDistance: 0.5
   angleMaxSpeed: 46
   angleZeroSpeed: 65
-  angleFriction: 30
 --- !u!50 &6329015033417304130
 Rigidbody2D:
   serializedVersion: 4

@@ -18,7 +18,6 @@ public class PhysicCharacterController : MonoBehaviour
     //[Range(0f, 90f)] public float maxGoDownAngle = 70f;
     [Range(0f, 90f)] public float angleMaxSpeed = 30f;
     [Range(0f, 90f)] public float angleZeroSpeed = 80f;
-    [Range(0f, 90f)] public float angleFriction = 45f;
     
     
     
@@ -98,7 +97,7 @@ public class PhysicCharacterController : MonoBehaviour
         
         if (moveDir == 0)
         {
-            if (Mathf.Abs(angle) < angleFriction)
+            if (Mathf.Abs(angle) < angleMaxSpeed)
             {
                 int brakingDir = (int) -Mathf.Sign(MovementVelocity);
                 float currBrakingForce = Mathf.Min(brakingForce, Mathf.Abs(MovementVelocity) / Time.deltaTime);
@@ -108,6 +107,17 @@ public class PhysicCharacterController : MonoBehaviour
         else
         {
             float currentMaxSpeed = maxSpeed;
+
+            //Debug.Log($"{moveDir} {angle}");
+            /*if (moveDir == 1 && angle > angleMaxSpeed)
+            {
+                currentMaxSpeed *= 0.5f; //Mathf.InverseLerp(angleMaxSpeed, angleZeroSpeed, angle);
+            }
+            if (moveDir == -1 && angle < -angleMaxSpeed)
+            {
+                currentMaxSpeed *= 0.5f; //Mathf.InverseLerp(angleMaxSpeed, angleZeroSpeed, -angle);
+            }*/
+            
             //float angleT = Mathf.InverseLerp(angleZeroSpeed, angleMaxSpeed, angle);
             //Debug.Log(angleT);
             //currentMaxSpeed *= angleT;
