@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Ground
   m_EditorClassIdentifier: 
   m_Angles:
-  - m_Start: -45
-    m_End: 45
+  - m_Start: -20
+    m_End: 20
     m_Order: 0
     m_Sprites:
     - {fileID: 21300000, guid: f9a73f672d0cf4546862842e34a58446, type: 3}

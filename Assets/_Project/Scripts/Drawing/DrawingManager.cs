@@ -76,7 +76,7 @@ public class DrawingManager : MonoBehaviour
             float dot = Mathf.Abs(Vector2.Dot(drawingDirection.normalized, Vector2.right));
             
             float t = Mathf.InverseLerp(drawingSpeedMin, drawingSpeedMax, drawingSpeed);
-            Debug.Log($"{t} {pencilVolume.Evaluate(t)}");
+            //Debug.Log($"{t} {pencilVolume.Evaluate(t)}");
             pencilDrawingSource.volume = pencilVolume.Evaluate(t) * pencilVolumeMultiplier;
             pencilDrawingSource.pitch = pencilPitch.Evaluate(t) + dot * pitchOffset;
             pencilDrawingSource.panStereo = AudioManager.instance.PanFromPosition(InputManager.MousePosition);
