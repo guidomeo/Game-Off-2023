@@ -383,16 +383,16 @@ MonoBehaviour:
   startDrawingSpeed: 10
   fadeDuration: 0.1
   pitchOffset: 0.1
-  drawingSpeedChangeSpeed: 12
-  drawingDirectionChangeSpeed: 12
-  drawingSpeedMin: 0
+  drawingSpeedChangeSpeed: 20
+  drawingDirectionChangeSpeed: 20
+  drawingSpeedMin: 0.01
   drawingSpeedMax: 70
   pencilVolumeMultiplier: 0.3
   pencilVolume:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.000541687
+      time: 0
       value: 0
       inSlope: 12.615084
       outSlope: 12.615084

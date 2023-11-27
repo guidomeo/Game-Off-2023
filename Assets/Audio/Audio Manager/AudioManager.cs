@@ -11,6 +11,8 @@ public class AudioManager : MonoBehaviour
 
     List<AudioSource> audioSourceList = new();
 
+    private bool duplicate;
+
     public float PanFromPosition(Vector2 position)
     {
         return (position.x - CameraController.Position.x) / panDistance;
@@ -25,6 +27,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
+            duplicate = true;
             Destroy(gameObject);
             return;
         }
@@ -32,6 +35,7 @@ public class AudioManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (duplicate) return;
         instance = null;
     }
 

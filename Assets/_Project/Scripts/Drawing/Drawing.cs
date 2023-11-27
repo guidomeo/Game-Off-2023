@@ -233,6 +233,7 @@ public class Drawing : MonoBehaviour
             
             contactAudio.stereoPan = AudioManager.instance.PanFromPosition(contact.point);
             
+            Debug.Log("contactAudio play");
             contactAudio.Play();
         }
     }
