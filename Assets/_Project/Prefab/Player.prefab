@@ -282,8 +282,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ab320e976ef4105ac7923b79a1a7db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioGroundStep: {fileID: 11400000, guid: 1b6d92691cb634ecfbe431359db73a9e, type: 2}
-  audioLineStep: {fileID: 11400000, guid: e27757cb60b7a45229489f0a09f4c22a, type: 2}
+  audioGroundStep: {fileID: 11400000, guid: 0b02cc7ef9e764c2c9f44fe8d8799bed, type: 2}
+  audioLineStep: {fileID: 11400000, guid: 516a4f5bbb60042d896d5f7249766a9d, type: 2}
+  wallLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &6329015031917356314
 GameObject:
   m_ObjectHideFlags: 0

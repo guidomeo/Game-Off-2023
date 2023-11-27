@@ -15,7 +15,7 @@ public class Drawing : MonoBehaviour
     [SerializeField] private Transform colliderParent;
     [SerializeField] private Transform graphicParent;
     [Header("Contact Audio")]
-    [SerializeField] private AudioData contactAudio;
+    [SerializeField] private AudioDataGroup contactAudio;
     [SerializeField] private float minContactVelocity;
     [SerializeField] private float maxContactVelocity;
     [SerializeField] private float pitchMin = 1f;
@@ -233,7 +233,9 @@ public class Drawing : MonoBehaviour
             
             contactAudio.stereoPan = AudioManager.instance.PanFromPosition(contact.point);
             
-            contactAudio.Play();
+            bool inCave = EnvManager.PointInCave(contact.point);
+            contactAudio.Play(inCave ? 1 : 0);
+            
         }
     }
 }

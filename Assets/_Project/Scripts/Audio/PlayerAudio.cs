@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class PlayerAudio : MonoBehaviour
 {
-    [SerializeField] private AudioData audioGroundStep;
-    [SerializeField] private AudioData audioLineStep;
+    [SerializeField] private AudioDataGroup audioGroundStep;
+    [SerializeField] private AudioDataGroup audioLineStep;
 
-    private AudioData audioStep;
+    private AudioDataGroup audioStep;
     
     private Player player;
+
+    private bool inCave;
     private void Awake()
     {
         player = GetComponentInParent<Player>();
@@ -27,12 +29,14 @@ public class PlayerAudio : MonoBehaviour
             audioStep = isDrawing ? audioLineStep : audioGroundStep;
             
             audioStep.volumeMultiplier = player.NormalizedSpeed;
+
+            inCave = EnvManager.PointInCave(transform.position);
         }
     }
 
     public void Step()
     {
         if (audioStep == null) return;
-        audioStep.Play();
+        audioStep.Play(inCave ? 1 : 0);
     }
 }

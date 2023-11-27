@@ -118,7 +118,7 @@ MonoBehaviour:
   lineGraphicPrefab: {fileID: 9066231566369448520, guid: c97821b5a89e44b1caf4e0f0668be5e2, type: 3}
   colliderParent: {fileID: 3088868379213643300}
   graphicParent: {fileID: 4733889772356412125}
-  contactAudio: {fileID: 11400000, guid: b405627fca9fc4d6b98c73980022add4, type: 2}
+  contactAudio: {fileID: 11400000, guid: 27555fcc0912e4521ad95c47265405fa, type: 2}
   minContactVelocity: 0
   maxContactVelocity: 15
   pitchMin: 2
