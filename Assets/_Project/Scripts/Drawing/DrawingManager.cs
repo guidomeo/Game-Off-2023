@@ -73,8 +73,9 @@ public class DrawingManager : MonoBehaviour
             float directionT = 1f - Mathf.Pow(0.5f, Time.deltaTime * drawingDirectionChangeSpeed);
             drawingDirection = Vector2.Lerp(drawingDirection, currentDrawingDirection, directionT);
 
-            float dot = Mathf.Abs(Vector2.Dot(drawingDirection.normalized, Vector2.right));
-            
+            float dot = Vector2.Dot(drawingDirection.normalized, Vector2.right);
+            dot = (dot + 1f) / 2f;
+
             float t = Mathf.InverseLerp(drawingSpeedMin, drawingSpeedMax, drawingSpeed);
             //Debug.Log($"{t} {pencilVolume.Evaluate(t)}");
             pencilDrawingSource.volume = pencilVolume.Evaluate(t) * pencilVolumeMultiplier;
