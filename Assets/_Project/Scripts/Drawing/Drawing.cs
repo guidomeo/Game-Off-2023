@@ -32,18 +32,12 @@ public class Drawing : MonoBehaviour
 
     private List<Line> lines = new ();
     private List<LineGraphic> lineGraphics = new ();
-
     public Action<bool> OnDrawingCompleted; // valid
-
     private RaycastHit2D[] hits = new RaycastHit2D[20];
-
     private float currentLength;
-
     private LineRenderer lineRend;
-
-    private Vector2 debugPos;
-
     private float totalLenght;
+    public bool Valid => currentLine != null && currentLine.valid;
 
     private void Awake()
     {
@@ -76,7 +70,6 @@ public class Drawing : MonoBehaviour
         if (currentLine == null)
         {
             pos = NearestFreePos(pos, pos);
-            debugPos = pos;
             NewLine(pos);
             currentLength = 0f;
             if (!currentLine.valid)

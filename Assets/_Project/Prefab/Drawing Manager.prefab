@@ -380,12 +380,12 @@ MonoBehaviour:
   maxNumberOfDrawings: 1
   drawingPrefab: {fileID: 8698416697873686535, guid: ee2591f5bfc344e489001fc358804e2b, type: 3}
   cannotBuildEffect: {fileID: 1239786187721714571}
-  startDrawingSpeed: 10
-  fadeDuration: 0.1
+  startDrawingSpeed: 0
+  fadeSpeed: 0.5
   pitchOffset: 0.1
   drawingSpeedChangeSpeed: 20
   drawingDirectionChangeSpeed: 20
-  drawingSpeedMin: 0.01
+  drawingSpeedMin: 0.2
   drawingSpeedMax: 70
   pencilVolumeMultiplier: 0.3
   pencilVolume:
