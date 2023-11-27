@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -11,6 +12,7 @@ public class SpriteShapeRuntimeTest : MonoBehaviour
     public Vector2 p1;
     public Vector2 p2;
     public Vector2 p3;
+    public bool set;
 
     void Update()
     {
@@ -23,10 +25,8 @@ public class SpriteShapeRuntimeTest : MonoBehaviour
         }
     }
 
-    [ContextMenu("Update Values")]
-    public void UpdateValues()
+    private void OnValidate()
     {
-        Undo.RegisterCompleteObjectUndo(this , "ciao");
         p1 = contr.spline.GetPosition(0);
         p2 = contr.spline.GetPosition(1);
         p3 = contr.spline.GetPosition(2);
