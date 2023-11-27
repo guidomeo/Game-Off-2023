@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,15 @@ using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
+    public float panDistance = 15f;
     public static AudioManager instance;
 
     List<AudioSource> audioSourceList = new();
+
+    public float PanFromPosition(Vector2 position)
+    {
+        return (position.x - CameraController.Position.x) / panDistance;
+    }
     
     void Awake()
     {
@@ -21,6 +28,11 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+    }
+
+    private void OnDestroy()
+    {
+        instance = null;
     }
 
     public void Play(AudioData audioData, bool loop)

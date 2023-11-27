@@ -29,7 +29,7 @@ public class AudioDataEditor : Editor
             if (_loop)
             {
                 AudioData data = (AudioData) target;
-                data.Setup(_previewer);
+                data.Setup(_previewer, true);
                 _previewer.Play();
             }
             else
@@ -54,7 +54,7 @@ public class AudioDataEditor : Editor
             {
                 _play = true;
                 AudioData data = (AudioData) target;
-                data.Setup(_previewer);
+                data.Setup(_previewer, true);
                 _previewer.Play();
             }
         }

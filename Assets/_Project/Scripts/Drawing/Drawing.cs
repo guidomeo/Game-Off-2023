@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Drawing : MonoBehaviour
@@ -13,6 +14,12 @@ public class Drawing : MonoBehaviour
     [SerializeField] private LineGraphic lineGraphicPrefab;
     [SerializeField] private Transform colliderParent;
     [SerializeField] private Transform graphicParent;
+    [Header("Contact Audio")]
+    [SerializeField] private AudioData contactAudio;
+    [SerializeField] private float minContactVelocity;
+    [SerializeField] private float maxContactVelocity;
+    [SerializeField] private float pitchMin = 1f;
+    [SerializeField] private float pitchMax = 1f;
     
     public LayerMask wallMask;
     
@@ -35,6 +42,8 @@ public class Drawing : MonoBehaviour
     private LineRenderer lineRend;
 
     private Vector2 debugPos;
+
+    private float totalLenght;
 
     private void Awake()
     {
@@ -140,7 +149,7 @@ public class Drawing : MonoBehaviour
             return false;
         }
 
-        float totalLenght = 0f;
+        totalLenght = 0f;
 
         lineRend.positionCount = lines.Count + 1;
 
@@ -202,9 +211,29 @@ public class Drawing : MonoBehaviour
 
         return found ? minOutPos : pos;
     }
-
-    private void OnDrawGizmos()
+    
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Gizmos.DrawWireSphere(debugPos, width / 2f);
+        for (int i = 0; i < collision.contactCount; i++)
+        {
+            var contact = collision.GetContact(i);
+            
+            Rigidbody2D contactRb = contact.rigidbody;
+            if (contactRb != null && contactRb.GetComponent<Player>() != null) continue;
+
+            float velocity = contact.relativeVelocity.magnitude;
+            
+            if (velocity < minContactVelocity) continue;
+            
+            float volumeT = Mathf.InverseLerp(minContactVelocity, maxContactVelocity, velocity);
+            contactAudio.volumeMultiplier = volumeT;
+            
+            float pitchT = Mathf.InverseLerp(0f, maxLength / 2f, totalLenght);
+            contactAudio.pitchMultiplier = Mathf.Lerp(pitchMin, pitchMax, pitchT);
+            
+            contactAudio.stereoPan = AudioManager.instance.PanFromPosition(contact.point);
+            
+            contactAudio.Play();
+        }
     }
 }

@@ -9,6 +9,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private Player player;
 
+    public static Vector2 Position { get; private set; }
+
     private void LateUpdate()
     {
         float t = 1f - Mathf.Pow(0.5f, speed * Time.deltaTime);
@@ -16,5 +18,6 @@ public class CameraController : MonoBehaviour
         pos = Vector3.Lerp(pos, player.transform.position + (Vector3) offset, t);
         pos.z = transform.position.z;
         transform.position = pos;
+        Position = pos;
     }
 }

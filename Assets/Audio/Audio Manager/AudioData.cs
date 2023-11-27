@@ -32,6 +32,7 @@ public class AudioData : ScriptableObject
 
     [NonSerialized] public float volumeMultiplier = 1f;
     [NonSerialized] public float pitchMultiplier = 1f;
+    [NonSerialized] public float stereoPan = 0f;
 
     public float Delay => delay;
     public float TimeToPlayAgain => timeToPlayAgain;
@@ -42,7 +43,7 @@ public class AudioData : ScriptableObject
 
     [NonSerialized] public bool canPlay = true;
     
-    public void Setup(AudioSource source)
+    public void Setup(AudioSource source, bool editor = false)
     {
         if (clips.Length == 0) return;
         source.outputAudioMixerGroup = audioMixerGroup;
@@ -54,9 +55,18 @@ public class AudioData : ScriptableObject
         } while (clipIndex == lastClipIndex && clips.Length > 1);
         lastClipIndex = clipIndex;
         source.clip = clips[clipIndex];
-        
-        
-        source.volume = (volume + Random.Range(-randomSettings.volumeDown, randomSettings.volumeUp)) * volumeMultiplier;
-        source.pitch = (pitch + Random.Range(-randomSettings.pitchDown, randomSettings.pitchUp)) * pitchMultiplier;
+
+        float volumeNow = volume + Random.Range(-randomSettings.volumeDown, randomSettings.volumeUp);
+        float pitchNow = pitch + Random.Range(-randomSettings.pitchDown, randomSettings.pitchUp);
+        float pan = 0f;
+        if (!editor)
+        {
+            volumeNow *= volumeMultiplier;
+            pitchNow *= pitchMultiplier;
+            pan = stereoPan;
+        }
+        source.volume = volumeNow;
+        source.pitch = pitchNow;
+        source.panStereo = pan;
     }
 }

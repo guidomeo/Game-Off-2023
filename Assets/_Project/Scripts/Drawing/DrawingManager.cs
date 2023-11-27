@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Unity.Burst.Intrinsics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class DrawingManager : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class DrawingManager : MonoBehaviour
     
     [SerializeField] private float drawingSpeedMin;
     [SerializeField] private float drawingSpeedMax;
+    [SerializeField] [Range(0f, 1f)] private float pencilVolumeMultiplier;
     [SerializeField] private AnimationCurve pencilVolume;
     [SerializeField] private AnimationCurve pencilPitch;
     
@@ -52,6 +54,7 @@ public class DrawingManager : MonoBehaviour
             drawing = Instantiate(drawingPrefab);
             drawing.OnDrawingCompleted += OnDrawingCompleted;
             fade?.Kill();
+            pencilDrawingSource.time = Random.Range(0f, pencilDrawingSource.clip.length);
             pencilDrawingSource.Play();
         }
         if (Input.GetMouseButtonDown(1))
@@ -73,8 +76,10 @@ public class DrawingManager : MonoBehaviour
             float dot = Mathf.Abs(Vector2.Dot(drawingDirection.normalized, Vector2.right));
             
             float t = Mathf.InverseLerp(drawingSpeedMin, drawingSpeedMax, drawingSpeed);
-            pencilDrawingSource.volume = pencilVolume.Evaluate(t);
+            Debug.Log($"{t} {pencilVolume.Evaluate(t)}");
+            pencilDrawingSource.volume = pencilVolume.Evaluate(t) * pencilVolumeMultiplier;
             pencilDrawingSource.pitch = pencilPitch.Evaluate(t) + dot * pitchOffset;
+            pencilDrawingSource.panStereo = AudioManager.instance.PanFromPosition(InputManager.MousePosition);
         }
         else
         {

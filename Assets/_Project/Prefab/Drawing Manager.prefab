@@ -387,6 +387,7 @@ MonoBehaviour:
   drawingDirectionChangeSpeed: 12
   drawingSpeedMin: 0
   drawingSpeedMax: 70
+  pencilVolumeMultiplier: 0.3
   pencilVolume:
     serializedVersion: 2
     m_Curve:
