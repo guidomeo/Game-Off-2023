@@ -14,12 +14,6 @@ public class AudioData : ScriptableObject
         [Min(0f)] public float pitchUp = 0f;
         [Min(0f)] public float pitchDown = 0f;
     }
-    [System.Serializable]
-    public class Variant
-    {
-        public string name;
-        public AudioClip[] clips;
-    }
 
     public AudioClip[] clips;
     [SerializeField] private AudioMixerGroup audioMixerGroup;
@@ -28,7 +22,6 @@ public class AudioData : ScriptableObject
     [Min(0f)] [SerializeField] private float delay = 0f;
     [Min(0f)] [SerializeField] private float timeToPlayAgain = 0f;
     [SerializeField] private RandomSettings randomSettings;
-    public Variant[] variants;
 
     [NonSerialized] public float volumeMultiplier = 1f;
     [NonSerialized] public float pitchMultiplier = 1f;
