@@ -15,7 +15,7 @@ public class DrawingManager : MonoBehaviour
     [SerializeField] private GameObject cannotBuildEffect;
     [Header("Pencil Sound")]
     [SerializeField] private float startDrawingSpeed;
-    [SerializeField] private float fadeDuration;
+    [SerializeField] private float fadeSpeed = 0.1f;
     [SerializeField] private float pitchOffset;
     [SerializeField] private float drawingSpeedChangeSpeed;
     [SerializeField] private float drawingDirectionChangeSpeed;
@@ -53,7 +53,7 @@ public class DrawingManager : MonoBehaviour
             isDrawing = true;
             drawing = Instantiate(drawingPrefab);
             drawing.OnDrawingCompleted += OnDrawingCompleted;
-            fade?.Kill();
+            //fade?.Kill();
             pencilDrawingSource.time = Random.Range(0f, pencilDrawingSource.clip.length);
             pencilDrawingSource.Play();
         }
@@ -62,9 +62,8 @@ public class DrawingManager : MonoBehaviour
             DestroyAllDrawings();
         }
 
-        if (isDrawing)
+        if (isDrawing && drawing.Valid)
         {
-            
             float currentSpeed = Vector2.Distance(lastMousePos, InputManager.MousePosition) / Time.deltaTime;
             float speedT = 1f - Mathf.Pow(0.5f, Time.deltaTime * drawingSpeedChangeSpeed);
             drawingSpeed = Mathf.Lerp(drawingSpeed, currentSpeed, speedT);
@@ -83,17 +82,26 @@ public class DrawingManager : MonoBehaviour
         }
         else
         {
+            if (pencilDrawingSource.volume > 0f)
+            {
+                pencilDrawingSource.volume -= fadeSpeed * Time.deltaTime;
+                if (pencilDrawingSource.volume < 0f)
+                {
+                    pencilDrawingSource.Stop();
+                }
+            }
+            
             drawingSpeed = startDrawingSpeed;
         }
 
         lastMousePos = InputManager.MousePosition;
     }
 
-    private Tween fade;
+    //private Tween fade;
 
     void OnDrawingCompleted(bool valid)
     {
-        fade = pencilDrawingSource.DOFade(0f, fadeDuration);
+        //fade = pencilDrawingSource.DOFade(0f, fadeDuration);
         
         isDrawing = false;
         if (valid)
