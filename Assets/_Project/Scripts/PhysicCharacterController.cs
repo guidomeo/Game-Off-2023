@@ -33,6 +33,7 @@ public class PhysicCharacterController : MonoBehaviour
     [NonSerialized] public RaycastHit2D hit;
     [NonSerialized] public bool onGround;
     [NonSerialized] public bool moveOnlyRight;
+    [NonSerialized] public bool canMove = true;
 
     public float MovementVelocity { get; private set; }
 
@@ -45,6 +46,7 @@ public class PhysicCharacterController : MonoBehaviour
     {
         moveDir = 0;
 
+        if (!canMove) return;
         if (DrawingManager.isDrawing) return;
             
         if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && !moveOnlyRight) moveDir = -1;

@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class BigPencil : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float animSpeed;
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        
-    }
+        Rigidbody2D rb = col.attachedRigidbody;
+        if (rb == null) return;
+        Player player = rb.GetComponent<Player>();
+        if (player == null) return;
 
-    // Update is called once per frame
-    void Update()
-    {
+        player.PickBigPencil(this, animSpeed);
+
+        GetComponent<SpriteRenderer>().sortingLayerName = "Player";
         
+        Destroy(this);
     }
 }

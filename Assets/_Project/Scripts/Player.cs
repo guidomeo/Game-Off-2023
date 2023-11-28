@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -30,6 +31,8 @@ public class Player : MonoBehaviour
     public float NormalizedSpeed => Mathf.Abs(cc.MovementVelocity) / cc.maxSpeed;
     
     private float flip = 1;
+    private static readonly int Property = Animator.StringToHash("Big Pencil");
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -81,5 +84,23 @@ public class Player : MonoBehaviour
         pencilRb.transform.SetParent(null);
         pencilRb.AddForce(force, ForceMode2D.Impulse);
         pencilRb.GetComponent<Collider2D>().enabled = true;
+    }
+
+    public void PickBigPencil(BigPencil bigPencil, float speed)
+    {
+        pencilRb.gameObject.SetActive(false);
+        cc.canMove = false;
+        
+        animator.SetTrigger(Property);
+
+        StartCoroutine(DoPencilLerp(bigPencil.transform, speed));
+    }
+
+    IEnumerator DoPencilLerp(Transform tr, float speed)
+    {
+        yield return null;
+        tr.SetParent(pencilParent);
+        tr.DOLocalMove(Vector3.zero, speed);
+        tr.DOLocalRotate(Vector3.zero, speed);
     }
 }
