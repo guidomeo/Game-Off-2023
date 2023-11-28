@@ -13,14 +13,17 @@ MonoBehaviour:
   m_Name: Step Ground Normal
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: d2f2900f034284047bc9181c0271e6d5, type: 3}
+  - {fileID: 8300000, guid: eccb6113d6dc34ae4a826e9755133634, type: 3}
+  - {fileID: 8300000, guid: 9ff2ac0ae62bd4d07a6fa385213f04c0, type: 3}
+  - {fileID: 8300000, guid: 1e46aa77d97e54a8ca049e39c5f028c5, type: 3}
+  - {fileID: 8300000, guid: 6a7b0aa261af14e24aa595a0d5d8dcb8, type: 3}
   audioMixerGroup: {fileID: -5635829857138862269, guid: 4d0f4f0523e0941b19ffcdc2ae31bc95, type: 2}
-  volume: 0.2
+  volume: 0.1
   pitch: 1
   delay: 0
   timeToPlayAgain: 0
   randomSettings:
     volumeUp: 0
-    volumeDown: 0.2
-    pitchUp: 0.2
-    pitchDown: 0.2
+    volumeDown: 0.06
+    pitchUp: 0
+    pitchDown: 0
