@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float minPencilAngle;
     [SerializeField] private float pencilRotationSpeed;
     [SerializeField] private Transform handLeft;
+    [SerializeField] private Transform pencilPos;
     [SerializeField] private Transform pencilParent;
     [SerializeField] private Rigidbody2D pencilRb;
 
@@ -45,7 +46,7 @@ public class Player : MonoBehaviour
         if (DrawingManager.isDrawing)
         {
             Vector2 pos = InputManager.MousePosition;
-            Vector2 dir = pos - (Vector2)pencilParent.position;
+            Vector2 dir = pos - (Vector2)pencilPos.position;
             if (dir.x < -0.5f) flip = -1;
             if (dir.x > 0.5f) flip = 1;
             if (flip < 0) dir.x *= -1;
@@ -70,7 +71,7 @@ public class Player : MonoBehaviour
         animator.SetBool(Cast, DrawingManager.isDrawing);
 
         float pencilT = 1f - Mathf.Pow(0.5f, pencilRotationSpeed * Time.deltaTime);
-        pencilParent.localRotation = Quaternion.Lerp(pencilParent.localRotation, pencilTargetRotation, pencilT);
+        pencilPos.localRotation = Quaternion.Lerp(pencilPos.localRotation, pencilTargetRotation, pencilT);
         handLeft.localRotation = Quaternion.Lerp(handLeft.localRotation, handTargetRotation, pencilT);
     }
 

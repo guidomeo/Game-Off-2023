@@ -113,7 +113,7 @@ MonoBehaviour:
   rayCastDistance: 0.2
   width: 0.1
   minDistance: 0.1
-  maxLength: 25
+  maxLength: 35
   linePrefab: {fileID: 643526036906283559, guid: 5cd0361e989294ca2a1617a8876628f0, type: 3}
   lineGraphicPrefab: {fileID: 9066231566369448520, guid: c97821b5a89e44b1caf4e0f0668be5e2, type: 3}
   colliderParent: {fileID: 3088868379213643300}

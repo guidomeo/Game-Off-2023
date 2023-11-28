@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3907982219180459654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2785994855517387277}
+  m_Layer: 11
+  m_Name: Pencil Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2785994855517387277
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3907982219180459654}
+  m_LocalRotation: {x: -0, y: -0, z: -0.8278663, w: 0.56092554}
+  m_LocalPosition: {x: -0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6329015031917356315}
+  m_Father: {fileID: 6329015033289135771}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5767323933170820039
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,13 +342,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6329015031917356314}
-  m_LocalRotation: {x: -0, y: -0, z: -0.8278663, w: 0.56092554}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6329015031973231412}
-  m_Father: {fileID: 6329015033289135771}
+  m_Father: {fileID: 2785994855517387277}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -111.76}
 --- !u!212 &6329015031917356316
@@ -5441,7 +5473,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6329015033289135771}
   m_Layer: 0
-  m_Name: Pencil Parent
+  m_Name: Pencil Pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5459,7 +5491,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6329015031917356315}
+  - {fileID: 2785994855517387277}
   m_Father: {fileID: 6329015033057019907}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5600,7 +5632,8 @@ MonoBehaviour:
   minPencilAngle: 0
   pencilRotationSpeed: 10
   handLeft: {fileID: 6329015032877133647}
-  pencilParent: {fileID: 6329015033289135771}
+  pencilPos: {fileID: 6329015033289135771}
+  pencilParent: {fileID: 2785994855517387277}
   pencilRb: {fileID: 4240840751680433448}
 --- !u!114 &6329015033417304135
 MonoBehaviour:
