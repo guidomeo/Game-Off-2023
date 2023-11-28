@@ -13,14 +13,12 @@ MonoBehaviour:
   m_Name: Step Snow Normal
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: eccb6113d6dc34ae4a826e9755133634, type: 3}
-  - {fileID: 8300000, guid: 9ff2ac0ae62bd4d07a6fa385213f04c0, type: 3}
-  - {fileID: 8300000, guid: 1e46aa77d97e54a8ca049e39c5f028c5, type: 3}
-  - {fileID: 8300000, guid: 6a7b0aa261af14e24aa595a0d5d8dcb8, type: 3}
-  - {fileID: 8300000, guid: 0dd3efca6331849c480700ed960a3059, type: 3}
-  - {fileID: 8300000, guid: 337cfdb7088fd444482ee8073931858c, type: 3}
-  - {fileID: 8300000, guid: 1c4bc0153bc4f45a98412332d7ec0590, type: 3}
-  - {fileID: 8300000, guid: 8038c7f47444b4536b32526208ff7609, type: 3}
+  - {fileID: 8300000, guid: eb8edbfba89e04e27aaced1060a3917d, type: 3}
+  - {fileID: 8300000, guid: 21bb0a346068f469c963cb79fea306d7, type: 3}
+  - {fileID: 8300000, guid: 03bf675dde39b474dad62c02e95640a0, type: 3}
+  - {fileID: 8300000, guid: bb444e07d916d4523a01832611c6ef4e, type: 3}
+  - {fileID: 8300000, guid: 72474443646fb496dbc20f80ce2a5c2a, type: 3}
+  - {fileID: 8300000, guid: 19e2016d1871a4a639db49dd01a4de6a, type: 3}
   audioMixerGroup: {fileID: 6192149027906491757, guid: 4d0f4f0523e0941b19ffcdc2ae31bc95, type: 2}
   volume: 1
   pitch: 1
@@ -30,4 +28,4 @@ MonoBehaviour:
     volumeUp: 0
     volumeDown: 0.08
     pitchUp: 0
-    pitchDown: 0.06
+    pitchDown: 0

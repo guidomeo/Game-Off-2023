@@ -13,21 +13,20 @@ MonoBehaviour:
   m_Name: Step Snow Cave
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 514265537477140229a88928e26b88a9, type: 3}
-  - {fileID: 8300000, guid: 0fb6849db7ea7428782189566c2cd5da, type: 3}
-  - {fileID: 8300000, guid: b8567a8eb2db94146b25c075e0d9913d, type: 3}
-  - {fileID: 8300000, guid: ac8b70cbe0dd4454e97b1f3dffc6421a, type: 3}
-  - {fileID: 8300000, guid: f38fefb05297547feb47cdac80763e0a, type: 3}
-  - {fileID: 8300000, guid: e2e67ac2fc3c64548ba9d0a025260c38, type: 3}
-  - {fileID: 8300000, guid: f8139c3cff5d74ed7870d749be91e932, type: 3}
-  - {fileID: 8300000, guid: 019ab66308d0b4356b253f2a25bd3efa, type: 3}
+  - {fileID: 8300000, guid: c8059076f8d9840838b63c36bc471ac5, type: 3}
+  - {fileID: 8300000, guid: 8d2a6417d429942e2a903c56166be6f6, type: 3}
+  - {fileID: 8300000, guid: 86a0b4cf624d9454cb8186b81091af2b, type: 3}
+  - {fileID: 8300000, guid: 0a096488ee74a4a43a478b4d750d9c5b, type: 3}
+  - {fileID: 8300000, guid: da1de8270993742ec8717b519adc3075, type: 3}
+  - {fileID: 8300000, guid: 2a61fb13168b8459396cd0d16339e0ba, type: 3}
+  - {fileID: 8300000, guid: 30ff6dd5d84904e0faea86a98410a1b9, type: 3}
   audioMixerGroup: {fileID: 6192149027906491757, guid: 4d0f4f0523e0941b19ffcdc2ae31bc95, type: 2}
   volume: 1
   pitch: 1
   delay: 0
   timeToPlayAgain: 0
   randomSettings:
-    volumeUp: 0
+    volumeUp: 0.33
     volumeDown: 0.08
     pitchUp: 0
-    pitchDown: 0.09
+    pitchDown: 0

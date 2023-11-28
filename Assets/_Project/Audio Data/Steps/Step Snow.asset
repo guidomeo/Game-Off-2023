@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   variants:
   - name: normal
-    audioData: {fileID: 11400000, guid: 1b6d92691cb634ecfbe431359db73a9e, type: 2}
+    audioData: {fileID: 11400000, guid: c2127605cbc4244ebaf8507c1074e85b, type: 2}
   - name: cave
-    audioData: {fileID: 11400000, guid: 9c9a6a15e93934c03ab6c21fcec4801a, type: 2}
+    audioData: {fileID: 11400000, guid: 8bdbba43916ed4f02bce1745698e8725, type: 2}
