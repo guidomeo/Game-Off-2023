@@ -8,6 +8,7 @@ public class PhysicCharacterController : MonoBehaviour
     [Header("Movement settings")]
     public float acceleration = 50f;
     public float brakingForce = 100f;
+    public float frictionForce = 10f;
     [Min(1f)] public float changeDirectionAccMultiplier = 3f;
     public float maxSpeed = 10f;
     public float gravity = 30f;
@@ -18,9 +19,7 @@ public class PhysicCharacterController : MonoBehaviour
     //[Range(0f, 90f)] public float maxGoDownAngle = 70f;
     [Range(0f, 90f)] public float angleMaxSpeed = 30f;
     [Range(0f, 90f)] public float angleZeroSpeed = 80f;
-    
-    
-    
+
     private int moveDir;
 
     private Rigidbody2D rb;
@@ -33,10 +32,9 @@ public class PhysicCharacterController : MonoBehaviour
 
     [NonSerialized] public RaycastHit2D hit;
     [NonSerialized] public bool onGround;
+    [NonSerialized] public bool moveOnlyRight;
 
     public float MovementVelocity { get; private set; }
-
-    private float currentMaxSpeed;
 
     private void Start()
     {
@@ -49,7 +47,7 @@ public class PhysicCharacterController : MonoBehaviour
 
         if (DrawingManager.isDrawing) return;
             
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) moveDir = -1;
+        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && !moveOnlyRight) moveDir = -1;
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) moveDir = 1;
     }
 
@@ -62,7 +60,6 @@ public class PhysicCharacterController : MonoBehaviour
     void CalculateTerrain()
     {
         onGround = false;
-        currentMaxSpeed = maxSpeed;
         gravityDir = Vector2.down;
         rightDir = Vector2.right;
         angle = 0f;
@@ -85,50 +82,50 @@ public class PhysicCharacterController : MonoBehaviour
 
     void Move()
     {
-        /*if (onGround)
-        {
-            float frictionSign = -Mathf.Sign(currentGroundSpeed);
-            rb.AddForce(rightDir * (brakingForce * frictionSign));
-        }*/
-        
         MovementVelocity = Vector3.Dot(rb.velocity, rightDir);
         
         rb.AddForce(gravity * gravityDir);
         
         if (moveDir == 0)
         {
-            if (Mathf.Abs(angle) < angleMaxSpeed)
+            if (onGround && Mathf.Abs(angle) < angleMaxSpeed)
             {
-                int brakingDir = (int) -Mathf.Sign(MovementVelocity);
-                float currBrakingForce = Mathf.Min(brakingForce, Mathf.Abs(MovementVelocity) / Time.deltaTime);
-                rb.AddForce(rightDir * (currBrakingForce * brakingDir));
+                ApplyFriction(brakingForce);
             }
         }
         else
         {
-            float currentMaxSpeed = maxSpeed;
-
-            //Debug.Log($"{moveDir} {angle}");
-            /*if (moveDir == 1 && angle > angleMaxSpeed)
-            {
-                currentMaxSpeed *= 0.5f; //Mathf.InverseLerp(angleMaxSpeed, angleZeroSpeed, angle);
-            }
-            if (moveDir == -1 && angle < -angleMaxSpeed)
-            {
-                currentMaxSpeed *= 0.5f; //Mathf.InverseLerp(angleMaxSpeed, angleZeroSpeed, -angle);
-            }*/
-            
-            //float angleT = Mathf.InverseLerp(angleZeroSpeed, angleMaxSpeed, angle);
-            //Debug.Log(angleT);
-            //currentMaxSpeed *= angleT;
             
             float currAcceleration = acceleration;
-            if (moveDir == 1 && (MovementVelocity >= currentMaxSpeed || angle > angleZeroSpeed)) currAcceleration = 0f;
-            if (moveDir == -1 && (MovementVelocity <= -currentMaxSpeed || angle < -angleZeroSpeed)) currAcceleration = 0f;
             if (Dir(MovementVelocity) != Dir(moveDir)) currAcceleration *= changeDirectionAccMultiplier;
+            if (moveDir == 1)
+            {
+                if (angle > angleZeroSpeed)
+                {
+                    currAcceleration = 0f;
+                }
+                currAcceleration = Mathf.Min(currAcceleration, (maxSpeed - MovementVelocity) / Time.deltaTime);
+            }
+
+            if (moveDir == -1)
+            {
+                if (angle < -angleZeroSpeed)
+                {
+                    currAcceleration = 0f;
+                }
+                currAcceleration = Mathf.Min(currAcceleration, (maxSpeed + MovementVelocity) / Time.deltaTime);
+            }
             rb.AddForce(rightDir * (currAcceleration * moveDir));
         }
+        
+        //ApplyFriction(frictionForce);
+    }
 
+    public void ApplyFriction(float amount)
+    {
+        int frictionDir = (int) -Mathf.Sign(MovementVelocity);
+        float force = Mathf.Min(amount, Mathf.Abs(MovementVelocity) / Time.deltaTime);
+        rb.AddForce(rightDir * (force * frictionDir));
     }
 
     bool Dir(float n)

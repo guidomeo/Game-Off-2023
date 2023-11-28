@@ -284,9 +284,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioGroundStep: {fileID: 11400000, guid: 0b02cc7ef9e764c2c9f44fe8d8799bed, type: 2}
   audioLineStep: {fileID: 11400000, guid: 516a4f5bbb60042d896d5f7249766a9d, type: 2}
-  wallLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!1 &6329015031917356314
 GameObject:
   m_ObjectHideFlags: 0
@@ -5569,8 +5566,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 100
   brakingForce: 50
+  frictionForce: 10
   changeDirectionAccMultiplier: 2
-  maxSpeed: 6
+  maxSpeed: 7
   gravity: 30
   wallMask:
     serializedVersion: 2
