@@ -22,6 +22,7 @@ public class DrawingManager : MonoBehaviour
     
     [SerializeField] private float drawingSpeedMin;
     [SerializeField] private float drawingSpeedMax;
+    [SerializeField] [Range(0f, 1f)] private float pencilVolumePower = 0f;
     [SerializeField] [Range(0f, 1f)] private float pencilVolumeMultiplier;
     [SerializeField] private AnimationCurve pencilVolume;
     [SerializeField] private AnimationCurve pencilPitch;
@@ -86,7 +87,7 @@ public class DrawingManager : MonoBehaviour
 
             float t = Mathf.InverseLerp(drawingSpeedMin, drawingSpeedMax, drawingSpeed);
             //Debug.Log($"{t} {pencilVolume.Evaluate(t)}");
-            pencilDrawingSource.volume = pencilVolume.Evaluate(t) * pencilVolumeMultiplier;
+            pencilDrawingSource.volume = Mathf.Pow(pencilVolume.Evaluate(t) * pencilVolumeMultiplier, 1f - pencilVolumePower);
             pencilDrawingSource.pitch = pencilPitch.Evaluate(t) + dot * pitchOffset;
             pencilDrawingSource.panStereo = AudioManager.instance.PanFromPosition(InputManager.MousePosition);
         }
