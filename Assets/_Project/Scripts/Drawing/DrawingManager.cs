@@ -39,11 +39,14 @@ public class DrawingManager : MonoBehaviour
 
     private Vector2 lastMousePos;
 
+    private float cannotBuildEffectScale;
+
     private void Awake()
     {
         instance = this;
         isDrawing = false;
         cannotBuildEffect.SetActive(false);
+        cannotBuildEffectScale = cannotBuildEffect.transform.localScale.x;
     }
 
     private void Update()
@@ -130,9 +133,14 @@ public class DrawingManager : MonoBehaviour
 
     public void ShowCannotBuild(float time = 0f)
     {
+        cannotBuildEffect.transform.position = InputManager.MousePosition;
+        
+        if (cannotBuildEffect.activeSelf) return;
+        
         if (hideCannotBuildCoroutine != null) StopCoroutine(hideCannotBuildCoroutine);
         
-        cannotBuildEffect.transform.position = InputManager.MousePosition;
+        cannotBuildEffect.transform.localScale = cannotBuildEffectScale * Vector3.one;
+        cannotBuildEffect.transform.DOPunchScale(Vector3.one * 0.5f, 0.2f);
         cannotBuildEffect.SetActive(true);
         
         if (time > 0f)
@@ -143,6 +151,7 @@ public class DrawingManager : MonoBehaviour
 
     public void HideCannotBuild()
     {
+        if (!cannotBuildEffect.activeSelf) return;
         if (hideCannotBuildCoroutine != null) StopCoroutine(hideCannotBuildCoroutine);
         cannotBuildEffect.SetActive(false);
     }
