@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa44bbdebd23431f9a18e53cbbf981f1, type: 3}
-  m_Name: Step Ground Normal
+  m_Name: Step Snow Normal
   m_EditorClassIdentifier: 
   clips:
   - {fileID: 8300000, guid: eccb6113d6dc34ae4a826e9755133634, type: 3}

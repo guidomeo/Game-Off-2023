@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa44bbdebd23431f9a18e53cbbf981f1, type: 3}
-  m_Name: Step Ground Cave
+  m_Name: Step Snow Cave
   m_EditorClassIdentifier: 
   clips:
   - {fileID: 8300000, guid: 514265537477140229a88928e26b88a9, type: 3}
