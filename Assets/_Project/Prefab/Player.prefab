@@ -316,7 +316,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioGroundStep: {fileID: 11400000, guid: 0b02cc7ef9e764c2c9f44fe8d8799bed, type: 2}
+  audioSnowStep: {fileID: 11400000, guid: 0214acbaa49144b95b6cb3f1d70037a3, type: 2}
   audioLineStep: {fileID: 11400000, guid: 516a4f5bbb60042d896d5f7249766a9d, type: 2}
+  snowX: 340
 --- !u!1 &6329015031917356314
 GameObject:
   m_ObjectHideFlags: 0
