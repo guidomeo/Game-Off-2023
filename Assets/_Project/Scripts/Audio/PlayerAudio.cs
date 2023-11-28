@@ -6,7 +6,9 @@ using UnityEngine;
 public class PlayerAudio : MonoBehaviour
 {
     [SerializeField] private AudioDataGroup audioGroundStep;
+    [SerializeField] private AudioDataGroup audioSnowStep;
     [SerializeField] private AudioDataGroup audioLineStep;
+    [SerializeField] private float snowX;
 
     private AudioDataGroup audioStep;
     
@@ -26,7 +28,7 @@ public class PlayerAudio : MonoBehaviour
             bool isDrawing = false;
             Rigidbody2D rb = player.cc.hit.rigidbody;
             if (rb != null && rb.GetComponent<Drawing>() != null) isDrawing = true;
-            audioStep = isDrawing ? audioLineStep : audioGroundStep;
+            audioStep = isDrawing ? audioLineStep : (transform.position.x > snowX ? audioSnowStep : audioGroundStep);
             
             audioStep.volumeMultiplier = player.NormalizedSpeed;
 
