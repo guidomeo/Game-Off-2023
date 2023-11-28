@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float pencilRotationSpeed;
     [SerializeField] private Transform handLeft;
     [SerializeField] private Transform pencilParent;
+    [SerializeField] private Rigidbody2D pencilRb;
 
     private float moveDir = 0f;
 
@@ -71,5 +72,13 @@ public class Player : MonoBehaviour
         float pencilT = 1f - Mathf.Pow(0.5f, pencilRotationSpeed * Time.deltaTime);
         pencilParent.localRotation = Quaternion.Lerp(pencilParent.localRotation, pencilTargetRotation, pencilT);
         handLeft.localRotation = Quaternion.Lerp(handLeft.localRotation, handTargetRotation, pencilT);
+    }
+
+    public void DropPencil(Vector2 force)
+    {
+        pencilRb.isKinematic = false;
+        pencilRb.transform.SetParent(null);
+        pencilRb.AddForce(force, ForceMode2D.Impulse);
+        pencilRb.GetComponent<Collider2D>().enabled = true;
     }
 }

@@ -7,7 +7,12 @@ public class BackgroundAudioTrigger : MonoBehaviour
 {
     [SerializeField] private List<string> backgroundNamesToPlay;
     [SerializeField] private List<string> backgroundNamesToStop;
-    
+
+    private void Awake()
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         Rigidbody2D rb = col.attachedRigidbody;

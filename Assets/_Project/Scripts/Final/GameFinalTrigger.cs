@@ -6,8 +6,16 @@ using UnityEngine;
 public class GameFinalTrigger : MonoBehaviour
 {
     [SerializeField] private float playerSpeed = 3f;
+    [SerializeField] private bool dropPencil;
+    [SerializeField] private Vector2 dropForce;
 
     private bool triggered = false;
+    
+    private void Awake()
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
+    }
+    
     private void OnTriggerEnter2D(Collider2D col)
     {
         Rigidbody2D rb = col.attachedRigidbody;
@@ -17,13 +25,15 @@ public class GameFinalTrigger : MonoBehaviour
 
         if (triggered) return;
         
+        if (dropPencil) player.DropPencil(dropForce);
+        
         triggered = true;
 
         DOTween.To(
             () => player.cc.maxSpeed,
             s => player.cc.maxSpeed = s,
             playerSpeed,
-            2f
+            1f
             );
         player.cc.moveOnlyRight = true;
     }

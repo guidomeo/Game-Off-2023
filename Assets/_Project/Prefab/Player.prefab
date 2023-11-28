@@ -294,7 +294,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6329015031917356315}
   - component: {fileID: 6329015031917356316}
-  m_Layer: 0
+  - component: {fileID: 4240840751680433448}
+  - component: {fileID: 3672897967055605982}
+  m_Layer: 11
   m_Name: Pencil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,6 +371,53 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &4240840751680433448
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6329015031917356314}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &3672897967055605982
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6329015031917356314}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.013154954, y: 0.28502423}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.4601365, y: 0.25845408}
+    oldSize: {x: 0.33, y: 1.18}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.33, y: 1.18}
+  m_EdgeRadius: 0
 --- !u!1 &6329015031973231411
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,7 +429,7 @@ GameObject:
   - component: {fileID: 6329015031973231412}
   - component: {fileID: 6329015031973231414}
   - component: {fileID: 6329015031973231413}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5552,6 +5601,7 @@ MonoBehaviour:
   pencilRotationSpeed: 10
   handLeft: {fileID: 6329015032877133647}
   pencilParent: {fileID: 6329015033289135771}
+  pencilRb: {fileID: 4240840751680433448}
 --- !u!114 &6329015033417304135
 MonoBehaviour:
   m_ObjectHideFlags: 0
