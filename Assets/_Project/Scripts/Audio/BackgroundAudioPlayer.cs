@@ -38,9 +38,10 @@ public class BackgroundAudioPlayer : MonoBehaviour
             backgroundAudioDict.Add(source.gameObject.name, backAudio);
             
             bool play = backAudio.source.playOnAwake;
-            backAudio.source.playOnAwake = true;
+            backAudio.source.playOnAwake = false;
             backAudio.source.volume = 0f;
             if (play) backAudio.Fade(backAudio.volume, startFade);
+            source.Play();
         }
     }
 

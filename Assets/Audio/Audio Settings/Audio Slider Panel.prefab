@@ -133,6 +133,7 @@ MonoBehaviour:
   volumeVarName: Music
   normalTextColor: {r: 1, g: 1, b: 1, a: 1}
   disabledTextColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
+  sound: {fileID: 0}
   mixer: {fileID: 24100000, guid: 4d0f4f0523e0941b19ffcdc2ae31bc95, type: 2}
   slider: {fileID: 5715153865617925714}
   textComp: {fileID: 5715153865465466026}
@@ -363,7 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
