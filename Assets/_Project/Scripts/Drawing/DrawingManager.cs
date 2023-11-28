@@ -15,7 +15,7 @@ public class DrawingManager : MonoBehaviour
     [SerializeField] private GameObject cannotBuildEffect;
     [Header("Pencil Sound")]
     [SerializeField] private float startDrawingSpeed;
-    [SerializeField] private float fadeSpeed = 0.1f;
+    [SerializeField] private float fadeDuration = 0.1f;
     [SerializeField] private float pitchOffset;
     [SerializeField] private float drawingSpeedChangeSpeed;
     [SerializeField] private float drawingDirectionChangeSpeed;
@@ -67,6 +67,12 @@ public class DrawingManager : MonoBehaviour
 
         if (isDrawing && drawing.Valid)
         {
+            if (pencilSoundFade != null)
+            {
+                pencilSoundFade.Kill();
+                pencilSoundFade = null;
+            }
+            
             float currentSpeed = Vector2.Distance(lastMousePos, InputManager.MousePosition) / Time.deltaTime;
             float speedT = 1f - Mathf.Pow(0.5f, Time.deltaTime * drawingSpeedChangeSpeed);
             drawingSpeed = Mathf.Lerp(drawingSpeed, currentSpeed, speedT);
@@ -86,13 +92,15 @@ public class DrawingManager : MonoBehaviour
         }
         else
         {
-            if (pencilDrawingSource.volume > 0f)
+            if (pencilDrawingSource.volume > 0f && pencilSoundFade == null)
             {
-                pencilDrawingSource.volume -= fadeSpeed * Time.deltaTime;
-                if (pencilDrawingSource.volume < 0f)
-                {
-                    pencilDrawingSource.Stop();
-                }
+                pencilSoundFade = pencilDrawingSource.
+                    DOFade(0f, fadeDuration).OnComplete(
+                    () =>
+                    {
+                        pencilSoundFade = null;
+                        pencilDrawingSource.Stop();
+                    });
             }
             
             drawingSpeed = startDrawingSpeed;
@@ -100,6 +108,8 @@ public class DrawingManager : MonoBehaviour
 
         lastMousePos = InputManager.MousePosition;
     }
+
+    private Tween pencilSoundFade;
 
     //private Tween fade;
 
