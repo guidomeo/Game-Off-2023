@@ -13,16 +13,22 @@ MonoBehaviour:
   m_Name: Player Voice
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: d2f2900f034284047bc9181c0271e6d5, type: 3}
-  - {fileID: 8300000, guid: eccb6113d6dc34ae4a826e9755133634, type: 3}
+  - {fileID: 8300000, guid: 62bb9e80a380840e1b0d8e5245e8f767, type: 3}
+  - {fileID: 8300000, guid: 47737ede8326646ce848bf6639ba21a2, type: 3}
+  - {fileID: 8300000, guid: 6e66b94512f46418bb38fe7229cc6a86, type: 3}
+  - {fileID: 8300000, guid: aebf5fb4353a44943a62d160be6f9d70, type: 3}
+  - {fileID: 8300000, guid: b96951ff4acde4007aa5fc00412cf16f, type: 3}
+  - {fileID: 8300000, guid: 3b85cd8d201c24586926fceca1396621, type: 3}
+  - {fileID: 8300000, guid: f84e8d1c8814c4df1b23af34313e8092, type: 3}
+  - {fileID: 8300000, guid: f92354ee62f6c49da93fc313b4399cce, type: 3}
   audioMixerGroup: {fileID: -3357511233191540469, guid: 4d0f4f0523e0941b19ffcdc2ae31bc95, type: 2}
-  volume: 1
-  pitch: 0.7
+  volume: 0.338
+  pitch: 1
   delay: 0
-  timeToPlayAgain: 0.1
+  timeToPlayAgain: 0.78
   randomSettings:
     volumeUp: 0
-    volumeDown: 0.2
-    pitchUp: 0.2
-    pitchDown: 0.2
-    timeToPlayAgainUp: 0.1
+    volumeDown: 0.16
+    pitchUp: 0.09
+    pitchDown: 0.03
+    timeToPlayAgainUp: 0.63
