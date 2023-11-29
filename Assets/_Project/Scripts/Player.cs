@@ -108,8 +108,14 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(6.5f);
 
         PencilGod.instance.gameObject.SetActive(true);
+        CameraController.instance.ActivateStaticOverlay();
         
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.7f);
+        
+        FinalCanvas.instance.Activate();
+        
+        yield return new WaitForSeconds(10f);
+        FinalCanvas.instance.HideCinemaPanel();
         
         cc.maxSpeed = maxSpeed;
         cc.moveOnlyRight = false;

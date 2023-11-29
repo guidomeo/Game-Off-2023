@@ -8,8 +8,17 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Vector2 offset;
     [SerializeField] private float speed;
     [SerializeField] private Player player;
+    [SerializeField] private SpriteRenderer staticOverlay;
 
     public static Vector2 Position { get; private set; }
+
+    public static CameraController instance;
+
+    private void Awake()
+    {
+        instance = this;
+        staticOverlay.gameObject.SetActive(false);
+    }
 
     private void LateUpdate()
     {
@@ -19,5 +28,16 @@ public class CameraController : MonoBehaviour
         pos.z = transform.position.z;
         transform.position = pos;
         Position = pos;
+    }
+
+    public void ActivateStaticOverlay()
+    {
+        SetStaticOverlay(0f);
+        staticOverlay.gameObject.SetActive(true);
+    }
+
+    public void SetStaticOverlay(float value)
+    {
+        staticOverlay.color = new Color(1f, 1f, 1f, value);
     }
 }

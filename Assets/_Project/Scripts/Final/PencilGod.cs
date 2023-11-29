@@ -2,9 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PencilGod : MonoBehaviour
 {
+    [SerializeField] private float deathDistance = 3;
+    [SerializeField] private float overlayDistance = 15;
     [SerializeField] private float speed;
     [SerializeField] private float range;
     [SerializeField] private float rangeMaxForce;
@@ -35,7 +38,6 @@ public class PencilGod : MonoBehaviour
         if (distance < rangeMaxForce)
         {
             float t = Mathf.Clamp01(distance / range);
-            
             player.cc.moveDirAdd = Mathf.Lerp(2f, minForce, t);
         }
         else if (distance < range)
@@ -46,7 +48,21 @@ public class PencilGod : MonoBehaviour
         {
             player.cc.moveDirAdd = 0f;
         }
+
+        float trueDistance = player.transform.position.x - (transform.position.x + deathDistance);
+        if (trueDistance < 0f)
+        {
+            gameOverTime += Time.deltaTime;
+            if (gameOverTime > 2f)
+            {
+                SceneManager.LoadScene(0);
+            }
+            return;
+        }
+        CameraController.instance.SetStaticOverlay(1f - trueDistance / overlayDistance);
     }
+
+    private float gameOverTime = 0f;
 
     private void OnDrawGizmos()
     {

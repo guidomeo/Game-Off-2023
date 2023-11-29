@@ -26,7 +26,8 @@ public class GameFinalTrigger : MonoBehaviour
         if (triggered) return;
         
         if (dropPencil) player.DropPencil(dropForce);
-        
+
+        FinalCanvas.instance.ShowCinemaPanel();
         triggered = true;
 
         DOTween.To(

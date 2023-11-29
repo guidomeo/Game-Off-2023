@@ -68,6 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7bad752527a43919d41606425216c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathDistance: 3
+  overlayDistance: 12
   speed: 2
   range: 8
   rangeMaxForce: 3.72
