@@ -45,7 +45,7 @@ public class SlideShowManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             doFadeTween?.Kill();
-            doFadeTween = holdToSkip.DOFade(1f, 0.7f).SetEase(Ease.InQuad);
+            doFadeTween = holdToSkip.DOFade(1f, 0.7f).SetEase(Ease.OutQuad);
         }
         
         if (Input.GetMouseButton(0))
@@ -59,9 +59,10 @@ public class SlideShowManager : MonoBehaviour
         else
         {
             holdTimer = 0f;
-            if (doFadeTween != null && holdToSkip.color.a == 1f)
+            if (doFadeTween != null && holdToSkip.color.a > 0.9f)
             {
-                doFadeTween = holdToSkip.DOFade(0f, 1f).SetEase(Ease.OutQuad);
+                doFadeTween?.Kill();
+                doFadeTween = holdToSkip.DOFade(0f, 0.7f).SetEase(Ease.InQuad);
             }
         }
         

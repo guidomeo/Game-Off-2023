@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class AudioSettingsSlider : MonoBehaviour
 {
-    [Range(0f, 1f)] [SerializeField] private float defaultValue = 1f;
+    //[Range(0f, 1f)] [SerializeField] private float defaultValue = 1f;
     [SerializeField] string volumeVarName = "Music";
     [SerializeField] private Color normalTextColor = Color.white;
     [SerializeField] private Color disabledTextColor = Color.gray;
@@ -29,8 +29,10 @@ public class AudioSettingsSlider : MonoBehaviour
     }
     private void Start()
     {
-        slider.value = defaultValue;
-        OnValueChange(defaultValue);
+        mixer.GetFloat(volumeVarName, out float volume);
+        float value = volume < -79f ? 0f : Mathf.Pow(10, volume / 20f);
+        slider.value = value;
+        OnValueChange(value);
     }
 
     void OnValueChange(float value)
