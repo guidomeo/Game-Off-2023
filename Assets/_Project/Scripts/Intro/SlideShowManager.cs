@@ -68,7 +68,7 @@ public class SlideShowManager : MonoBehaviour
                     spriteRend.DOFade(0f, endFadeDuration);
                     textComp.DOFade(0f, endFadeDuration).OnComplete(() =>
                     {
-                        SceneManager.LoadScene(1);
+                        SceneManager.LoadScene(2);
                     });
                     end = true;
                 }

@@ -25,12 +25,12 @@ public class BigPencil : MonoBehaviour
 
         player.cc.canMove = false;
         
-        glow.DOFade(1f, 2f).OnComplete(() =>
+        glow.DOFade(1f, 1.5f).OnComplete(() =>
         {
             player.PickBigPencil(parent, animSpeed);
             parent.GetComponent<SpriteRenderer>().sortingLayerName = "Player";
             
-            glow.DOFade(0f, 2f).SetDelay(3.5f);
+            glow.DOFade(0f, 1.5f).SetDelay(3.5f);
         });
         
         Destroy(gameObject);
