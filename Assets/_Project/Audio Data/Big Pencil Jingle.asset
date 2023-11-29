@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Big Pencil Jingle
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 53fa731095e124326a74ac1892550db0, type: 3}
+  - {fileID: 8300000, guid: af84b5fc15f844e468dabc4b2a83dbef, type: 3}
   audioMixerGroup: {fileID: -5635829857138862269, guid: 4d0f4f0523e0941b19ffcdc2ae31bc95, type: 2}
   volume: 1
   pitch: 1
