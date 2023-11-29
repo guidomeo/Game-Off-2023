@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -89,6 +90,13 @@ public class AudioManager : MonoBehaviour
         }
         
         audioData.Setup(audioSource);
+
+        if (audioData.fadeInDuration > 0f)
+        {
+            float volume = audioSource.volume;
+            audioSource.volume = 0f;
+            audioSource.DOFade(volume, audioData.fadeInDuration);
+        }
         audioSource.loop = loop;
         audioSource.Play();
     }

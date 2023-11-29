@@ -23,6 +23,7 @@ public class AudioData : ScriptableObject
     [Range(-3f, 3f)] [SerializeField] private float pitch = 1f;
     [Min(0f)] [SerializeField] private float delay = 0f;
     [Min(0f)] [SerializeField] private float timeToPlayAgain = 0f;
+    [Min(0f)] public float fadeInDuration = 0f;
     [SerializeField] private RandomSettings randomSettings;
 
     [NonSerialized] public float volumeMultiplier = 1f;
