@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class SlideShowManager : MonoBehaviour
@@ -32,8 +33,11 @@ public class SlideShowManager : MonoBehaviour
     private int textIndex = 0;
     private bool end = false;
 
+    public bool holdAnimEnd = false;
     private Tween doFadeTween;
     private float holdTimer = 0f;
+
+    private bool click = false;
 
     private void Awake()
     {
@@ -42,13 +46,17 @@ public class SlideShowManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!OverUI() && Input.GetMouseButtonDown(0))
         {
+            click = true;
+            holdAnimEnd = false;
             doFadeTween?.Kill();
-            doFadeTween = holdToSkip.DOFade(1f, 0.7f).SetEase(Ease.OutQuad);
+            doFadeTween = holdToSkip.DOFade(1f, 0.7f).
+                SetEase(Ease.OutQuad)
+                .OnComplete(() => holdAnimEnd = true);
         }
         
-        if (Input.GetMouseButton(0))
+        if (click)
         {
             holdTimer += Time.deltaTime;
             if (holdTimer > 2f)
@@ -56,11 +64,13 @@ public class SlideShowManager : MonoBehaviour
                 GoNext();
             }
         }
-        else
+        if (!Input.GetMouseButton(0))
         {
+            click = false;
             holdTimer = 0f;
-            if (doFadeTween != null && holdToSkip.color.a > 0.9f)
+            if (holdAnimEnd)
             {
+                holdAnimEnd = false;
                 doFadeTween?.Kill();
                 doFadeTween = holdToSkip.DOFade(0f, 0.7f).SetEase(Ease.InQuad);
             }
@@ -126,4 +136,16 @@ public class SlideShowManager : MonoBehaviour
         result += text.Substring(pos);
         return result;
     }
+    
+    List<RaycastResult> GetEventSystemRaycastResults()
+    {   
+        PointerEventData eventData = new PointerEventData(EventSystem.current) { position = Input.mousePosition };
+
+        List<RaycastResult> raycastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll( eventData, raycastResults );
+
+        return raycastResults;
+    }
+
+    bool OverUI() => GetEventSystemRaycastResults().Count > 0;
 }
