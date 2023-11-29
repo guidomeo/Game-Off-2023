@@ -28,6 +28,7 @@ public class DrawingManager : MonoBehaviour
     [SerializeField] private AnimationCurve pencilPitch;
     
     [SerializeField] private AudioSource pencilDrawingSource;
+    [SerializeField] private AudioData playerVoice;
 
     private Drawing drawing;
 
@@ -68,6 +69,7 @@ public class DrawingManager : MonoBehaviour
 
         if (isDrawing && drawing.Valid)
         {
+            playerVoice.Play();
             if (pencilSoundFade != null)
             {
                 pencilSoundFade.Kill();

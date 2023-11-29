@@ -381,12 +381,13 @@ MonoBehaviour:
   drawingPrefab: {fileID: 8698416697873686535, guid: ee2591f5bfc344e489001fc358804e2b, type: 3}
   cannotBuildEffect: {fileID: 1239786187721714571}
   startDrawingSpeed: 0
-  fadeSpeed: 0.5
+  fadeDuration: 0.1
   pitchOffset: 0.1
   drawingSpeedChangeSpeed: 20
   drawingDirectionChangeSpeed: 20
   drawingSpeedMin: 0.2
   drawingSpeedMax: 70
+  pencilVolumePower: 0
   pencilVolumeMultiplier: 0.3
   pencilVolume:
     serializedVersion: 2
@@ -437,6 +438,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   pencilDrawingSource: {fileID: 1976375149976831375}
+  playerVoice: {fileID: 11400000, guid: 81266390c98db487d9135f93cb963ca0, type: 2}
 --- !u!1 &7651443031791692820
 GameObject:
   m_ObjectHideFlags: 0
