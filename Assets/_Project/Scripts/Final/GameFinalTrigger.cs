@@ -40,5 +40,8 @@ public class GameFinalTrigger : MonoBehaviour
 
         DrawingManager.instance.canDraw = false;
         DrawingManager.instance.DestroyAllDrawings();
+        
+        BackgroundAudioPlayer.instance.Stop("Soundtrack Snow");
+        BackgroundAudioPlayer.instance.Stop("Soundtrack Ground");
     }
 }
