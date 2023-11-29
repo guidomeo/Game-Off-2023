@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Unity.Burst.Intrinsics;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,6 +14,8 @@ public class DrawingManager : MonoBehaviour
     [SerializeField] private int maxNumberOfDrawings = 3;
     [SerializeField] private Drawing drawingPrefab;
     [SerializeField] private GameObject cannotBuildEffect;
+    [SerializeField] private float normalWidth = 0.1f;
+    [SerializeField] private float bigWidth = 0.8f;
     [Header("Pencil Sound")]
     [SerializeField] private float startDrawingSpeed;
     [SerializeField] private float fadeDuration = 0.1f;
@@ -29,6 +32,11 @@ public class DrawingManager : MonoBehaviour
     
     [SerializeField] private AudioSource pencilDrawingSource;
     [SerializeField] private AudioData playerVoice;
+
+    [NonSerialized] public bool big = false;
+    [NonSerialized] public bool canDraw = true;
+    
+    public float Width => big ? bigWidth : normalWidth;
 
     private Drawing drawing;
 
@@ -53,6 +61,8 @@ public class DrawingManager : MonoBehaviour
 
     private void Update()
     {
+        if (!canDraw) return;
+        
         if (InputManager.mouseDown)
         {
             isDrawing = true;

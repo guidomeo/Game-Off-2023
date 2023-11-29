@@ -36,5 +36,8 @@ public class GameFinalTrigger : MonoBehaviour
             1f
             );
         player.cc.moveOnlyRight = true;
+
+        DrawingManager.instance.canDraw = false;
+        DrawingManager.instance.DestroyAllDrawings();
     }
 }

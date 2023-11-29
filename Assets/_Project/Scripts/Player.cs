@@ -88,14 +88,14 @@ public class Player : MonoBehaviour
         pencilRb.GetComponent<Collider2D>().enabled = true;
     }
 
-    public void PickBigPencil(BigPencil bigPencil, float speed)
+    public void PickBigPencil(Transform pencilTr, float speed)
     {
         pencilRb.gameObject.SetActive(false);
         cc.canMove = false;
         
         animator.SetTrigger(Property);
 
-        StartCoroutine(DoFinal(bigPencil.transform, speed));
+        StartCoroutine(DoFinal(pencilTr, speed));
     }
 
     IEnumerator DoFinal(Transform pencilTr, float speed)
@@ -105,10 +105,17 @@ public class Player : MonoBehaviour
         pencilTr.DOLocalMove(Vector3.zero, speed);
         pencilTr.DOLocalRotate(Vector3.zero, speed);
 
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(7f);
 
+        PencilGod.instance.gameObject.SetActive(true);
+        
+        yield return new WaitForSeconds(1f);
+        
         cc.maxSpeed = maxSpeed;
         cc.moveOnlyRight = false;
         cc.canMove = true;
+        
+        DrawingManager.instance.canDraw = true;
+        DrawingManager.instance.big = true;
     }
 }

@@ -10,9 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 238815195209486700}
   - component: {fileID: 238815195209486701}
-  - component: {fileID: 238815195209486702}
-  - component: {fileID: 780114172}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Big Pencil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +28,8 @@ Transform:
   m_LocalPosition: {x: 472.45, y: 145.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4486227173130074261}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 221.795}
@@ -86,26 +85,59 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &238815195209486702
+--- !u!1 &6940145642680188219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4486227173130074261}
+  - component: {fileID: 6941995273799003300}
+  - component: {fileID: 8655620209134868918}
+  m_Layer: 0
+  m_Name: Big Pencil Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4486227173130074261
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6940145642680188219}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 238815195209486700}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6941995273799003300
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 238815195209486690}
+  m_GameObject: {fileID: 6940145642680188219}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a66d85185ba07410d98c155a8b80a00c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animSpeed: 0.7
---- !u!58 &780114172
+--- !u!58 &8655620209134868918
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 238815195209486690}
+  m_GameObject: {fileID: 6940145642680188219}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}

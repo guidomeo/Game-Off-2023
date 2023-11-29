@@ -69,8 +69,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  range: 9.21
-  horizon: 7.32
+  range: 20
+  horizon: 7
   force: 100
   player: {fileID: 0}
 --- !u!1 &3390108498415893576

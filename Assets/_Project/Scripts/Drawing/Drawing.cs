@@ -7,7 +7,6 @@ using UnityEngine;
 public class Drawing : MonoBehaviour
 {
     [SerializeField] float rayCastDistance = 0.4f;
-    [SerializeField] private float width = 0.1f;
     [SerializeField] private float minDistance = 0.5f;
     [SerializeField] private float maxLength = 25f;
     [SerializeField] private Line linePrefab;
@@ -39,8 +38,12 @@ public class Drawing : MonoBehaviour
     private float totalLenght;
     public bool Valid => currentLine != null && currentLine.valid;
 
+    private float width;
+    
     private void Awake()
     {
+        width = DrawingManager.instance.Width;
+        
         rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
         lineRend = GetComponent<LineRenderer>();

@@ -12,10 +12,10 @@ public class BigPencil : MonoBehaviour
         Player player = rb.GetComponent<Player>();
         if (player == null) return;
 
-        player.PickBigPencil(this, animSpeed);
+        player.PickBigPencil(transform.parent, animSpeed);
 
-        GetComponent<SpriteRenderer>().sortingLayerName = "Player";
+        GetComponentInParent<SpriteRenderer>().sortingLayerName = "Player";
         
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

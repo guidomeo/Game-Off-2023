@@ -14,6 +14,7 @@ public class AudioData : ScriptableObject
         [Min(0f)] public float pitchUp = 0f;
         [Min(0f)] public float pitchDown = 0f;
         [Min(0f)] public float timeToPlayAgainUp = 0f;
+        
     }
 
     public AudioClip[] clips;
