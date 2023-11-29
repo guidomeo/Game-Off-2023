@@ -38,6 +38,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Static_Multiplier: 0.804
+    - _Static_Multiplier: 1
     m_Colors: []
   m_BuildTextureStacks: []
