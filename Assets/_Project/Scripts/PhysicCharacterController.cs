@@ -20,7 +20,8 @@ public class PhysicCharacterController : MonoBehaviour
     [Range(0f, 90f)] public float angleMaxSpeed = 30f;
     [Range(0f, 90f)] public float angleZeroSpeed = 80f;
 
-    private int moveDir;
+    [NonSerialized] public int moveDir;
+    [NonSerialized] public float moveDirAdd = 0f;
 
     private Rigidbody2D rb;
 
@@ -88,7 +89,7 @@ public class PhysicCharacterController : MonoBehaviour
         
         rb.AddForce(gravity * gravityDir);
         
-        if (moveDir == 0)
+        if (moveDir == 0 && moveDirAdd == 0f)
         {
             if (onGround && Mathf.Abs(angle) < angleMaxSpeed)
             {
@@ -99,8 +100,11 @@ public class PhysicCharacterController : MonoBehaviour
         {
             
             float currAcceleration = acceleration;
-            if (Dir(MovementVelocity) != Dir(moveDir)) currAcceleration *= changeDirectionAccMultiplier;
-            if (moveDir == 1)
+
+            float moveDirTotal = moveDir + moveDirAdd;
+            
+            if (Dir(MovementVelocity) != Dir(moveDirTotal)) currAcceleration *= changeDirectionAccMultiplier;
+            if (moveDirTotal > 0)
             {
                 if (angle > angleZeroSpeed)
                 {
@@ -109,7 +113,7 @@ public class PhysicCharacterController : MonoBehaviour
                 currAcceleration = Mathf.Min(currAcceleration, (maxSpeed - MovementVelocity) / Time.deltaTime);
             }
 
-            if (moveDir == -1)
+            if (moveDirTotal < 0)
             {
                 if (angle < -angleZeroSpeed)
                 {
@@ -117,7 +121,7 @@ public class PhysicCharacterController : MonoBehaviour
                 }
                 currAcceleration = Mathf.Min(currAcceleration, (maxSpeed + MovementVelocity) / Time.deltaTime);
             }
-            rb.AddForce(rightDir * (currAcceleration * moveDir));
+            rb.AddForce(rightDir * (currAcceleration * moveDirTotal));
         }
         
         //ApplyFriction(frictionForce);

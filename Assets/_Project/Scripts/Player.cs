@@ -33,11 +33,13 @@ public class Player : MonoBehaviour
     private float flip = 1;
     private static readonly int Property = Animator.StringToHash("Big Pencil");
 
+    [NonSerialized] public float maxSpeed;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
         cc = GetComponent<PhysicCharacterController>();
+        maxSpeed = cc.maxSpeed;
     }
 
     private void Update()
@@ -93,14 +95,20 @@ public class Player : MonoBehaviour
         
         animator.SetTrigger(Property);
 
-        StartCoroutine(DoPencilLerp(bigPencil.transform, speed));
+        StartCoroutine(DoFinal(bigPencil.transform, speed));
     }
 
-    IEnumerator DoPencilLerp(Transform tr, float speed)
+    IEnumerator DoFinal(Transform pencilTr, float speed)
     {
         yield return null;
-        tr.SetParent(pencilParent);
-        tr.DOLocalMove(Vector3.zero, speed);
-        tr.DOLocalRotate(Vector3.zero, speed);
+        pencilTr.SetParent(pencilParent);
+        pencilTr.DOLocalMove(Vector3.zero, speed);
+        pencilTr.DOLocalRotate(Vector3.zero, speed);
+
+        yield return new WaitForSeconds(8f);
+
+        cc.maxSpeed = maxSpeed;
+        cc.moveOnlyRight = false;
+        cc.canMove = true;
     }
 }

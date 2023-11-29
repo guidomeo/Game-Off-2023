@@ -13,6 +13,7 @@ public class AudioData : ScriptableObject
         [Min(0f)] public float volumeDown = 0f;
         [Min(0f)] public float pitchUp = 0f;
         [Min(0f)] public float pitchDown = 0f;
+        [Min(0f)] public float timeToPlayAgainUp = 0f;
     }
 
     public AudioClip[] clips;
@@ -28,7 +29,7 @@ public class AudioData : ScriptableObject
     [NonSerialized] public float stereoPan = 0f;
 
     public float Delay => delay;
-    public float TimeToPlayAgain => timeToPlayAgain;
+    public float TimeToPlayAgain => timeToPlayAgain + Random.Range(0f, randomSettings.timeToPlayAgainUp);
     
     public void Play(bool loop = false) => AudioManager.instance.Play(this, loop);
 
