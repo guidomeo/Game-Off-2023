@@ -25,13 +25,47 @@ public class SlideShowManager : MonoBehaviour
     [SerializeField] private Slide[] slides;
     [SerializeField] private SpriteRenderer spriteRend;
     [SerializeField] private TMP_Text textComp;
+    [SerializeField] private TMP_Text holdToSkip;
 
     private float timer = 0f;
     private int slideIndex = 0;
     private int textIndex = 0;
     private bool end = false;
+
+    private Tween doFadeTween;
+    private float holdTimer = 0f;
+
+    private void Awake()
+    {
+        holdToSkip.DOFade(0f, 0.05f);
+    }
+
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            doFadeTween?.Kill();
+            doFadeTween = holdToSkip.DOFade(1f, 0.7f).SetEase(Ease.InQuad);
+        }
+        
+        if (Input.GetMouseButton(0))
+        {
+            holdTimer += Time.deltaTime;
+            if (holdTimer > 2f)
+            {
+                GoNext();
+            }
+        }
+        else
+        {
+            holdTimer = 0f;
+            if (doFadeTween != null && holdToSkip.color.a == 1f)
+            {
+                doFadeTween = holdToSkip.DOFade(0f, 1f).SetEase(Ease.OutQuad);
+            }
+        }
+        
+        
         Slide slide = slides[slideIndex];
         
         float textT = timer / textDuration;
@@ -68,12 +102,17 @@ public class SlideShowManager : MonoBehaviour
                     spriteRend.DOFade(0f, endFadeDuration);
                     textComp.DOFade(0f, endFadeDuration).OnComplete(() =>
                     {
-                        SceneManager.LoadScene(2);
+                        GoNext();
                     });
                     end = true;
                 }
             }
         }
+    }
+
+    void GoNext()
+    {
+        SceneManager.LoadScene(2);
     }
 
     string CutString(string text, float t)
