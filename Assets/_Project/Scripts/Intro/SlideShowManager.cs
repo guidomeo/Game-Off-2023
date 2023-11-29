@@ -42,6 +42,8 @@ public class SlideShowManager : MonoBehaviour
     private void Awake()
     {
         holdToSkip.DOFade(0f, 0.05f);
+        BackgroundAudioPlayer.instance.StopAll();
+        BackgroundAudioPlayer.instance.Play("Soundtrack Intro");
     }
 
     private void Update()

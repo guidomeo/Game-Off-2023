@@ -18,6 +18,8 @@ public class AudioSettingsSlider : MonoBehaviour
     [SerializeField] AudioMixer mixer;
     [SerializeField] Slider slider;
     [SerializeField] private TMP_Text textComp;
+
+    private bool playAudio = true;
     
     private void Awake()
     {
@@ -31,13 +33,14 @@ public class AudioSettingsSlider : MonoBehaviour
     {
         mixer.GetFloat(volumeVarName, out float volume);
         float value = volume < -79f ? 0f : Mathf.Pow(10, volume / 20f);
+        playAudio = false;
         slider.value = value;
-        OnValueChange(value);
+        playAudio = true;
     }
 
     void OnValueChange(float value)
     {
-        if (sound != null) sound.Play();
+        if (playAudio && sound != null) sound.Play();
         float volume = (value == 0f) ? -80f : Mathf.Log10(value) * 20f;
         mixer.SetFloat(volumeVarName, volume);
         textComp.color = (value == 0f) ? disabledTextColor : normalTextColor;
