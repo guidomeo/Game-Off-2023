@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
         pencilTr.DOLocalMove(Vector3.zero, speed);
         pencilTr.DOLocalRotate(Vector3.zero, speed);
 
-        yield return new WaitForSeconds(6.5f);
+        yield return new WaitForSeconds(9.5f);
 
         PencilGod.instance.gameObject.SetActive(true);
         CameraController.instance.ActivateStaticOverlay();
