@@ -22,6 +22,10 @@ public class RespawnManager : MonoBehaviour
         var playerPos = s_player.transform.position;
         SetRespawnPoint(playerPos);
         RegisterCheckpoint(playerPos);
+
+        BackgroundAudioPlayer.instance.StopAll();
+        BackgroundAudioPlayer.instance.Play("Soundtrack Ground");
+        BackgroundAudioPlayer.instance.Play("Ambient Ground");
     }
 
     private void Update()

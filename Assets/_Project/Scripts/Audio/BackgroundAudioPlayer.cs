@@ -21,8 +21,7 @@ public class BackgroundAudioPlayer : MonoBehaviour
         }
     }
 
-    [SerializeField] private float startFade;
-    [SerializeField] private float fade;
+    [SerializeField] private float defaultFade = 2f;
     
     Dictionary<string, BackgroundAudio> backgroundAudioDict = new();
 
@@ -31,6 +30,12 @@ public class BackgroundAudioPlayer : MonoBehaviour
 
     private void Awake()
     {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
         instance = this;
         foreach (var source in GetComponentsInChildren<AudioSource>())
         {
@@ -40,22 +45,39 @@ public class BackgroundAudioPlayer : MonoBehaviour
             bool play = backAudio.source.playOnAwake;
             backAudio.source.playOnAwake = false;
             backAudio.source.volume = 0f;
-            if (play) backAudio.Fade(backAudio.volume, startFade);
+            if (play) backAudio.Fade(backAudio.volume, defaultFade);
             source.Play();
         }
     }
 
-    public void Play(string backgroundName)
+    private void OnDestroy()
     {
+        if (instance == this) instance = null;
+    }
+
+    public void Play(string backgroundName, float fade = 0f)
+    {
+        fade = (fade == 0f) ? defaultFade : fade;
         var backAudio = backgroundAudioDict[backgroundName];
         if (backAudio.source.name != backgroundName) return;
         backAudio.Fade(backAudio.volume, fade);
     }
     
-    public void Stop(string backgroundName)
+    public void Stop(string backgroundName, float fade = 0f)
     {
+        fade = (fade == 0f) ? defaultFade : fade;
         var backAudio = backgroundAudioDict[backgroundName];
-        if (backAudio.source.name != backgroundName) return;
         backAudio.Fade(0f, fade);
+    }
+    
+    public void StopAll(float fade = 0f)
+    {
+        fade = (fade == 0f) ? defaultFade : fade;
+        foreach (var pair in backgroundAudioDict)
+        {
+            var backAudio = pair.Value;
+            backAudio.Fade(0f, fade);
+        }
+        
     }
 }

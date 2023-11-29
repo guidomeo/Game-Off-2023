@@ -91,10 +91,8 @@ public class Player : MonoBehaviour
 
     public void PickBigPencil(Transform pencilTr, float speed)
     {
-        bigPencilJingle.Play();
         
         pencilRb.gameObject.SetActive(false);
-        cc.canMove = false;
         
         animator.SetTrigger(Property);
 
@@ -103,7 +101,10 @@ public class Player : MonoBehaviour
 
     IEnumerator DoFinal(Transform pencilTr, float speed)
     {
-        yield return null;
+        yield return new WaitForSeconds(0.11f);
+        
+        bigPencilJingle.Play();
+        
         pencilTr.SetParent(pencilParent);
         pencilTr.DOLocalMove(Vector3.zero, speed);
         pencilTr.DOLocalRotate(Vector3.zero, speed);
