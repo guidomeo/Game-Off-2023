@@ -117,7 +117,10 @@ public class Player : MonoBehaviour
         
         FinalCanvas.instance.Activate();
         
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(8f);
+        BackgroundAudioPlayer.instance.Play("Final Noise");
+        yield return new WaitForSeconds(2f);
+        
         FinalCanvas.instance.HideCinemaPanel();
         
         cc.maxSpeed = maxSpeed;
