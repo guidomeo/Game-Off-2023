@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform pencilPos;
     [SerializeField] private Transform pencilParent;
     [SerializeField] private Rigidbody2D pencilRb;
+    [SerializeField] private AudioData bigPencilJingle;
 
     private float moveDir = 0f;
 
@@ -90,6 +91,8 @@ public class Player : MonoBehaviour
 
     public void PickBigPencil(Transform pencilTr, float speed)
     {
+        bigPencilJingle.Play();
+        
         pencilRb.gameObject.SetActive(false);
         cc.canMove = false;
         

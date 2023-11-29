@@ -5638,6 +5638,7 @@ MonoBehaviour:
   pencilPos: {fileID: 6329015033289135771}
   pencilParent: {fileID: 2785994855517387277}
   pencilRb: {fileID: 4240840751680433448}
+  bigPencilJingle: {fileID: 11400000, guid: 8f7ee6320965c4d4196944b2d1ea28ff, type: 2}
 --- !u!114 &6329015033417304135
 MonoBehaviour:
   m_ObjectHideFlags: 0

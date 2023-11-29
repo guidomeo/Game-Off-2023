@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa44bbdebd23431f9a18e53cbbf981f1, type: 3}
+  m_Name: Big Pencil Jingle
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 53fa731095e124326a74ac1892550db0, type: 3}
+  audioMixerGroup: {fileID: -5635829857138862269, guid: 4d0f4f0523e0941b19ffcdc2ae31bc95, type: 2}
+  volume: 1
+  pitch: 1
+  delay: 0
+  timeToPlayAgain: 0
+  randomSettings:
+    volumeUp: 0
+    volumeDown: 0
+    pitchUp: 0
+    pitchDown: 0
+    timeToPlayAgainUp: 0
