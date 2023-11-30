@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public class SlideShowManager : MonoBehaviour
 {
     [Serializable]
-    struct Slide
+    public struct Slide
     {
         public Vector2 posFrom;
         public Vector2 posTo;
@@ -24,11 +24,12 @@ public class SlideShowManager : MonoBehaviour
     [SerializeField] private float textDuration;
     [SerializeField] [Range(0,1)] private float textEndPercentage;
     [SerializeField] private float endFadeDuration = 3f;
-    [SerializeField] private Slide[] slides;
+    public Slide[] slides;
     [SerializeField] private SpriteRenderer spriteRend;
     [SerializeField] private TMP_Text textComp;
     [SerializeField] private TMP_Text holdToSkip;
     [SerializeField] private string backToPlay = "Soundtrack Intro";
+    [SerializeField] private SpriteRenderer fadeRend;
 
     private float timer = 0f;
     private int slideIndex = 0;
@@ -43,7 +44,8 @@ public class SlideShowManager : MonoBehaviour
 
     private void Awake()
     {
-        holdToSkip.DOFade(0f, 0.05f);
+        holdToSkip.color = new Color(1f, 1f, 1f, 0f);
+        fadeRend.color = new Color(0f, 0f, 0f, 0f);
     }
 
     private void Start()
@@ -118,12 +120,8 @@ public class SlideShowManager : MonoBehaviour
                 else
                 {
                     timer += textDuration;
-                    spriteRend.DOFade(0f, endFadeDuration);
-                    textComp.DOFade(0f, endFadeDuration).OnComplete(() =>
-                    {
-                        GoNext();
-                    });
-                    end = true;
+                    
+                    GoNext();
                 }
             }
         }
@@ -131,17 +129,21 @@ public class SlideShowManager : MonoBehaviour
 
     void GoNext()
     {
-        SceneManager.LoadScene(nextScene);
+        end = true;
+        fadeRend.DOFade(1f, endFadeDuration).OnComplete(() =>
+        {
+            SceneManager.LoadScene(nextScene);
+        });
     }
 
     string CutString(string text, float t)
     {
         string cutString = RemoveTags(text);
-        int length = text.Length;
+        int length = cutString.Length;
 
         int pos = Mathf.FloorToInt(length * t);
         string result = SubString(text, pos, out string next);
-        result += "<color=#00000000>";
+        result += "</u><color=#00000000>";
         result += RemoveTags(next);
         return result;
     }

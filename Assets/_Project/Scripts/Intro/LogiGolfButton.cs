@@ -9,15 +9,31 @@ using UnityEngine.SceneManagement;
 public class LogiGolfButton : MonoBehaviour
 {
     [SerializeField] private AudioData clickAudio;
+    [SerializeField] private SlideShowManager slideShowManager;
 
     private bool mouseEnter = false;
+
+    private string normalText, enterText;
+
+    private void Awake()
+    {
+        normalText = slideShowManager.slides[0].text[0];
+        enterText = slideShowManager.slides[0].text[0]
+            .Replace("green", "blue")
+            .Replace("<sprite=0>", "<sprite=1>");
+        
+        Destroy(GetComponent<SpriteRenderer>());
+    }
+
     private void OnMouseEnter()
     {
         mouseEnter = true;
+        slideShowManager.slides[0].text[0] = enterText;
     }
     private void OnMouseExit()
     {
         mouseEnter = false;
+        slideShowManager.slides[0].text[0] = normalText;
     }
 
     private void OnMouseDown()
