@@ -13,11 +13,12 @@ public class BackgroundAudioPlayer : MonoBehaviour
         public float volume;
         public Tween tween;
 
-        public void Fade(float target, float duration)
+        public Tween Fade(float target, float duration)
         {
             tween?.Kill();
             tween = source.DOFade(target, duration).
                 OnComplete(() => tween = null);
+            return tween;
         }
     }
 
@@ -42,11 +43,11 @@ public class BackgroundAudioPlayer : MonoBehaviour
             var backAudio = new BackgroundAudio { source = source, volume = source.volume };
             backgroundAudioDict.Add(source.gameObject.name, backAudio);
             
-            bool play = backAudio.source.playOnAwake;
-            backAudio.source.playOnAwake = false;
+            //bool play = backAudio.source.playOnAwake;
+            //backAudio.source.playOnAwake = false;
             backAudio.source.volume = 0f;
-            if (play) backAudio.Fade(backAudio.volume, defaultFade);
-            source.Play();
+            //if (play) backAudio.Fade(backAudio.volume, defaultFade);
+            //source.Play();
         }
     }
 
@@ -60,6 +61,10 @@ public class BackgroundAudioPlayer : MonoBehaviour
         fade = (fade == 0f) ? defaultFade : fade;
         var backAudio = backgroundAudioDict[backgroundName];
         if (backAudio.source.name != backgroundName) return;
+        if (!backAudio.source.isPlaying)
+        {
+            backAudio.source.Play();
+        }
         backAudio.Fade(backAudio.volume, fade);
     }
     
@@ -79,5 +84,19 @@ public class BackgroundAudioPlayer : MonoBehaviour
             backAudio.Fade(0f, fade);
         }
         
+    }
+
+    public void ResetPlay(float fade = 0f)
+    {
+        fade = (fade == 0f) ? defaultFade : fade;
+        foreach (var pair in backgroundAudioDict)
+        {
+            var backAudio = pair.Value;
+            backAudio.Fade(0f, fade).OnComplete(
+                () =>
+                {
+                    backAudio.source.Stop();
+                });
+        }
     }
 }

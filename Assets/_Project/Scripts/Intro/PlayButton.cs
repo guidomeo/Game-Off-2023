@@ -22,6 +22,11 @@ public class PlayButton : MonoBehaviour
         textComp.color = colorNormal;
     }
 
+    private void Start()
+    {
+        BackgroundAudioPlayer.instance.ResetPlay();
+    }
+
     private void OnValidate()
     {
         textComp.color = colorNormal;
