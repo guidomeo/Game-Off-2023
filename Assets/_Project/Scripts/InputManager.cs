@@ -53,8 +53,9 @@ public class InputManager : MonoBehaviour
         }
         
         Vector2 mousePos = Input.mousePosition;
-        mousePos.x = Mathf.Clamp(mousePos.x, 0f, Screen.width);
-        mousePos.y = Mathf.Clamp(mousePos.y, 0f, Screen.height);
+        
+        mousePos.x = Mathf.Clamp(mousePos.x, CameraBounds.rect.min.x * Screen.width, CameraBounds.rect.max.x * Screen.width);
+        mousePos.y = Mathf.Clamp(mousePos.y, CameraBounds.rect.min.y * Screen.height, CameraBounds.rect.max.y * Screen.height);
         Ray ray = cam.ScreenPointToRay(mousePos);
         if (!plane.Raycast(ray, out float enter)) return;
         MousePosition = ray.GetPoint(enter);
