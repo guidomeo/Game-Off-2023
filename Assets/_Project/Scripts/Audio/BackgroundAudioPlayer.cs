@@ -53,7 +53,9 @@ public class BackgroundAudioPlayer : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (instance == this) instance = null;
+        if (instance != this) return;
+        
+        instance = null;
     }
 
     public void Play(string backgroundName, float fade = 0f)
@@ -66,6 +68,13 @@ public class BackgroundAudioPlayer : MonoBehaviour
             backAudio.source.Play();
         }
         backAudio.Fade(backAudio.volume, fade);
+    }
+    
+    public void ChangeVolume(string backgroundName, float volumeMultiplier, float fade = 0f)
+    {
+        fade = (fade == 0f) ? defaultFade : fade;
+        var backAudio = backgroundAudioDict[backgroundName];
+        backAudio.Fade(backAudio.volume * volumeMultiplier, fade);
     }
     
     public void Stop(string backgroundName, float fade = 0f)

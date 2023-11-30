@@ -8,6 +8,7 @@ public class PlayerAudio : MonoBehaviour
     [SerializeField] private AudioDataGroup audioGroundStep;
     [SerializeField] private AudioDataGroup audioSnowStep;
     [SerializeField] private AudioDataGroup audioLineStep;
+    [SerializeField] private float inCaveAmbientMultiplier = 0.5f;
     [SerializeField] private float snowX;
 
     private AudioDataGroup audioStep;
@@ -32,7 +33,16 @@ public class PlayerAudio : MonoBehaviour
             
             audioStep.volumeMultiplier = player.NormalizedSpeed;
 
-            inCave = EnvManager.PointInCave(transform.position);
+            bool isInCave = EnvManager.PointInCave(transform.position);
+            if (isInCave != inCave)
+            {
+                inCave = isInCave;
+                BackgroundAudioPlayer.instance.ChangeVolume(
+                    "Ambient Ground",
+                    inCave ? inCaveAmbientMultiplier : 2f,
+                    1f
+                    );
+            }
         }
     }
 

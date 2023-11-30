@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a83c54b63f44dc0b46daf6d1ec835c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextScene: 2
   textDuration: 8
   textEndPercentage: 0.6
   endFadeDuration: 1

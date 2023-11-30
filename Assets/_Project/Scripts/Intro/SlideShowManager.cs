@@ -20,6 +20,7 @@ public class SlideShowManager : MonoBehaviour
         public List<string> text;
     }
 
+    [SerializeField] private int nextScene;
     [SerializeField] private float textDuration;
     [SerializeField] [Range(0,1)] private float textEndPercentage;
     [SerializeField] private float endFadeDuration = 3f;
@@ -125,7 +126,7 @@ public class SlideShowManager : MonoBehaviour
 
     void GoNext()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(nextScene);
     }
 
     string CutString(string text, float t)

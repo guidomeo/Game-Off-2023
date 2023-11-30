@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
 
     List<AudioSource> audioSourceList = new();
 
-    private bool duplicate;
+    private List<AudioData> waitingAudioData = new();
 
     public float PanFromPosition(Vector2 position)
     {
@@ -21,23 +21,24 @@ public class AudioManager : MonoBehaviour
     
     void Awake()
     {
-        if (instance == null)
+        if (instance != null)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            duplicate = true;
             Destroy(gameObject);
             return;
         }
+        DontDestroyOnLoad(gameObject);
+        instance = this;
     }
 
     private void OnDestroy()
     {
-        if (duplicate) return;
+        if (instance != this) return;
+        
         instance = null;
+        foreach (var audioData in waitingAudioData)
+        {
+            audioData.canPlay = true;
+        }
     }
 
     public void Play(AudioData audioData, bool loop)
@@ -49,6 +50,7 @@ public class AudioManager : MonoBehaviour
         {
             audioData.canPlay = false;
             StartCoroutine(CO_WaitToCanPlay(audioData));
+            waitingAudioData.Add(audioData);
         }
 
 
@@ -62,6 +64,7 @@ public class AudioManager : MonoBehaviour
     {
         yield return new WaitForSeconds(audioData.TimeToPlayAgain);
         audioData.canPlay = true;
+        waitingAudioData.Remove(audioData);
     }
     
     IEnumerator CO_PlayDelayed(AudioData audioData, bool loop)
