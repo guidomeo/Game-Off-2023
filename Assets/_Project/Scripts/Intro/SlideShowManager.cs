@@ -71,7 +71,7 @@ public class SlideShowManager : MonoBehaviour
             holdTimer += Time.deltaTime;
             if (holdTimer > 2f)
             {
-                GoNext();
+                GoNext(0.5f);
             }
         }
         if (!Input.GetMouseButton(0))
@@ -121,16 +121,16 @@ public class SlideShowManager : MonoBehaviour
                 {
                     timer += textDuration;
                     
-                    GoNext();
+                    GoNext(endFadeDuration);
                 }
             }
         }
     }
 
-    void GoNext()
+    void GoNext(float duration)
     {
         end = true;
-        fadeRend.DOFade(1f, endFadeDuration).OnComplete(() =>
+        fadeRend.DOFade(1f, duration).OnComplete(() =>
         {
             SceneManager.LoadScene(nextScene);
         });

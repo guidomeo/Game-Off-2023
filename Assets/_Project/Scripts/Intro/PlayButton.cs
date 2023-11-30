@@ -14,11 +14,13 @@ public class PlayButton : MonoBehaviour
     [SerializeField] private Color colorEnter;
     [SerializeField] private Color colorClick;
     [SerializeField] private TMP_Text textComp;
+    [SerializeField] private SpriteRenderer fadeRend;
 
     private bool mouseEnter = false;
     private void Awake()
     {
         textComp.color = colorNormal;
+        fadeRend.color = new Color(0f, 0f, 0f, 0f);
     }
 
     private void Start()
@@ -51,6 +53,9 @@ public class PlayButton : MonoBehaviour
     private void OnMouseUp()
     {
         if (!mouseEnter) return;
-        SceneManager.LoadScene(1);
+        fadeRend.DOFade(1f, 1f).OnComplete(() =>
+        {
+            SceneManager.LoadScene(1);
+        });
     }
 }
