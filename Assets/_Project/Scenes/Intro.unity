@@ -163,32 +163,32 @@ MonoBehaviour:
     scaleTo: 1.1
     sprite: {fileID: 21300000, guid: df3550c1703914f689bf792e6e62f7ca, type: 3}
     text:
-    - Once that was a wizard called the "Wizard of drawings".
-    - He liked to draw magic shapes with his pencil wand.
+    - Once there was a wizard called the Wizard of Drawings.
+    - He conjured wonders with his enchanted pencil wand.
   - posFrom: {x: 0, y: 0}
     posTo: {x: 0, y: 0}
     scaleFrom: 1
     scaleTo: 1.2
     sprite: {fileID: 21300000, guid: 3ca3602f5ba564413a9b03fc5ab91284, type: 3}
     text:
-    - But other wizard did not like him.
-    - Is magic was not considered powerfull enough.
+    - But other wizards found his magic unsettling.
+    - His magic was not seen as powerful enough.
   - posFrom: {x: 1, y: 0}
     posTo: {x: 0, y: 0}
     scaleFrom: 1.2
     scaleTo: 1
     sprite: {fileID: 21300000, guid: 3a602110e34c14fdfa520b732f34312b, type: 3}
     text:
-    - In a moment of dismay, he headed to the library.
-    - He was looking for an ancient tome.
+    - In a moment of doubt, he ventured to the ancient library.
+    - He was in search of a legendary magical tome.
   - posFrom: {x: 0, y: 0}
     posTo: {x: 0, y: 0}
     scaleFrom: 1
     scaleTo: 1.2
     sprite: {fileID: 21300000, guid: 6f8ddab82fc974e469e12134eddba268, type: 3}
     text:
-    - Here he read about the giant pencil and its location.
-    - At the top of Mount Temperinus.
+    - There, he learned of the Grand Pencil.
+    - Its location was the top of Mount Graphite.
   spriteRend: {fileID: 128788683}
   textComp: {fileID: 438370030}
   holdToSkip: {fileID: 1211756551}
@@ -587,8 +587,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 6.6
-  m_fontSizeBase: 6.6
+  m_fontSize: 6.4
+  m_fontSizeBase: 6.4
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -597,7 +597,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 4096
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: 3
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -930,7 +930,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.06, y: -4.63}
+  m_AnchoredPosition: {x: 0.06, y: -4.67}
   m_SizeDelta: {x: 17, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1211756551
@@ -1144,8 +1144,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596002765}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.84, z: 0}
-  m_LocalScale: {x: 19.188, y: 0.9625, z: 1}
+  m_LocalPosition: {x: 0, y: -3.8, z: 0}
+  m_LocalScale: {x: 19.188, y: 1.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 80263608}

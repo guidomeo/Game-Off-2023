@@ -9,7 +9,6 @@ using UnityEngine.SceneManagement;
 public class PlayButton : MonoBehaviour
 {
     [SerializeField] private AudioData clickAudio;
-    [SerializeField] private float delay;
     [SerializeField] private float duration;
     [SerializeField] private Color colorNormal;
     [SerializeField] private Color colorEnter;
@@ -52,12 +51,6 @@ public class PlayButton : MonoBehaviour
     private void OnMouseUp()
     {
         if (!mouseEnter) return;
-        StartCoroutine(WaitEndOfSound());
-    }
-
-    IEnumerator WaitEndOfSound()
-    {
-        yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(1);
     }
 }
