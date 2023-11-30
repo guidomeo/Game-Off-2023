@@ -30,6 +30,7 @@ public class SlideShowManager : MonoBehaviour
     [SerializeField] private TMP_Text holdToSkip;
     [SerializeField] private string backToPlay = "Soundtrack Intro";
     [SerializeField] private SpriteRenderer fadeRend;
+    [SerializeField] private float startFade = 0.6f;
 
     private float timer = 0f;
     private int slideIndex = 0;
@@ -42,51 +43,58 @@ public class SlideShowManager : MonoBehaviour
 
     private bool click = false;
 
-    private void Awake()
-    {
-        holdToSkip.color = new Color(1f, 1f, 1f, 0f);
-        fadeRend.color = new Color(0f, 0f, 0f, 0f);
-    }
+    private bool started = false;
 
     private void Start()
     {
-        BackgroundAudioPlayer.instance.StopAll(1f);
-        BackgroundAudioPlayer.instance.Play(backToPlay);
+        
+        holdToSkip.color = new Color(1f, 1f, 1f, 0f);
+        
+        fadeRend.color = Color.black;
+        fadeRend.DOFade(0f, startFade).OnComplete(() =>
+        {
+            started = true;
+            BackgroundAudioPlayer.instance.StopAll(1f);
+            BackgroundAudioPlayer.instance.Play(backToPlay);
+        });
     }
 
     private void Update()
     {
-        if (!OverUI() && Input.GetMouseButtonDown(0))
+        if (started)
         {
-            click = true;
-            holdAnimEnd = false;
-            doFadeTween?.Kill();
-            doFadeTween = holdToSkip.DOFade(1f, 0.7f).
-                SetEase(Ease.OutQuad)
-                .OnComplete(() => holdAnimEnd = true);
-        }
-        
-        if (click)
-        {
-            holdTimer += Time.deltaTime;
-            if (holdTimer > 2f)
+            if (!OverUI() && Input.GetMouseButtonDown(0))
             {
-                GoNext(0.5f);
-            }
-        }
-        if (!Input.GetMouseButton(0))
-        {
-            click = false;
-            holdTimer = 0f;
-            if (holdAnimEnd)
-            {
+                click = true;
                 holdAnimEnd = false;
                 doFadeTween?.Kill();
-                doFadeTween = holdToSkip.DOFade(0f, 0.7f).SetEase(Ease.InQuad);
+                doFadeTween = holdToSkip.DOFade(1f, 0.7f).SetEase(Ease.OutQuad)
+                    .OnComplete(() => holdAnimEnd = true);
+            }
+
+            if (click)
+            {
+                holdTimer += Time.deltaTime;
+                if (holdTimer > 2f)
+                {
+                    GoNext(0.5f);
+                }
+            }
+
+            if (!Input.GetMouseButton(0))
+            {
+                click = false;
+                holdTimer = 0f;
+                if (holdAnimEnd)
+                {
+                    holdAnimEnd = false;
+                    doFadeTween?.Kill();
+                    doFadeTween = holdToSkip.DOFade(0f, 0.7f).SetEase(Ease.InQuad);
+                }
             }
         }
-        
-        
+
+
         Slide slide = slides[slideIndex];
         
         float textT = timer / textDuration;
@@ -99,7 +107,7 @@ public class SlideShowManager : MonoBehaviour
         spriteRend.transform.position = Vector2.LerpUnclamped(slide.posFrom, slide.posTo, slideT);
         spriteRend.transform.localScale = Vector3.one * Mathf.LerpUnclamped(slide.scaleFrom, slide.scaleTo, slideT);
 
-        timer += Time.deltaTime;
+        if (started) timer += Time.deltaTime;
         
         if (end) return;
         

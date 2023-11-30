@@ -169,6 +169,7 @@ MonoBehaviour:
   holdToSkip: {fileID: 1598974591}
   backToPlay: Final Noise
   fadeRend: {fileID: 2115765781}
+  startFade: 1.5
   holdAnimEnd: 0
 --- !u!4 &791846732
 Transform:
