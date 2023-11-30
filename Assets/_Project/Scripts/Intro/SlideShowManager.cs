@@ -17,7 +17,7 @@ public class SlideShowManager : MonoBehaviour
         public float scaleFrom;
         public float scaleTo;
         public Sprite sprite;
-        public List<string> text;
+        [TextArea] public List<string> text;
     }
 
     [SerializeField] private int nextScene;
@@ -28,6 +28,7 @@ public class SlideShowManager : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRend;
     [SerializeField] private TMP_Text textComp;
     [SerializeField] private TMP_Text holdToSkip;
+    [SerializeField] private string backToPlay = "Soundtrack Intro";
 
     private float timer = 0f;
     private int slideIndex = 0;
@@ -43,8 +44,12 @@ public class SlideShowManager : MonoBehaviour
     private void Awake()
     {
         holdToSkip.DOFade(0f, 0.05f);
-        BackgroundAudioPlayer.instance.StopAll();
-        BackgroundAudioPlayer.instance.Play("Soundtrack Intro");
+    }
+
+    private void Start()
+    {
+        BackgroundAudioPlayer.instance.StopAll(1f);
+        BackgroundAudioPlayer.instance.Play(backToPlay);
     }
 
     private void Update()
@@ -131,12 +136,71 @@ public class SlideShowManager : MonoBehaviour
 
     string CutString(string text, float t)
     {
+        string cutString = RemoveTags(text);
         int length = text.Length;
 
         int pos = Mathf.FloorToInt(length * t);
-        string result = text.Substring(0, pos);
+        string result = SubString(text, pos, out string next);
         result += "<color=#00000000>";
-        result += text.Substring(pos);
+        result += RemoveTags(next);
+        return result;
+    }
+
+    string RemoveTags(string text)
+    {
+        string result = "";
+        bool openTag = false;
+        for (int i = 0; i < text.Length; i++)
+        {
+            char c = text[i];
+            if (c == '<')
+            {
+                openTag = true;
+            }
+            else if (c == '>')
+            {
+                openTag = false;
+            }
+            else if (!openTag)
+            {
+                result += c;
+            }
+        }
+
+        return result;
+    }
+
+    string SubString(string text, int pos, out string next)
+    {
+        next = "";
+        string result = "";
+        bool openTag = false;
+        int posCounter = 0;
+        for (int i = 0; i < text.Length; i++)
+        {
+            char c = text[i];
+            if (posCounter < pos)
+            {
+                result += c;
+            }
+            else
+            {
+                next += c;
+            }
+            if (c == '<')
+            {
+                openTag = true;
+            }
+            else if (c == '>')
+            {
+                openTag = false;
+            }
+            else if (!openTag)
+            {
+                posCounter++;
+            }
+        }
+
         return result;
     }
     
