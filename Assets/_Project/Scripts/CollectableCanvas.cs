@@ -7,15 +7,19 @@ using UnityEngine.UI;
 public class CollectableCanvas : MonoBehaviour
 {
     [SerializeField] private Image[] collectables;
+    [SerializeField] private AudioData[] sounds;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private GameObject allItemsObj;
     
     public static CollectableCanvas instance;
 
+    private int count = 0;
+
     private void Awake()
     {
         if (instance != null)
         {
+            if (count > 0) instance.ShowItems();
             Destroy(gameObject);
             return;
         }
@@ -36,8 +40,25 @@ public class CollectableCanvas : MonoBehaviour
         instance = null;
     }
 
+    private Tween fadeOut;
+
+    public void ShowItems()
+    {
+        fadeOut?.Kill();
+        canvasGroup.DOFade(1f, 2f);
+        fadeOut = canvasGroup.DOFade(0f, 2f).SetDelay(10f).OnComplete(() =>
+        {
+            gameObject.SetActive(false);
+        });
+    }
+
     public void Collect(int index)
     {
+        fadeOut?.Kill();
+        
+        sounds[count].Play();
+        count++;
+        
         gameObject.SetActive(true);
         canvasGroup.alpha = 0f;
         
@@ -47,7 +68,8 @@ public class CollectableCanvas : MonoBehaviour
         img.color = new Color(1f, 1f, 1f, 0f);
         tr.localScale = Vector3.one * 2f;
 
-        bool allUnlocked = IsUnlocked(0) && IsUnlocked(1) && IsUnlocked(2);
+        bool allUnlocked = (count == collectables.Length);
+        if (allUnlocked) DrawingManager.instance.maxNumberOfDrawings = 3;
         
         canvasGroup.DOFade(1f, 2f).OnComplete(() =>
         {
@@ -58,9 +80,8 @@ public class CollectableCanvas : MonoBehaviour
                     if (!allUnlocked) return;
                     
                     allItemsObj.SetActive(true);
-                    canvasGroup.DOFade(0f, 2f).SetDelay(10f).OnComplete(() =>
+                    fadeOut = canvasGroup.DOFade(0f, 2f).SetDelay(10f).OnComplete(() =>
                     {
-                        DrawingManager.instance.maxNumberOfDrawings = 3;
                         gameObject.SetActive(false);
                     });
                 });
@@ -69,7 +90,7 @@ public class CollectableCanvas : MonoBehaviour
 
         if (!allUnlocked)
         {
-            canvasGroup.DOFade(0f, 2f).SetDelay(10f).OnComplete(() =>
+            fadeOut = canvasGroup.DOFade(0f, 2f).SetDelay(10f).OnComplete(() =>
             {
                 gameObject.SetActive(false);
             });
