@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class LogiGolfButton : MonoBehaviour
 {
+    [SerializeField] private float timeToEnableClick;
     [SerializeField] private AudioData clickAudio;
     [SerializeField] private SlideShowManager slideShowManager;
 
@@ -22,7 +23,11 @@ public class LogiGolfButton : MonoBehaviour
             .Replace("green", "blue")
             .Replace("<sprite=0>", "<sprite=1>");
         
-        Destroy(GetComponent<SpriteRenderer>());
+    }
+
+    private void Update()
+    {
+        if (slideShowManager.timer > timeToEnableClick) Destroy(GetComponent<SpriteRenderer>());
     }
 
     private void OnMouseEnter()
@@ -38,12 +43,18 @@ public class LogiGolfButton : MonoBehaviour
 
     private void OnMouseDown()
     {
-        clickAudio.Play();
+        if (slideShowManager.timer > timeToEnableClick)
+        {
+            clickAudio.Play();
+        }
     }
 
     private void OnMouseUp()
     {
         if (!mouseEnter) return;
-        Application.OpenURL("https://store.steampowered.com/app/2388030/LogiGolf/");
+        if (slideShowManager.timer > timeToEnableClick)
+        {
+            Application.OpenURL("https://store.steampowered.com/app/2388030/LogiGolf/");
+        }
     }
 }

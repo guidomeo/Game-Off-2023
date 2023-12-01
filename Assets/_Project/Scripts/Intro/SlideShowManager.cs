@@ -33,7 +33,7 @@ public class SlideShowManager : MonoBehaviour
     [SerializeField] private float startFade = 0.6f;
     [SerializeField] private bool canSkip = false;
 
-    private float timer = 0f;
+    [NonSerialized] public float timer = 0f;
     private int slideIndex = 0;
     private int textIndex = 0;
     private bool end = false;
