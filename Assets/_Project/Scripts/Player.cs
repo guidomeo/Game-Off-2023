@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -32,9 +32,11 @@ public class Player : MonoBehaviour
     public float NormalizedSpeed => Mathf.Abs(cc.MovementVelocity) / cc.maxSpeed;
     
     private float flip = 1;
-    private static readonly int Property = Animator.StringToHash("Big Pencil");
+    private static readonly int BigPencilProperty = Animator.StringToHash("Big Pencil");
+    private static readonly int ThrowProperty = Animator.StringToHash("Throw");
 
     [NonSerialized] public float maxSpeed;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -83,6 +85,13 @@ public class Player : MonoBehaviour
 
     public void DropPencil(Vector2 force)
     {
+        animator.SetTrigger(ThrowProperty);
+        StartCoroutine(DropDelay(force));
+    }
+
+    IEnumerator DropDelay(Vector2 force)
+    {
+        yield return new WaitForSeconds(1f);
         pencilRb.isKinematic = false;
         pencilRb.transform.SetParent(null);
         pencilRb.AddForce(force, ForceMode2D.Impulse);
@@ -94,7 +103,7 @@ public class Player : MonoBehaviour
         
         pencilRb.gameObject.SetActive(false);
         
-        animator.SetTrigger(Property);
+        animator.SetTrigger(BigPencilProperty);
 
         StartCoroutine(DoFinal(pencilTr, speed));
     }
