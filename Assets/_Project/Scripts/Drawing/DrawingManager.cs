@@ -33,6 +33,9 @@ public class DrawingManager : MonoBehaviour
     [SerializeField] private AudioSource pencilDrawingSource;
     [SerializeField] private AudioData playerVoice;
     [SerializeField] private AudioData clearAudio;
+    [SerializeField] private float pitchClearMin;
+    [SerializeField] private float pitchClearMax;
+    [SerializeField] private float lengthToMaxPitchClear;
 
     [NonSerialized] public bool big = false;
     [NonSerialized] public bool canDraw = true;
@@ -162,6 +165,8 @@ public class DrawingManager : MonoBehaviour
     void Clear(Drawing drawing)
     {
         drawing.DestructionEffect();
+        clearAudio.pitchMultiplier =
+            Mathf.Lerp(pitchClearMin, pitchClearMax, drawing.totalLenght / lengthToMaxPitchClear);
         clearAudio.Play();
         Destroy(drawing.gameObject);
     }

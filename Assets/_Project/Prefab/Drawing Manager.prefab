@@ -408,6 +408,9 @@ MonoBehaviour:
   pencilDrawingSource: {fileID: 1976375149976831375}
   playerVoice: {fileID: 11400000, guid: 81266390c98db487d9135f93cb963ca0, type: 2}
   clearAudio: {fileID: 11400000, guid: ae8278a843c594c9d8bd269f14f92db3, type: 2}
+  pitchClearMin: 2.3
+  pitchClearMax: 0.4
+  lengthToMaxPitchClear: 20
 --- !u!1 &7651443031791692820
 GameObject:
   m_ObjectHideFlags: 0

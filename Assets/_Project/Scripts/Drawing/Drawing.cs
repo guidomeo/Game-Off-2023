@@ -35,7 +35,7 @@ public class Drawing : MonoBehaviour
     private RaycastHit2D[] hits = new RaycastHit2D[20];
     private float currentLength;
     private LineRenderer lineRend;
-    private float totalLenght;
+    [NonSerialized] public float totalLenght;
     public bool Valid => currentLine != null && currentLine.valid;
 
     private float width;
