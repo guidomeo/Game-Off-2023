@@ -165,6 +165,9 @@ public class DrawingManager : MonoBehaviour
     void Clear(Drawing drawing)
     {
         drawing.DestructionEffect();
+        Vector2 cameraPos = CameraController.instance.transform.position;
+        Vector2 drawingPos = drawing.transform.position;
+        clearAudio.volumeMultiplier = Mathf.Clamp01(1f - Vector2.Distance(cameraPos, drawingPos) / 20f);
         clearAudio.pitchMultiplier =
             Mathf.Lerp(pitchClearMin, pitchClearMax, drawing.totalLenght / lengthToMaxPitchClear);
         clearAudio.Play();
