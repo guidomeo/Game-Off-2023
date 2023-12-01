@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: da1de8270993742ec8717b519adc3075, type: 3}
   - {fileID: 8300000, guid: 2a61fb13168b8459396cd0d16339e0ba, type: 3}
   - {fileID: 8300000, guid: 30ff6dd5d84904e0faea86a98410a1b9, type: 3}
-  audioMixerGroup: {fileID: 6192149027906491757, guid: 4d0f4f0523e0941b19ffcdc2ae31bc95, type: 2}
+  audioMixerGroup: {fileID: 5354137292411889590, guid: 4d0f4f0523e0941b19ffcdc2ae31bc95, type: 2}
   volume: 1
   pitch: 1
   delay: 0

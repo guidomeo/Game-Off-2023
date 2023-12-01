@@ -13,16 +13,19 @@ MonoBehaviour:
   m_Name: Clear Effect
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 53fa731095e124326a74ac1892550db0, type: 3}
+  - {fileID: 8300000, guid: 59bc2d263a961408cb3683bd50e54ad4, type: 3}
+  - {fileID: 8300000, guid: 5e77b4315e80241a39f7a56948db81b2, type: 3}
+  - {fileID: 8300000, guid: 2ede62c51048b43a0b8e465693c5437e, type: 3}
+  - {fileID: 8300000, guid: 01d3ea499773b4ca38a5f751c85c25b1, type: 3}
   audioMixerGroup: {fileID: -5635829857138862269, guid: 4d0f4f0523e0941b19ffcdc2ae31bc95, type: 2}
-  volume: 0.647
-  pitch: 1
+  volume: 0.771
+  pitch: 0.5
   delay: 0
   timeToPlayAgain: 0.78
   fadeInDuration: 0
   randomSettings:
     volumeUp: 0
     volumeDown: 0.16
-    pitchUp: 0.09
-    pitchDown: 0.03
+    pitchUp: 0
+    pitchDown: 0
     timeToPlayAgainUp: 0
