@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Drawing : MonoBehaviour
 {
-    [SerializeField] float rayCastDistance = 0.4f;
+    //[SerializeField] float rayCastDistance = 0.4f;
     [SerializeField] private float minDistance = 0.5f;
     [SerializeField] private float maxLength = 25f;
     [SerializeField] private Line linePrefab;
@@ -188,6 +188,7 @@ public class Drawing : MonoBehaviour
         {
             float angle = (float) i / count * Mathf.PI * 2f;
             Vector2 dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+            float rayCastDistance = width * 2f;
             int hitsCount = Physics2D.CircleCastNonAlloc(pos + dir * rayCastDistance, width / 2f, -dir, hits, rayCastDistance, wallMask);
             
             if (hitsCount > 0)

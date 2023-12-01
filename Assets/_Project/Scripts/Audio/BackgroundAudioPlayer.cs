@@ -108,4 +108,10 @@ public class BackgroundAudioPlayer : MonoBehaviour
                 });
         }
     }
+    
+    public void StopCompletely(string backgroundName)
+    {
+        var backAudio = backgroundAudioDict[backgroundName];
+        backAudio.source.Stop();
+    }
 }

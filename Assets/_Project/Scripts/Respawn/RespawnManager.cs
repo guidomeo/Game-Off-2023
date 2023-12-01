@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -22,12 +23,16 @@ public class RespawnManager : MonoBehaviour
         var playerPos = s_player.transform.position;
         SetRespawnPoint(playerPos);
         RegisterCheckpoint(playerPos);
+    }
 
+    private void Start()
+    {
         BackgroundAudioPlayer.instance.StopAll();
         BackgroundAudioPlayer.instance.Play("Soundtrack Ground");
         BackgroundAudioPlayer.instance.Play("Ambient Ground");
     }
 
+#if UNITY_EDITOR
     private void Update()
     {
         for (int i = 0; i < 10; i++)
@@ -47,6 +52,7 @@ public class RespawnManager : MonoBehaviour
             index = 0;
         }
     }
+#endif
 
     public static void SetRespawnPoint(Vector3 pos)
     {

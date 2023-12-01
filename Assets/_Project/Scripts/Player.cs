@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int Cast = Animator.StringToHash("Cast");
 
-    public float NormalizedSpeed => Mathf.Abs(cc.MovementVelocity) / cc.maxSpeed;
+    public float NormalizedSpeed => Mathf.Abs(cc.MovementVelocity) / maxSpeed;
     
     private float flip = 1;
     private static readonly int BigPencilProperty = Animator.StringToHash("Big Pencil");
