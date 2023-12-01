@@ -14,6 +14,7 @@ public class GodDestroyTrigger : MonoBehaviour
         if (player == null) return;
         used = true;
         
+        CameraController.instance.ChangeSkyColor(true);
         BackgroundAudioPlayer.instance.Play("Soundtrack Snow");
         BackgroundAudioPlayer.instance.Play("Ambient Ground");
         BackgroundAudioPlayer.instance.Stop("Final Noise");

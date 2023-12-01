@@ -138,6 +138,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(8f);
         BackgroundAudioPlayer.instance.Stop("Ambient Ground");
         BackgroundAudioPlayer.instance.Play("Final Noise");
+        CameraController.instance.ChangeSkyColor(false);
         yield return new WaitForSeconds(2f);
         
         FinalCanvas.instance.HideCinemaPanel();
