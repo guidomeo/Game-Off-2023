@@ -138,6 +138,7 @@ public class DrawingManager : MonoBehaviour
             drawings.Add(drawing);
             if (drawings.Count > maxNumberOfDrawings)
             {
+                drawings[0].DestructionEffect();
                 Destroy(drawings[0].gameObject);
                 drawings.RemoveAt(0);
             }
@@ -153,6 +154,7 @@ public class DrawingManager : MonoBehaviour
         }
         foreach (var draw in drawings)
         {
+            draw.DestructionEffect();
             Destroy(draw.gameObject);
         }
         drawings.Clear();

@@ -234,4 +234,13 @@ public class Drawing : MonoBehaviour
             
         }
     }
+
+    public void DestructionEffect()
+    {
+        for (var i = 0; i < lines.Count; i++)
+        {
+            var line = lines[i];
+            line.DestructionEffect();
+        }
+    }
 }

@@ -55,7 +55,6 @@ public class PencilGod : MonoBehaviour
             gameOverTime += Time.deltaTime;
             if (gameOverTime > 2f)
             {
-                BackgroundAudioPlayer.instance.StopAll();
                 SceneManager.LoadScene(3);
             }
             return;

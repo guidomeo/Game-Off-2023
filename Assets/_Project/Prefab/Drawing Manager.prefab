@@ -44,7 +44,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2532262190715115017}
-  - component: {fileID: 3968189257853088290}
   - component: {fileID: 812495583169205586}
   m_Layer: 0
   m_Name: Line(Clone) (2)
@@ -68,22 +67,6 @@ Transform:
   m_Father: {fileID: 7167677729532890360}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
---- !u!114 &3968189257853088290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1453570191149628639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e708fa4240d514ba48ba43c1d4810062, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coll: {fileID: 0}
-  wallMask:
-    serializedVersion: 2
-    m_Bits: 321
 --- !u!120 &812495583169205586
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -192,7 +175,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4620886227719227289}
-  - component: {fileID: 8981538898940940631}
   - component: {fileID: 1307144319141063367}
   m_Layer: 0
   m_Name: Line(Clone) (3)
@@ -216,22 +198,6 @@ Transform:
   m_Father: {fileID: 7167677729532890360}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
---- !u!114 &8981538898940940631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2436271809396121076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e708fa4240d514ba48ba43c1d4810062, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coll: {fileID: 0}
-  wallMask:
-    serializedVersion: 2
-    m_Bits: 321
 --- !u!120 &1307144319141063367
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -380,6 +346,8 @@ MonoBehaviour:
   maxNumberOfDrawings: 1
   drawingPrefab: {fileID: 8698416697873686535, guid: ee2591f5bfc344e489001fc358804e2b, type: 3}
   cannotBuildEffect: {fileID: 1239786187721714571}
+  normalWidth: 0.1
+  bigWidth: 0.8
   startDrawingSpeed: 0
   fadeDuration: 0.1
   pitchOffset: 0.1
@@ -576,7 +544,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3521214408483096918}
-  - component: {fileID: 5019071158562611779}
   - component: {fileID: 4207848722335364093}
   m_Layer: 0
   m_Name: Line(Clone) (1)
@@ -600,22 +567,6 @@ Transform:
   m_Father: {fileID: 7167677729532890360}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
---- !u!114 &5019071158562611779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8020947004559277665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e708fa4240d514ba48ba43c1d4810062, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coll: {fileID: 0}
-  wallMask:
-    serializedVersion: 2
-    m_Bits: 321
 --- !u!120 &4207848722335364093
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -724,7 +675,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8578763150003560244}
-  - component: {fileID: 8634339086347596239}
   - component: {fileID: 1768800320043037535}
   m_Layer: 0
   m_Name: Line(Clone)
@@ -748,22 +698,6 @@ Transform:
   m_Father: {fileID: 7167677729532890360}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
---- !u!114 &8634339086347596239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8115484277186284184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e708fa4240d514ba48ba43c1d4810062, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coll: {fileID: 0}
-  wallMask:
-    serializedVersion: 2
-    m_Bits: 321
 --- !u!120 &1768800320043037535
 LineRenderer:
   m_ObjectHideFlags: 0

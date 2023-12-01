@@ -6,6 +6,7 @@ using UnityEngine;
 public class Line : MonoBehaviour
 {
     [SerializeField] CapsuleCollider2D coll;
+    [SerializeField] ParticleSystem destructionEffect;
     public LayerMask wallMask;
 
     [NonSerialized] public Vector2 p1;
@@ -16,7 +17,11 @@ public class Line : MonoBehaviour
     
     public float Lenght => Vector3.Distance(p1, p2);
     public Vector2 MidPoint => (p1 + p2) / 2f;
-    
+
+    private void Awake()
+    {
+        destructionEffect.gameObject.SetActive(false);
+    }
 
     public void SetWidth(float width)
     {
@@ -35,5 +40,14 @@ public class Line : MonoBehaviour
 
         valid = !Physics2D.OverlapCapsule(position, size, CapsuleDirection2D.Vertical, angle, wallMask);
         coll.enabled = valid;
+
+        var destructionEffectShape = destructionEffect.shape;
+        destructionEffectShape.scale = size;
+    }
+
+    public void DestructionEffect()
+    {
+        destructionEffect.gameObject.transform.SetParent(null);
+        destructionEffect.gameObject.SetActive(true);
     }
 }
