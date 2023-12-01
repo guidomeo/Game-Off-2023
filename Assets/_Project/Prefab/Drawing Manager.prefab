@@ -347,7 +347,7 @@ MonoBehaviour:
   drawingPrefab: {fileID: 8698416697873686535, guid: ee2591f5bfc344e489001fc358804e2b, type: 3}
   cannotBuildEffect: {fileID: 1239786187721714571}
   normalWidth: 0.1
-  bigWidth: 0.8
+  bigWidth: 0.85
   startDrawingSpeed: 0
   fadeDuration: 0.1
   pitchOffset: 0.1

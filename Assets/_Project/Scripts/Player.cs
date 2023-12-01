@@ -136,6 +136,7 @@ public class Player : MonoBehaviour
         FinalCanvas.instance.Activate();
         
         yield return new WaitForSeconds(8f);
+        BackgroundAudioPlayer.instance.Stop("Ambient Ground");
         BackgroundAudioPlayer.instance.Play("Final Noise");
         yield return new WaitForSeconds(2f);
         
