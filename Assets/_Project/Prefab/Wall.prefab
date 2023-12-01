@@ -79,10 +79,11 @@ SpriteShapeRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_MaskInteraction: 0
   m_ShapeTexture: {fileID: 2800000, guid: ec506c834730f4588b2e82c17dfbcffc, type: 3}
-  m_Sprites: []
+  m_Sprites:
+  - {fileID: 21300000, guid: a9e351b66c2c24a62a329379af8cfec7, type: 3}
   m_LocalAABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 2.0000002, y: 2.0000002, z: 0}
+    m_Center: {x: 0, y: -0.76211977, z: 0}
+    m_Extent: {x: 3.8842397, y: 3.12212, z: 0}
 --- !u!114 &3765780859683166861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +148,7 @@ MonoBehaviour:
   m_WorldSpaceUV: 1
   m_CornerAngleThreshold: 30
   m_ColliderDetail: 16
-  m_ColliderOffset: 0.1
+  m_ColliderOffset: 0
   m_UpdateCollider: 1
   m_OptimizeCollider: 1
   m_OptimizeGeometry: 1
@@ -179,10 +180,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -2, y: -2}
-      - {x: -2, y: 2}
-      - {x: 2, y: 2}
-      - {x: 2, y: -2}
-      - {x: -1.8056297, y: -2}
-      - {x: -1.9490371, y: -2}
-      - {x: -2, y: -2}
+    - - {x: 3.2455182, y: -2}
+      - {x: 3.2455182, y: 1.9999998}
+      - {x: 0, y: -1.2455182}
+      - {x: 0.7544817, y: -2}
+      - {x: -0.7544817, y: -2}
