@@ -58,6 +58,7 @@ public class CollectableCanvas : MonoBehaviour
         
         sounds[count].Play();
         count++;
+        Debug.Log(count);
         
         gameObject.SetActive(true);
         canvasGroup.alpha = 0f;

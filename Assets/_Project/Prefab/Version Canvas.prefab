@@ -57,6 +57,10 @@ MonoBehaviour:
   - {fileID: 1630106984398671031}
   - {fileID: 414988004963552335}
   - {fileID: 3545221572570756949}
+  sounds:
+  - {fileID: 11400000, guid: 63b814d03eb1b4de88bbee8d12b6871c, type: 2}
+  - {fileID: 11400000, guid: aa28b4d1466cb4273b85bc4fca1d4e45, type: 2}
+  - {fileID: 11400000, guid: b7f271b8abcd64e7db0aca3f7ab6f4ba, type: 2}
   canvasGroup: {fileID: 3796634782759175334}
   allItemsObj: {fileID: 5973851233057459418}
 --- !u!223 &397832183231300667
