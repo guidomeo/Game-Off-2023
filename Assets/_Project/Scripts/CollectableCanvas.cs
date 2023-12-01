@@ -46,11 +46,16 @@ public class CollectableCanvas : MonoBehaviour
     {
         fadeOut?.Kill();
         gameObject.SetActive(true);
-        canvasGroup.DOFade(1f, 2f);
+        canvasGroup.DOFade(1f, 2f).OnComplete(() =>
+        {
+            bool allUnlocked = (count == collectables.Length);
+            if (allUnlocked) DrawingManager.instance.maxNumberOfDrawings = 3;
+        });
         fadeOut = canvasGroup.DOFade(0f, 2f).SetDelay(10f).OnComplete(() =>
         {
             gameObject.SetActive(false);
         });
+        
     }
 
     public void Collect(int index)
