@@ -11,7 +11,7 @@ public class DrawingManager : MonoBehaviour
 {
     public static bool isDrawing;
     
-    [SerializeField] private int maxNumberOfDrawings = 3;
+    public int maxNumberOfDrawings = 3;
     [SerializeField] private Drawing drawingPrefab;
     [SerializeField] private GameObject cannotBuildEffect;
     [SerializeField] private float normalWidth = 0.1f;
