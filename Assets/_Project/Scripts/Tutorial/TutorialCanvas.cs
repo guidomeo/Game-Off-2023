@@ -21,7 +21,7 @@ public class TutorialCanvas : MonoBehaviour
         }
     }
 
-    public void TutorialTrigger(int index, bool active)
+    public void TutorialTrigger(int index, bool active, float delay = 0f)
     {
         CanvasGroup image = tutorialPanels[index];
         GameObject imageObj = image.gameObject;
@@ -31,7 +31,7 @@ public class TutorialCanvas : MonoBehaviour
             {
                 imageObj.SetActive(true);
                 image.alpha = 0f;
-                image.DOFade(1f, duration);
+                image.DOFade(1f, duration).SetDelay(delay);
             }
         }
         else

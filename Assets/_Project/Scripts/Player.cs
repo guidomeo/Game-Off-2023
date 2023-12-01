@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
     private static readonly int ThrowProperty = Animator.StringToHash("Throw");
 
     [NonSerialized] public float maxSpeed;
+    private static readonly int ClearProperty = Animator.StringToHash("Clear");
 
     private void Awake()
     {
@@ -43,6 +44,13 @@ public class Player : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         cc = GetComponent<PhysicCharacterController>();
         maxSpeed = cc.maxSpeed;
+
+        DrawingManager.OnDrawingCancelled += OnDrawingCancelled;
+    }
+
+    private void OnDestroy()
+    {
+        DrawingManager.OnDrawingCancelled -= OnDrawingCancelled;
     }
 
     private void Update()
@@ -139,5 +147,10 @@ public class Player : MonoBehaviour
         
         DrawingManager.instance.canDraw = true;
         DrawingManager.instance.big = true;
+    }
+
+    void OnDrawingCancelled()
+    {
+        animator.SetTrigger(ClearProperty);
     }
 }

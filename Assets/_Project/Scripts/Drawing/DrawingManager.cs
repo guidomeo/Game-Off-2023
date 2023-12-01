@@ -51,6 +51,8 @@ public class DrawingManager : MonoBehaviour
 
     private float cannotBuildEffectScale;
 
+    public static Action OnDrawingCancelled;
+
     private void Awake()
     {
         instance = this;
@@ -145,6 +147,10 @@ public class DrawingManager : MonoBehaviour
 
     public void DestroyAllDrawings()
     {
+        if (drawings.Count > 0)
+        {
+            OnDrawingCancelled?.Invoke();
+        }
         foreach (var draw in drawings)
         {
             Destroy(draw.gameObject);
