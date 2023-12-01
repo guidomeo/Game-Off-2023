@@ -20,7 +20,7 @@ public class LogiGolfButton : MonoBehaviour
     {
         normalText = slideShowManager.slides[0].text[0];
         enterText = slideShowManager.slides[0].text[0]
-            .Replace("green", "blue")
+            .Replace("#CFC744", "#CF3875")
             .Replace("<sprite=0>", "<sprite=1>");
         
     }

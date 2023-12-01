@@ -285,8 +285,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextScene: 0
-  textDuration: 15
-  textEndPercentage: 0.8
+  textDuration: 17
+  textEndPercentage: 0.75
   endFadeDuration: 1
   slides:
   - posFrom: {x: 0, y: 0.5}
@@ -295,7 +295,7 @@ MonoBehaviour:
     scaleTo: 1.1
     sprite: {fileID: 21300000, guid: c738e1f64775040e9b298caf7eba89a1, type: 3}
     text:
-    - "Guido Meo\nEmanuele Cosenza\n\nTake a look at our upcoming game: <color=green><u>LogiGolf</color>
+    - "Guido Meo\nEmanuele Cosenza\n\nTake a look at our upcoming game: <color=#CFC744><u>LogiGolf</color>
       <sprite=0></u>\n\nThanks to\nChatGPT  DALL\xB7E\nCarlo Acanfora\nMartina Lieto\nDaniele
       Del Zompo"
   spriteRend: {fileID: 2097569997}
@@ -1079,7 +1079,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Guido Meo\nEmanuele Cosenza\n\nTake a look at our upcoming game: <color=green><u>LogiGolf</color>
+  m_text: "Guido Meo\nEmanuele Cosenza\n\nTake a look at our upcoming game: <color=#CFC744><u>LogiGolf</color>
     <sprite=0></u>\n\nThanks to\nChatGPT  DALL\xB7E\nCarlo Acanfora\nMartina Lieto\nDaniele
     Del Zompo"
   m_isRightToLeft: 0
