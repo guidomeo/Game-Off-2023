@@ -14,13 +14,17 @@ public class Checkpoint : MonoBehaviour
     {
         RespawnManager.RegisterCheckpoint(transform.position);
     }
-
+    
+    private bool used = false;
     private void OnTriggerEnter2D(Collider2D col)
     {
+        if (used) return;
         Rigidbody2D rb = col.attachedRigidbody;
         if (rb == null) return;
         Player player = rb.GetComponent<Player>();
         if (player == null) return;
+        used = true;
+        
         RespawnManager.SetRespawnPoint(transform.position);
         Destroy(gameObject);
     }
