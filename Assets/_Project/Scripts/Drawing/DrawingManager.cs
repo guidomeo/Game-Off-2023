@@ -32,6 +32,7 @@ public class DrawingManager : MonoBehaviour
     
     [SerializeField] private AudioSource pencilDrawingSource;
     [SerializeField] private AudioData playerVoice;
+    [SerializeField] private AudioData clearAudio;
 
     [NonSerialized] public bool big = false;
     [NonSerialized] public bool canDraw = true;
@@ -138,8 +139,7 @@ public class DrawingManager : MonoBehaviour
             drawings.Add(drawing);
             if (drawings.Count > maxNumberOfDrawings)
             {
-                drawings[0].DestructionEffect();
-                Destroy(drawings[0].gameObject);
+                Clear(drawings[0]);
                 drawings.RemoveAt(0);
             }
         }
@@ -154,10 +154,16 @@ public class DrawingManager : MonoBehaviour
         }
         foreach (var draw in drawings)
         {
-            draw.DestructionEffect();
-            Destroy(draw.gameObject);
+            Clear(draw);
         }
         drawings.Clear();
+    }
+
+    void Clear(Drawing drawing)
+    {
+        drawing.DestructionEffect();
+        clearAudio.Play();
+        Destroy(drawing.gameObject);
     }
 
     private Coroutine hideCannotBuildCoroutine;
