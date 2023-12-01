@@ -19,7 +19,7 @@ public class CollectableCanvas : MonoBehaviour
     {
         if (instance != null)
         {
-            if (count > 0) instance.ShowItems();
+            if (instance.count > 0) instance.ShowItems();
             Destroy(gameObject);
             return;
         }
@@ -45,6 +45,7 @@ public class CollectableCanvas : MonoBehaviour
     public void ShowItems()
     {
         fadeOut?.Kill();
+        gameObject.SetActive(true);
         canvasGroup.DOFade(1f, 2f);
         fadeOut = canvasGroup.DOFade(0f, 2f).SetDelay(10f).OnComplete(() =>
         {
@@ -58,7 +59,6 @@ public class CollectableCanvas : MonoBehaviour
         
         sounds[count].Play();
         count++;
-        Debug.Log(count);
         
         gameObject.SetActive(true);
         canvasGroup.alpha = 0f;
