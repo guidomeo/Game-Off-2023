@@ -302,6 +302,8 @@ MonoBehaviour:
   holdToSkip: {fileID: 1598974591}
   backToPlay: Soundtrack Ground
   fadeRend: {fileID: 1521374760}
+  startFade: 0.6
+  canSkip: 0
   holdAnimEnd: 0
 --- !u!4 &791846732
 Transform:
@@ -1218,7 +1220,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hold click to skip
+  m_text: Hold mouse click to skip
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 08c4d074a56cf4ac5aeda1791b55cb00, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 53d3209d584da4f258c807f39df9aca2, type: 2}
@@ -1227,8 +1229,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4286493886
+  m_fontColor: {r: 0.74509805, g: 0.7058824, b: 0.49411765, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1349,7 +1351,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.43, y: 4.47}
+  m_AnchoredPosition: {x: 0, y: -4.56}
   m_SizeDelta: {x: 17, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1850241573
@@ -2076,7 +2078,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8953789225092300292}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.71, y: -4.03, z: 0}
+  m_LocalPosition: {x: -7.76, y: -3.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -31,6 +31,7 @@ public class SlideShowManager : MonoBehaviour
     [SerializeField] private string backToPlay = "Soundtrack Intro";
     [SerializeField] private SpriteRenderer fadeRend;
     [SerializeField] private float startFade = 0.6f;
+    [SerializeField] private bool canSkip = false;
 
     private float timer = 0f;
     private int slideIndex = 0;
@@ -47,8 +48,9 @@ public class SlideShowManager : MonoBehaviour
 
     private void Start()
     {
-        
-        holdToSkip.color = new Color(1f, 1f, 1f, 0f);
+        Color c = holdToSkip.color;
+        c .a = 0f;
+        holdToSkip.color = c;
         
         fadeRend.color = Color.black;
         fadeRend.DOFade(0f, startFade).OnComplete(() =>
@@ -72,7 +74,7 @@ public class SlideShowManager : MonoBehaviour
                     .OnComplete(() => holdAnimEnd = true);
             }
 
-            if (click)
+            if (canSkip && click)
             {
                 holdTimer += Time.deltaTime;
                 if (holdTimer > 2f)
@@ -107,7 +109,12 @@ public class SlideShowManager : MonoBehaviour
         spriteRend.transform.position = Vector2.LerpUnclamped(slide.posFrom, slide.posTo, slideT);
         spriteRend.transform.localScale = Vector3.one * Mathf.LerpUnclamped(slide.scaleFrom, slide.scaleTo, slideT);
 
-        if (started) timer += Time.deltaTime;
+        if (started)
+        {
+            float increment = Time.deltaTime;
+            if (!canSkip && Input.GetMouseButton(0)) increment *= 5f;
+            timer += increment;
+        }
         
         if (end) return;
         

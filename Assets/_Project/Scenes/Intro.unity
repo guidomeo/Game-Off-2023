@@ -194,6 +194,8 @@ MonoBehaviour:
   holdToSkip: {fileID: 1211756551}
   backToPlay: Soundtrack Intro
   fadeRend: {fileID: 2136544873}
+  startFade: 0.6
+  canSkip: 1
   holdAnimEnd: 0
 --- !u!4 &80263608
 Transform:
@@ -956,7 +958,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hold click to skip
+  m_text: Hold mouse click to skip
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 08c4d074a56cf4ac5aeda1791b55cb00, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 53d3209d584da4f258c807f39df9aca2, type: 2}
@@ -965,8 +967,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4286493886
+  m_fontColor: {r: 0.745283, g: 0.70784307, b: 0.49568352, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

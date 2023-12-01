@@ -6,8 +6,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayButton : MonoBehaviour
+public class ChangeSceneButton : MonoBehaviour
 {
+    [SerializeField] private int sceneIndex;
     [SerializeField] private AudioData clickAudio;
     [SerializeField] private float duration;
     [SerializeField] private Color colorNormal;
@@ -55,7 +56,7 @@ public class PlayButton : MonoBehaviour
         if (!mouseEnter) return;
         fadeRend.DOFade(1f, 1f).OnComplete(() =>
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(sceneIndex);
         });
     }
 }
