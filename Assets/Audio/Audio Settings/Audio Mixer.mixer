@@ -50,6 +50,7 @@ AudioMixerGroupController:
   - {fileID: -227611904299410907}
   - {fileID: 2816681043448462787}
   - {fileID: 4732276186505094517}
+  - {fileID: 5354137292411889590}
   m_Volume: 930009cb8eda8450fbb1cc68cbc85452
   m_Pitch: 1623685be2b0a400684ee73fca752472
   m_Send: 00000000000000000000000000000000
@@ -92,6 +93,20 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-2931075771158024344
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 2845ae081f78845c2b61b31cb2c12eee
+  m_EffectName: Attenuation
+  m_MixLevel: c9436aad62d924056bb1135ae021be99
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &-2688306864388230266
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -194,6 +209,7 @@ AudioMixerController:
     - d85985adfa5be4c5db2c2a57e0cc60b8
     - cfeea5779eaff4bf6b671c08c98be4ba
     - 9e250d32512304e8d91115073f8700b6
+    - 5ea9208252fb845e0ba4c21d16dd1b00
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -440,6 +456,25 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!243 &5354137292411889590
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Snow Steps
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 5ea9208252fb845e0ba4c21d16dd1b00
+  m_Children: []
+  m_Volume: a9969f3af076b4f2e934f7864c6751d2
+  m_Pitch: a7e204354ad464c8ba80400598ecc7a3
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -2931075771158024344}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!243 &6192149027906491757
 AudioMixerGroupController:
   m_ObjectHideFlags: 0

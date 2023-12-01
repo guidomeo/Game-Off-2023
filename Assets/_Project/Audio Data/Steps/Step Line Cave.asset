@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Step Line Cave
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: c0b3f19b293b84caeaf30a4e2ec9accb, type: 3}
+  - {fileID: 8300000, guid: 42b7084ca5a8341b6833c48314163ef9, type: 3}
   audioMixerGroup: {fileID: -227611904299410907, guid: 4d0f4f0523e0941b19ffcdc2ae31bc95, type: 2}
   volume: 1
   pitch: 1

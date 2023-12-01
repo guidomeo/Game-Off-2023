@@ -16,4 +16,4 @@ MonoBehaviour:
   - name: normal
     audioData: {fileID: 11400000, guid: e27757cb60b7a45229489f0a09f4c22a, type: 2}
   - name: cave
-    audioData: {fileID: 11400000, guid: e27757cb60b7a45229489f0a09f4c22a, type: 2}
+    audioData: {fileID: 11400000, guid: 0b304c4d808cc408ea6a60613763b230, type: 2}

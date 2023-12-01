@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clips:
   - {fileID: 8300000, guid: c8059076f8d9840838b63c36bc471ac5, type: 3}
-  - {fileID: 8300000, guid: 8d2a6417d429942e2a903c56166be6f6, type: 3}
   - {fileID: 8300000, guid: 86a0b4cf624d9454cb8186b81091af2b, type: 3}
   - {fileID: 8300000, guid: 0a096488ee74a4a43a478b4d750d9c5b, type: 3}
   - {fileID: 8300000, guid: da1de8270993742ec8717b519adc3075, type: 3}
@@ -25,8 +24,10 @@ MonoBehaviour:
   pitch: 1
   delay: 0
   timeToPlayAgain: 0
+  fadeInDuration: 0
   randomSettings:
     volumeUp: 0.33
     volumeDown: 0.08
     pitchUp: 0
     pitchDown: 0
+    timeToPlayAgainUp: 0
