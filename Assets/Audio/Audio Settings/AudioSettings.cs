@@ -36,15 +36,14 @@ public class AudioSettings : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        bool mouseDown = Input.GetMouseButtonDown(0) && !MouseOverAudioSettings();
+        bool keyDown = Input.anyKeyDown && !Input.GetMouseButtonDown(0);
+        if (mouseDown || keyDown)
         {
-            if (!MouseOverAudioSettings())
+            if (button.IsOn)
             {
-                if (button.IsOn)
-                {
-                    button.SetIsOn(false, true);
-                    OnClick();
-                }
+                button.SetIsOn(false, true);
+                OnClick();
             }
         }
     }
