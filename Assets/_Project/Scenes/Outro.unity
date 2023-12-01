@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextScene: 4
-  textDuration: 3
+  textDuration: 15
   textEndPercentage: 0.8
   endFadeDuration: 1
   slides:
@@ -163,7 +163,10 @@ MonoBehaviour:
     scaleTo: 1.1
     sprite: {fileID: 21300000, guid: c738e1f64775040e9b298caf7eba89a1, type: 3}
     text:
-    - This is how it ends.
+    - 'Chasing the Grand up the peak so steep,
+
+      He lost its little magic he
+      had to keep.'
   spriteRend: {fileID: 2097569997}
   textComp: {fileID: 1531109143}
   holdToSkip: {fileID: 1598974591}
@@ -637,6 +640,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3473789221699278442, guid: 64f7aa21aca2341438184adfebe441af, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3473789221699278442, guid: 64f7aa21aca2341438184adfebe441af, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3473789221699278442, guid: 64f7aa21aca2341438184adfebe441af, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3473789221699278442, guid: 64f7aa21aca2341438184adfebe441af, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5579879569404999970, guid: 64f7aa21aca2341438184adfebe441af, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -647,6 +666,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5579879569404999970, guid: 64f7aa21aca2341438184adfebe441af, type: 3}
       propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5579879570157431355, guid: 64f7aa21aca2341438184adfebe441af, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5579879570157431355, guid: 64f7aa21aca2341438184adfebe441af, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5579879570157431355, guid: 64f7aa21aca2341438184adfebe441af, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5579879570157431355, guid: 64f7aa21aca2341438184adfebe441af, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5579879570721691238, guid: 64f7aa21aca2341438184adfebe441af, type: 3}
@@ -675,6 +710,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9179794874687315735, guid: 64f7aa21aca2341438184adfebe441af, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9179794875251581770, guid: 64f7aa21aca2341438184adfebe441af, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9179794875251581770, guid: 64f7aa21aca2341438184adfebe441af, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9179794875251581770, guid: 64f7aa21aca2341438184adfebe441af, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9179794875251581770, guid: 64f7aa21aca2341438184adfebe441af, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -717,7 +768,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sample text
+  m_text: 'Chasing the Grand up the peak so steep,
+
+    He lost its little magic
+    he had to keep.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f1fc5aba3966f4b59a17e9f91e11d601, type: 2}
   m_sharedMaterial: {fileID: 6830141334879107198, guid: f1fc5aba3966f4b59a17e9f91e11d601, type: 2}
