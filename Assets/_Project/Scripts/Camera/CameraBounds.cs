@@ -26,7 +26,8 @@ public class CameraBounds : MonoBehaviour
         
         cam.rect = new Rect(0f, 0f, 1f, 1f);
         
-        var variance = aspect / cam.aspect;
+        rect = new Rect(0f, 0f, 1f, 1f);
+        /*var variance = aspect / cam.aspect;
         if (variance < 1f)
         {
             rect = new Rect ((1f - variance) / 2f, 0 , variance, 1f);
@@ -35,7 +36,7 @@ public class CameraBounds : MonoBehaviour
         {
             variance = 1f / variance;
             rect = new Rect (0, (1f - variance) / 2f , 1f, variance);
-        }
+        }*/
 
         cam.rect = rect;
     }
